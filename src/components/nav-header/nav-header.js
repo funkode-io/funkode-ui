@@ -119,7 +119,7 @@ class NavHeader extends HTMLElement {
           
         a {
           -ms-touch-action: manipulation;
-          text-decoration: underline;
+          --fk-text-decoration: var(--pico-text-decoration, underline);
         }
 
         :where(a:not([role=button])),
