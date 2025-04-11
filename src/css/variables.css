@@ -1,53 +1,59 @@
-/* Funkode CSS Variables - converted from Pico CSS */
+/* Funkode CSS Variables - with computed values */
 
 :root {
   /* Navigation */
-  --fk-nav-element-spacing-horizontal: var(--pico-nav-element-spacing-horizontal);
-  --fk-nav-element-spacing-vertical: var(--pico-nav-element-spacing-vertical);
-  --fk-nav-link-spacing-horizontal: var(--pico-nav-link-spacing-horizontal);
-  --fk-nav-link-spacing-vertical: var(--pico-nav-link-spacing-vertical);
-  --fk-nav-breadcrumb-divider: var(--pico-nav-breadcrumb-divider);
+  --fk-nav-element-spacing-horizontal: 1rem;
+  --fk-nav-element-spacing-vertical: 0.5rem;
+  --fk-nav-link-spacing-horizontal: 0.5rem;
+  --fk-nav-link-spacing-vertical: 0.35rem;
+  --fk-nav-breadcrumb-divider: "/";
   
   /* Colors */
-  --fk-background-color: var(--pico-background-color);
-  --fk-color: var(--pico-color);
-  --fk-muted-color: var(--pico-muted-color);
-  --fk-primary: var(--pico-primary);
-  --fk-primary-background: var(--pico-primary-background);
-  --fk-primary-underline: var(--pico-primary-underline);
+  --fk-background-color: #11191f;
+  --fk-color: #d1d5db;
+  --fk-muted-color: #9ca3af;
+  --fk-primary: #8999f9;
+  --fk-primary-background: #2060df;
+  --fk-primary-underline: rgba(137, 153, 249, 0.5);
   
   /* Typography */
-  --fk-typography-spacing-vertical: var(--pico-typography-spacing-vertical);
-  --fk-font-weight: var(--pico-font-weight);
-  --fk-text-decoration: var(--pico-text-decoration);
+  --fk-typography-spacing-vertical: 1.5rem;
+  --fk-font-weight: 400;
+  --fk-text-decoration: underline;
   
   /* Borders */
-  --fk-border-radius: var(--pico-border-radius);
-  --fk-border-width: var(--pico-border-width);
+  --fk-border-radius: 0.25rem;
+  --fk-border-width: 1px;
   
   /* Transitions */
-  --fk-transition: var(--pico-transition);
+  --fk-transition: 0.2s ease-in-out;
 
   /* Navigation Header Specific */
-  --fk-navigation-header-background-color: var(--pico-background-color);
-  --fk-navigation-header-color: var(--pico-color);
+  --fk-navigation-header-background-color: #11191f;
+  --fk-navigation-header-color: #d1d5db;
 }
 
 /* Dark theme overrides */
 @media only screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --fk-primary: var(--pico-primary);
-    --fk-primary-background: var(--pico-primary-background);
+    --fk-primary: #8999f9;
+    --fk-primary-background: #2060df;
+    --fk-background-color: #11191f;
+    --fk-color: #d1d5db;
   }
 }
 
 [data-theme="dark"] {
-  --fk-primary: var(--pico-primary);
-  --fk-primary-background: var(--pico-primary-background);
+  --fk-primary: #8999f9;
+  --fk-primary-background: #2060df;
+  --fk-background-color: #11191f;
+  --fk-color: #d1d5db;
 }
 
 /* Light theme overrides */
 [data-theme="light"] {
-  --fk-primary: var(--pico-primary);
-  --fk-primary-background: var(--pico-primary-background);
+  --fk-primary: #2060df;
+  --fk-primary-background: #2060df;
+  --fk-background-color: #fff;
+  --fk-color: #11191f;
 }
