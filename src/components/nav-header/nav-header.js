@@ -191,12 +191,9 @@ class NavHeader extends HTMLElement {
           </li>
         </ul>
         <ul>
-          <slot name="nav-items">
-            <!-- Default navigation items if none provided -->
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
-          </slot>
         </ul>
       </nav>
     `;
