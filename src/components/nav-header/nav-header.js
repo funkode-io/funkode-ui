@@ -150,6 +150,12 @@ class NavHeader extends HTMLElement {
         .brand-description {
           text-align: center;
         }
+        
+        ::slotted(svg) {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
       </style>
       <nav>
         <ul>
