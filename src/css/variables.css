@@ -1,59 +1,122 @@
-/* Funkode CSS Variables - with computed values */
+/* Funkode CSS Variables - with values from Pico Amber theme */
 
 :root {
-  /* Navigation */
-  --fk-nav-element-spacing-horizontal: 1rem;
-  --fk-nav-element-spacing-vertical: 0.5rem;
-  --fk-nav-link-spacing-horizontal: 0.5rem;
-  --fk-nav-link-spacing-vertical: 0.35rem;
-  --fk-nav-breadcrumb-divider: "/";
-  
-  /* Colors */
-  --fk-background-color: #11191f;
-  --fk-color: #d1d5db;
-  --fk-muted-color: #9ca3af;
-  --fk-primary: #8999f9;
-  --fk-primary-background: #2060df;
-  --fk-primary-underline: rgba(137, 153, 249, 0.5);
-  
-  /* Typography */
-  --fk-typography-spacing-vertical: 1.5rem;
+  /* Base variables */
+  --fk-font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --fk-font-family-sans-serif: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--fk-font-family-emoji);
+  --fk-font-family-monospace: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace, var(--fk-font-family-emoji);
+  --fk-font-family: var(--fk-font-family-sans-serif);
+  --fk-line-height: 1.5;
   --fk-font-weight: 400;
-  --fk-text-decoration: underline;
-  
-  /* Borders */
+  --fk-font-size: 100%;
+  --fk-text-underline-offset: 0.1rem;
   --fk-border-radius: 0.25rem;
-  --fk-border-width: 1px;
-  
-  /* Transitions */
+  --fk-border-width: 0.0625rem;
+  --fk-outline-width: 0.125rem;
   --fk-transition: 0.2s ease-in-out;
-
+  --fk-spacing: 1rem;
+  --fk-typography-spacing-vertical: 1rem;
+  --fk-block-spacing-vertical: var(--fk-spacing);
+  --fk-block-spacing-horizontal: var(--fk-spacing);
+  
+  /* Navigation */
+  --fk-nav-element-spacing-vertical: 1rem;
+  --fk-nav-element-spacing-horizontal: 0.5rem;
+  --fk-nav-link-spacing-vertical: 0.5rem;
+  --fk-nav-link-spacing-horizontal: 0.5rem;
+  --fk-nav-breadcrumb-divider: ">";
+  
+  /* Light theme (default) */
+  --fk-background-color: #fff;
+  --fk-color: #373c44;
+  --fk-text-selection-color: rgba(183, 136, 0, 0.25);
+  --fk-muted-color: #646b79;
+  --fk-muted-border-color: rgb(231, 234, 239.5);
+  --fk-primary: #876400;
+  --fk-primary-background: #ffbf00;
+  --fk-primary-border: var(--fk-primary-background);
+  --fk-primary-underline: rgba(135, 100, 0, 0.5);
+  --fk-primary-hover: #694d00;
+  --fk-primary-hover-background: #e8ae01;
+  --fk-primary-hover-border: var(--fk-primary-hover-background);
+  --fk-primary-hover-underline: var(--fk-primary-hover);
+  --fk-primary-focus: rgba(183, 136, 0, 0.5);
+  --fk-primary-inverse: #000;
+  
   /* Navigation Header Specific */
-  --fk-navigation-header-background-color: #11191f;
-  --fk-navigation-header-color: #d1d5db;
+  --fk-navigation-header-background-color: var(--fk-background-color);
+  --fk-navigation-header-color: var(--fk-color);
 }
 
 /* Dark theme overrides */
 @media only screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --fk-primary: #8999f9;
-    --fk-primary-background: #2060df;
-    --fk-background-color: #11191f;
-    --fk-color: #d1d5db;
+    color-scheme: dark;
+    --fk-background-color: rgb(19, 22.5, 30.5);
+    --fk-color: #c2c7d0;
+    --fk-text-selection-color: rgba(199, 148, 0, 0.1875);
+    --fk-muted-color: #7b8495;
+    --fk-muted-border-color: #202632;
+    --fk-primary: #c79400;
+    --fk-primary-background: #ffbf00;
+    --fk-primary-border: var(--fk-primary-background);
+    --fk-primary-underline: rgba(199, 148, 0, 0.5);
+    --fk-primary-hover: #e8ae01;
+    --fk-primary-hover-background: #fecc63;
+    --fk-primary-hover-border: var(--fk-primary-hover-background);
+    --fk-primary-hover-underline: var(--fk-primary-hover);
+    --fk-primary-focus: rgba(199, 148, 0, 0.375);
+    --fk-primary-inverse: #000;
+    
+    /* Navigation Header Specific */
+    --fk-navigation-header-background-color: var(--fk-background-color);
+    --fk-navigation-header-color: var(--fk-color);
   }
 }
 
 [data-theme="dark"] {
-  --fk-primary: #8999f9;
-  --fk-primary-background: #2060df;
-  --fk-background-color: #11191f;
-  --fk-color: #d1d5db;
+  color-scheme: dark;
+  --fk-background-color: rgb(19, 22.5, 30.5);
+  --fk-color: #c2c7d0;
+  --fk-text-selection-color: rgba(199, 148, 0, 0.1875);
+  --fk-muted-color: #7b8495;
+  --fk-muted-border-color: #202632;
+  --fk-primary: #c79400;
+  --fk-primary-background: #ffbf00;
+  --fk-primary-border: var(--fk-primary-background);
+  --fk-primary-underline: rgba(199, 148, 0, 0.5);
+  --fk-primary-hover: #e8ae01;
+  --fk-primary-hover-background: #fecc63;
+  --fk-primary-hover-border: var(--fk-primary-hover-background);
+  --fk-primary-hover-underline: var(--fk-primary-hover);
+  --fk-primary-focus: rgba(199, 148, 0, 0.375);
+  --fk-primary-inverse: #000;
+  
+  /* Navigation Header Specific */
+  --fk-navigation-header-background-color: var(--fk-background-color);
+  --fk-navigation-header-color: var(--fk-color);
 }
 
 /* Light theme overrides */
 [data-theme="light"] {
-  --fk-primary: #2060df;
-  --fk-primary-background: #2060df;
+  color-scheme: light;
   --fk-background-color: #fff;
-  --fk-color: #11191f;
+  --fk-color: #373c44;
+  --fk-text-selection-color: rgba(183, 136, 0, 0.25);
+  --fk-muted-color: #646b79;
+  --fk-muted-border-color: rgb(231, 234, 239.5);
+  --fk-primary: #876400;
+  --fk-primary-background: #ffbf00;
+  --fk-primary-border: var(--fk-primary-background);
+  --fk-primary-underline: rgba(135, 100, 0, 0.5);
+  --fk-primary-hover: #694d00;
+  --fk-primary-hover-background: #e8ae01;
+  --fk-primary-hover-border: var(--fk-primary-hover-background);
+  --fk-primary-hover-underline: var(--fk-primary-hover);
+  --fk-primary-focus: rgba(183, 136, 0, 0.5);
+  --fk-primary-inverse: #000;
+  
+  /* Navigation Header Specific */
+  --fk-navigation-header-background-color: var(--fk-background-color);
+  --fk-navigation-header-color: var(--fk-color);
 }
