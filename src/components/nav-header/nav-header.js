@@ -9,7 +9,9 @@ class NavHeader extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.innerHTML = `
+    // Create the template
+    const template = document.createElement('template');
+    template.innerHTML = `
       <style>
         :root {
           --navigation-header-background-color: var(--pico-background-color);
@@ -144,34 +146,48 @@ class NavHeader extends HTMLElement {
           margin-top: 0;
           margin-bottom: 0;
         }
+
+        .brand-description {
+          text-align: center;
+        }
       </style>
       <nav>
         <ul>
           <li>
             <hgroup>
               <h1>
-                <svg height="50" viewBox="0 0 380 96" style="background-color: transparent;">
-                  <style>
-                    text {
-                      font-family: 'Roboto', sans-serif;
-                    }
-                  </style>
-                  <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
-                    fill="transparent" />
-                  <text x="120" y="72" font-size="64" fill="white">Funkode</text>
-                </svg>
+                <slot name="logo">
+                  <!-- Default logo if none provided -->
+                  <svg height="50" viewBox="0 0 380 96" style="background-color: transparent;">
+                    <style>
+                      text {
+                        font-family: 'Roboto', sans-serif;
+                      }
+                    </style>
+                    <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+                      fill="transparent" />
+                    <text x="120" y="72" font-size="64" fill="white">Funkode</text>
+                  </svg>
+                </slot>
               </h1>
-              <p style="text-align: center">Funkode UI library</p>
+              <p class="brand-description"><slot name="description">Funkode UI library</slot></p>
             </hgroup>
           </li>
         </ul>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <slot name="nav-items">
+            <!-- Default navigation items if none provided -->
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </slot>
         </ul>
       </nav>
     `;
+
+    // Clone the template content and append it to the shadow DOM
+    const templateContent = template.content.cloneNode(true);
+    this.shadowRoot.appendChild(templateContent);
   }
 }
 
