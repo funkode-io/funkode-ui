@@ -80,34 +80,6 @@ class NavHeader extends HTMLElement {
           margin-left: inherit;
           padding: calc(var(--fk-nav-link-spacing-vertical) - var(--fk-border-width) * 2) var(--fk-nav-link-spacing-horizontal);
         }
-        nav[aria-label=breadcrumb] {
-          align-items: center;
-          justify-content: start;
-        }
-        nav[aria-label=breadcrumb] ul li:not(:first-child) {
-          margin-inline-start: var(--fk-nav-link-spacing-horizontal);
-        }
-        nav[aria-label=breadcrumb] ul li a {
-          margin: calc(var(--fk-nav-link-spacing-vertical) * -1) 0;
-          margin-inline-start: calc(var(--fk-nav-link-spacing-horizontal) * -1);
-        }
-        nav[aria-label=breadcrumb] ul li:not(:last-child)::after {
-          display: inline-block;
-          position: absolute;
-          width: calc(var(--fk-nav-link-spacing-horizontal) * 4);
-          margin: 0 calc(var(--fk-nav-link-spacing-horizontal) * -1);
-          content: var(--fk-nav-breadcrumb-divider);
-          color: var(--fk-muted-color);
-          text-align: center;
-          text-decoration: none;
-          white-space: nowrap;
-        }
-        nav[aria-label=breadcrumb] a[aria-current]:not([aria-current=false]) {
-          background-color: transparent;
-          color: inherit;
-          text-decoration: none;
-          pointer-events: none;
-        }  
 
         ul {
           margin-top: 0;
@@ -119,7 +91,6 @@ class NavHeader extends HTMLElement {
           
         a {
           -ms-touch-action: manipulation;
-          --fk-text-decoration: var(--pico-text-decoration, underline);
         }
 
         :where(a:not([role=button])),
