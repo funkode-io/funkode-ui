@@ -1,0 +1,49 @@
+/* Funkode CSS Variables - converted from Pico CSS */
+
+:root {
+  /* Navigation */
+  --fk-nav-element-spacing-horizontal: var(--pico-nav-element-spacing-horizontal);
+  --fk-nav-element-spacing-vertical: var(--pico-nav-element-spacing-vertical);
+  --fk-nav-link-spacing-horizontal: var(--pico-nav-link-spacing-horizontal);
+  --fk-nav-link-spacing-vertical: var(--pico-nav-link-spacing-vertical);
+  --fk-nav-breadcrumb-divider: var(--pico-nav-breadcrumb-divider);
+  
+  /* Colors */
+  --fk-background-color: var(--pico-background-color);
+  --fk-color: var(--pico-color);
+  --fk-muted-color: var(--pico-muted-color);
+  --fk-primary: var(--pico-primary);
+  --fk-primary-background: var(--pico-primary-background);
+  --fk-primary-underline: var(--pico-primary-underline);
+  
+  /* Typography */
+  --fk-typography-spacing-vertical: var(--pico-typography-spacing-vertical);
+  --fk-font-weight: var(--pico-font-weight);
+  --fk-text-decoration: var(--pico-text-decoration);
+  
+  /* Borders */
+  --fk-border-radius: var(--pico-border-radius);
+  --fk-border-width: var(--pico-border-width);
+  
+  /* Transitions */
+  --fk-transition: var(--pico-transition);
+}
+
+/* Dark theme overrides */
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --fk-primary: var(--pico-primary);
+    --fk-primary-background: var(--pico-primary-background);
+  }
+}
+
+[data-theme="dark"] {
+  --fk-primary: var(--pico-primary);
+  --fk-primary-background: var(--pico-primary-background);
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --fk-primary: var(--pico-primary);
+  --fk-primary-background: var(--pico-primary-background);
+}
