@@ -27,6 +27,10 @@
   
   /* Transitions */
   --fk-transition: var(--pico-transition);
+
+  /* Navigation Header Specific */
+  --fk-navigation-header-background-color: var(--pico-background-color);
+  --fk-navigation-header-color: var(--pico-color);
 }
 
 /* Dark theme overrides */

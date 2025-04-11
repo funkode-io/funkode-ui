@@ -14,8 +14,8 @@ class NavHeader extends HTMLElement {
     template.innerHTML = `
       <style>
         :root {
-          --navigation-header-background-color: var(--pico-background-color);
-          --navigation-header-color: var(--pico-color);
+          --navigation-header-background-color: var(--fk-navigation-header-background-color, var(--pico-background-color));
+          --navigation-header-color: var(--fk-navigation-header-color, var(--pico-color));
         }
 
         :host {
@@ -50,21 +50,21 @@ class NavHeader extends HTMLElement {
           list-style: none;
         }
         nav ul:first-of-type {
-          margin-left: calc(var(--pico-nav-element-spacing-horizontal) * -1);
+          margin-left: calc(var(--fk-nav-element-spacing-horizontal, var(--pico-nav-element-spacing-horizontal)) * -1);
         }
         nav ul:last-of-type {
-          margin-right: calc(var(--pico-nav-element-spacing-horizontal) * -1);
+          margin-right: calc(var(--fk-nav-element-spacing-horizontal, var(--pico-nav-element-spacing-horizontal)) * -1);
         }
         nav li {
           display: inline-block;
           margin: 0;
-          padding: var(--pico-nav-element-spacing-vertical) var(--pico-nav-element-spacing-horizontal);
+          padding: var(--fk-nav-element-spacing-vertical, var(--pico-nav-element-spacing-vertical)) var(--fk-nav-element-spacing-horizontal, var(--pico-nav-element-spacing-horizontal));
         }
         nav li :where(a, [role=link]) {
           display: inline-block;
-          margin: calc(var(--pico-nav-link-spacing-vertical) * -1) calc(var(--pico-nav-link-spacing-horizontal) * -1);
-          padding: var(--pico-nav-link-spacing-vertical) var(--pico-nav-link-spacing-horizontal);
-          border-radius: var(--pico-border-radius);
+          margin: calc(var(--fk-nav-link-spacing-vertical, var(--pico-nav-link-spacing-vertical)) * -1) calc(var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal)) * -1);
+          padding: var(--fk-nav-link-spacing-vertical, var(--pico-nav-link-spacing-vertical)) var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal));
+          border-radius: var(--fk-border-radius, var(--pico-border-radius));
         }
         nav li :where(a, [role=link]):not(:hover) {
           text-decoration: none;
@@ -78,26 +78,26 @@ class NavHeader extends HTMLElement {
           margin-right: inherit;
           margin-bottom: 0;
           margin-left: inherit;
-          padding: calc(var(--pico-nav-link-spacing-vertical) - var(--pico-border-width) * 2) var(--pico-nav-link-spacing-horizontal);
+          padding: calc(var(--fk-nav-link-spacing-vertical, var(--pico-nav-link-spacing-vertical)) - var(--fk-border-width, var(--pico-border-width)) * 2) var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal));
         }
         nav[aria-label=breadcrumb] {
           align-items: center;
           justify-content: start;
         }
         nav[aria-label=breadcrumb] ul li:not(:first-child) {
-          margin-inline-start: var(--pico-nav-link-spacing-horizontal);
+          margin-inline-start: var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal));
         }
         nav[aria-label=breadcrumb] ul li a {
-          margin: calc(var(--pico-nav-link-spacing-vertical) * -1) 0;
-          margin-inline-start: calc(var(--pico-nav-link-spacing-horizontal) * -1);
+          margin: calc(var(--fk-nav-link-spacing-vertical, var(--pico-nav-link-spacing-vertical)) * -1) 0;
+          margin-inline-start: calc(var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal)) * -1);
         }
         nav[aria-label=breadcrumb] ul li:not(:last-child)::after {
           display: inline-block;
           position: absolute;
-          width: calc(var(--pico-nav-link-spacing-horizontal) * 4);
-          margin: 0 calc(var(--pico-nav-link-spacing-horizontal) * -1);
-          content: var(--pico-nav-breadcrumb-divider);
-          color: var(--pico-muted-color);
+          width: calc(var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal)) * 4);
+          margin: 0 calc(var(--fk-nav-link-spacing-horizontal, var(--pico-nav-link-spacing-horizontal)) * -1);
+          content: var(--fk-nav-breadcrumb-divider, var(--pico-nav-breadcrumb-divider));
+          color: var(--fk-muted-color, var(--pico-muted-color));
           text-align: center;
           text-decoration: none;
           white-space: nowrap;
@@ -111,36 +111,46 @@ class NavHeader extends HTMLElement {
 
         ul {
           margin-top: 0;
-          margin-bottom: var(--pico-typography-spacing-vertical);
-          color: var(--pico-color);
+          margin-bottom: var(--fk-typography-spacing-vertical, var(--pico-typography-spacing-vertical));
+          color: var(--fk-color, var(--pico-color));
           font-style: normal;
-          font-weight: var(--pico-font-weight);
+          font-weight: var(--fk-font-weight, var(--pico-font-weight));
         }     
           
         a {
           -ms-touch-action: manipulation;
-          --pico-text-decoration: underline;
+          --fk-text-decoration: var(--pico-text-decoration, underline);
         }
 
         :where(a:not([role=button])),
         [role=link] {
-          --pico-color: var(--pico-primary);
-          --pico-background-color: transparent;
-          --pico-underline: var(--pico-primary-underline);
+          --fk-color: var(--fk-primary, var(--pico-primary));
+          --fk-background-color: transparent;
+          --fk-underline: var(--fk-primary-underline, var(--pico-primary-underline));
           outline: none;
-          background-color: var(--pico-background-color);
-          color: var(--pico-color);
-          -webkit-text-decoration: var(--pico-text-decoration);
-          text-decoration: var(--pico-text-decoration);
-          text-decoration-color: var(--pico-underline);
+          background-color: var(--fk-background-color, var(--pico-background-color));
+          color: var(--fk-color, var(--pico-color));
+          -webkit-text-decoration: var(--fk-text-decoration, var(--pico-text-decoration));
+          text-decoration: var(--fk-text-decoration, var(--pico-text-decoration));
+          text-decoration-color: var(--fk-underline, var(--pico-underline));
           text-underline-offset: 0.125em;
-          transition: background-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition), -webkit-text-decoration var(--pico-transition);
-          transition: background-color var(--pico-transition), color var(--pico-transition), text-decoration var(--pico-transition), box-shadow var(--pico-transition);
-          transition: background-color var(--pico-transition), color var(--pico-transition), text-decoration var(--pico-transition), box-shadow var(--pico-transition), -webkit-text-decoration var(--pico-transition);
+          transition: background-color var(--fk-transition, var(--pico-transition)), 
+                    color var(--fk-transition, var(--pico-transition)), 
+                    box-shadow var(--fk-transition, var(--pico-transition)), 
+                    -webkit-text-decoration var(--fk-transition, var(--pico-transition));
+          transition: background-color var(--fk-transition, var(--pico-transition)), 
+                    color var(--fk-transition, var(--pico-transition)), 
+                    text-decoration var(--fk-transition, var(--pico-transition)), 
+                    box-shadow var(--fk-transition, var(--pico-transition));
+          transition: background-color var(--fk-transition, var(--pico-transition)), 
+                    color var(--fk-transition, var(--pico-transition)), 
+                    text-decoration var(--fk-transition, var(--pico-transition)), 
+                    box-shadow var(--fk-transition, var(--pico-transition)), 
+                    -webkit-text-decoration var(--fk-transition, var(--pico-transition));
         }
 
         hgroup {
-          margin-bottom: var(--pico-typography-spacing-vertical);
+          margin-bottom: var(--fk-typography-spacing-vertical, var(--pico-typography-spacing-vertical));
         }
         hgroup > * {
           margin-top: 0;
