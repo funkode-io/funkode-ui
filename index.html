@@ -8,45 +8,44 @@
   <link rel="stylesheet" href="./css/main.css">
   <script type="module" src="./components/index.js"></script>
   <style>
-    /*
-    [data-theme="light"] {
-      --pico-primary: #2060df;
-      --pico-primary-background: #2060df;
-      --pico-text-selection-color: rgba(137, 153, 249, 0.1875);
-    }
-    @media only screen and (prefers-color-scheme: dark) {
-      :root:not([data-theme]) {
-        --pico-primary: #8999f9;
-        --pico-primary-background: #2060df;
-        --pico-text-selection-color: rgba(137, 153, 249, 0.1875);
-      }
+    body {
+      background-color: var(--pico-background-color);
     }
 
     [data-theme="dark"] {
-      --pico-primary: #8999f9;
-      --pico-primary-background: #2060df;
-      --pico-text-selection-color: rgba(137, 153, 249, 0.1875);
-    }*/
-    /*
-    :root:not([data-theme="dark"]) {
-      --navigation-header-background-color: navy;
-      --navigation-header-color: gold;
+      --nav-header-brand-color: white;
     }
-    @media only screen and (prefers-color-scheme: dark) {
-      :root:not([data-theme]) {
-        --navigation-header-background-color: purple;
-        --navigation-header-color: green;
-      }
-    [data-theme="dark"] {
-      --navigation-header-background-color: lightgray;
-      --navigation-header-color: firebrick;
-    }*/
+
+    nav-header::part(brand) {
+      color: var(--pico-muted-color);
+    }
 
   </style>
 </head>
-<body data-theme="dark">
+<body>
   <header class="container">
-    <nav-header brand-name="Eleventy Project"></nav-header>
+
+    <nav-header brand-text="Web Components Library">
+      <svg slot="logo" height="50" viewBox="0 0 400 96" style="background-color: transparent;">
+        <style>
+          path {
+            stroke: var(--nav-header-brand-color, var(--pico-color, white));
+          }
+          text {
+            font-family: 'Roboto', sans-serif;
+            fill: var(--nav-header-brand-color, var(--pico-color, white));;
+          }
+        </style>
+        <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white" fill="transparent"></path>
+        <text x="120" y="72" font-size="64" fill="white">Funkode</text>
+      </svg>
+      <ul slot="menus">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav-header>
+
     </header>
   <div class="container">
     <main>
