@@ -1,15 +1,12 @@
-import { defineConfig } from 'vite'
-import VitePluginWebc from 'vite-plugin-webc'
+import { dirname, resolve } from 'node:path';
+import { defineConfig } from 'vite';
+import VitePluginWebc from 'vite-plugin-webc';
 
 export default defineConfig({
-  plugins: [
-    VitePluginWebc({
-      // WebC plugin options here
-      components: ['src/components/**/*.webc'],
-      transformIncludeFilter: (id) => id.endsWith('.webc')
-    })
-  ],
-  resolve: {
-    extensions: ['.js', '.json', '.webc']
-  }
-})
+  build: {
+    entry: resolve(__dirname, 'src/lib-main.js'),
+    name: 'funkode-ui',
+    fileName: 'funkode-ui',
+  },
+	plugins: [VitePluginWebc()],
+});

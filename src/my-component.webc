@@ -1,0 +1,24 @@
+<span webc:root webc:keep>hello world</span>
+
+<style webc:scoped>
+
+	:host {
+		color: var(--lime-2);
+
+		&:hover {
+			color: var(--lime-6);
+		}
+
+		@media (prefers-color-scheme: light) {
+			color: var(--lime-8);
+
+			&:hover {
+				color: var(--lime-6);
+			}
+		}
+	}
+</style>
+
+<script>
+	console.log('hello from webc');
+</script>
