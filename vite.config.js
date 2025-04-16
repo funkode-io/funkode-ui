@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
-import webcPlugin from 'vite-plugin-webc'
+import VitePluginWebc  from 'vite-plugin-webc'
 
 export default defineConfig({
   plugins: [
-    webcPlugin({
+    VitePluginWebc ({
       // WebC plugin options here
       components: ['src/components/**/*.webc'],
       transformIncludeFilter: (id) => id.endsWith('.webc')
