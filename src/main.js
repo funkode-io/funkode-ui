@@ -1,11 +1,17 @@
 import './style.css'
+import './components/hello-world.webc'
 
 document.querySelector('#app').innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
-    <h1>Hello Vite!</h1>
+    <h1>Hello Vite with WebC!</h1>
+    
+    <hello-world>
+      <p>This content is passed via slot</p>
+    </hello-world>
+    
     <div class="card">
       <button id="counter" type="button">count is 0</button>
     </div>
