@@ -9,5 +9,7 @@ export default defineConfig({
       transformIncludeFilter: (id) => id.endsWith('.webc')
     })
   ],
-  assetsInclude: ['**/*.webc']
+  resolve: {
+    extensions: ['.js', '.json', '.webc']
+  }
 })

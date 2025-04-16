@@ -1,5 +1,8 @@
 import './style.css'
-// Remove direct import of WebC component
+import './components/hello-world.webc'
+
+// Import the WebC component registration
+import './webc-register.js'
 
 document.querySelector('#app').innerHTML = `
   <div>
