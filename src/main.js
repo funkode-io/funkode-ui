@@ -1,5 +1,5 @@
 import './style.css'
-import './components/hello-world.webc'
+// Remove direct import of WebC component
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -8,6 +8,7 @@ document.querySelector('#app').innerHTML = `
     </a>
     <h1>Hello Vite with WebC!</h1>
     
+    <!-- WebC component will be registered by the script in index.html -->
     <hello-world>
       <p>This content is passed via slot</p>
     </hello-world>
