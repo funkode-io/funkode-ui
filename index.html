@@ -2,15 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <script type="module">
-      import { CounterComponent } from '/src/lib/components/counter-component.js';
-    </script>
+    <script type="module" src="https://funkode-io.github.io/funkode-ui/funkode-ui.js"></script>
     <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.1.1/css/pico.amber.min.css" />
   </head>
   <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <hgroup>
+              <svg height="50" viewBox="0 0 380 96" style="background-color: transparent;">
+                <style>
+                  text {
+                    font-family: 'Roboto', sans-serif;
+                  }
+                </style>
+                <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+                  fill="transparent" />
+                <text x="120" y="72" font-size="64" fill="white">Funkode</text>
+              </svg>
+              <p style="text-align: center;">Funkode UI library</p>
+            </hgroup>
+          </li>
+        </ul>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="portfolio">Portfolio</li>
+        </ul>
+      </nav>
+    </header>
     <div id="app">
       <h1>Web Components Demo</h1>
       <div class="card">
