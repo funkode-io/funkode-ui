@@ -5,3 +5,4 @@
  */
 
 export * from './base-component.js';
+export * from './counter-component.js';
