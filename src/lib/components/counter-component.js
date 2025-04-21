@@ -60,7 +60,7 @@ export class CounterComponent extends BaseComponent {
         font-size: 2rem;
         margin: 1rem 0;
         padding: 0.5rem;
-        background-color: #f5f5f5;
+        background-color: #a3a3a3;
         border-radius: 4px;
       }
       
@@ -151,4 +151,4 @@ export class CounterComponent extends BaseComponent {
 }
 
 // Register the component
-registerComponent('counter-component', CounterComponent);
+registerComponent('my-counter', CounterComponent);
