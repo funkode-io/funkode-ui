@@ -1,6 +1,6 @@
 {
-  "name": "funkode-ui",
-  "private": true,
+  "name": "@funkode/funkode-ui",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "main": "dist/funkode-ui.js",
@@ -18,5 +18,8 @@
   ],
   "sideEffects": [
     "**/*.css"
-  ]
+  ],
+  "publishConfig": {
+  "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
+}
 }
