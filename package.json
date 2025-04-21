@@ -3,12 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/funkode-ui.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "vite": "^6.3.1"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ]
 }
