@@ -1,163 +1,87 @@
-class r extends HTMLElement {
+var c = (t) => {
+  throw TypeError(t);
+};
+var a = (t, r, e) => r.has(t) || c("Cannot " + e);
+var l = (t, r, e) => (a(t, r, "read from private field"), e ? e.call(t) : r.get(t)), u = (t, r, e) => r.has(t) ? c("Cannot add the same private member more than once") : r instanceof WeakSet ? r.add(t) : r.set(t, e);
+var o;
+class g extends HTMLElement {
   constructor() {
-    super(), this.attachShadow({ mode: "open" });
+    super();
+    u(this, o, new AbortController());
+  }
+  get event() {
+    return this.getAttribute("event") ?? "click";
+  }
+  set event(e) {
+    this.setAttribute("event", e);
+  }
+  getTrigger() {
+    return this.querySelectorAll(
+      this.getAttribute("trigger") ?? "[data-trigger]"
+    );
+  }
+  getContent(e) {
+    e = e || HTMLElement;
+    const n = this.querySelector(
+      this.getAttribute("content") ?? "[data-content]"
+    );
+    if (n instanceof e) return n;
+    throw new Error("Content not found");
+  }
+  swapContent(e) {
+    e = e | 800;
+    const n = this.querySelector(this.getAttribute("swap") ?? "[data-swap]");
+    if (n) {
+      const s = this.getContent().childNodes, i = [];
+      n instanceof HTMLTemplateElement ? (i.push(n.content.cloneNode(!0)), n.content.replaceChildren(...s)) : (i.push(...n.childNodes), n.replaceChildren(...s)), this.getContent().replaceChildren(...i), e && setTimeout(() => this.swapContent(0), e);
+    }
+  }
+  safeListener(e, n, s, i) {
+    s = s || document.body, i = i || {}, i.signal = l(this, o).signal, s.addEventListener(e, n, i);
+  }
+  triggerListener(e, n, s) {
+    n = n || this.event, s = s || {};
+    for (const i of this.getTrigger())
+      i.addEventListener(n, e, s);
   }
   /**
-   * Renders the component's HTML content
-   * @param {string} html - HTML content to render
-   */
-  render(t) {
-    this.shadowRoot.innerHTML = t;
+  * Passed into `queueMicrotask` in `connectedCallback`. It is overridden in each component that needs to run `connectedCallback`.
+  *
+  * The reason for this is to make these elements work better with frameworks like Svelte. For SSR this isn't necessary, but when client side rendering, the HTML within the custom element isn't available before `connectedCallback` is called. By waiting until the next microtask, the HTML content is available---then for example, listeners can be attached to elements inside.
+  */
+  mount() {
+  }
+  /** Called when custom element is added to the page. */
+  connectedCallback() {
+    queueMicrotask(() => this.mount());
   }
   /**
-   * Adds event listeners to elements in the shadow DOM
-   * @param {string} selector - CSS selector for the element
-   * @param {string} event - Event name (e.g., 'click')
-   * @param {Function} handler - Event handler function
-   */
-  addListener(t, e, s) {
-    const o = this.shadowRoot.querySelector(t);
-    o && o.addEventListener(e, s);
+  * Passed into `disconnectedCallback`, since `Base` needs to run `disconnectedCallback` as well. It is overridden in each element that needs to run `disconnectedCallback`.
+  */
+  destroy() {
   }
-  /**
-   * Creates and attaches a style element to the shadow DOM
-   * @param {string} css - CSS styles as a string
-   */
-  addStyles(t) {
-    const e = document.createElement("style");
-    e.textContent = t, this.shadowRoot.appendChild(e);
-  }
-  /**
-   * Utility method to dispatch custom events
-   * @param {string} name - Event name
-   * @param {any} detail - Data to include with the event
-   */
-  dispatch(t, e) {
-    this.dispatchEvent(new CustomEvent(t, {
-      detail: e,
-      bubbles: !0,
-      composed: !0
-    }));
+  /** Called when custom element is removed from the page. */
+  disconnectedCallback() {
+    this.destroy(), l(this, o).abort();
   }
 }
-function i(n, t) {
-  return n.includes("-") ? customElements.get(n) ? !1 : (customElements.define(n, t), !0) : (console.error("Custom element tag names must contain a hyphen (-)"), !1);
+o = new WeakMap();
+function h(t, r) {
+  return t.includes("-") ? customElements.get(t) ? !1 : (customElements.define(t, r), !0) : (console.error("Custom element tag names must contain a hyphen (-)"), !1);
 }
-class c extends r {
+class d extends g {
   constructor() {
-    super(), this._count = 0, this._init();
+    super();
   }
-  /**
-   * Initialize the component
-   */
-  _init() {
-    this._render(), this.addListener("#increment", "click", () => this.increment()), this.addListener("#decrement", "click", () => this.decrement()), this.addListener("#reset", "click", () => this.reset());
+  async linkWallet() {
+    alert("Linking wallet...");
   }
-  /**
-   * Render the component's HTML
-   */
-  _render() {
-    const t = `
-      <div class="counter-container">
-        <h2>Counter Component</h2>
-        <div class="counter-display">
-          <span id="count">${this._count}</span>
-        </div>
-        <div class="counter-controls">
-          <button id="decrement">-</button>
-          <button id="reset">Reset</button>
-          <button id="increment">+</button>
-        </div>
-      </div>
-    `, e = `
-      .counter-container {
-        font-family: Arial, sans-serif;
-        max-width: 300px;
-        margin: 0 auto;
-        padding: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        text-align: center;
-      }
-      
-      .counter-display {
-        font-size: 2rem;
-        margin: 1rem 0;
-        padding: 0.5rem;
-        background-color: #a3a3a3;
-        border-radius: 4px;
-      }
-      
-      .counter-controls {
-        display: flex;
-        justify-content: space-between;
-      }
-      
-      button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        cursor: pointer;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-      }
-      
-      button:hover {
-        background-color: #45a049;
-      }
-      
-      #reset {
-        background-color: #f44336;
-      }
-      
-      #reset:hover {
-        background-color: #d32f2f;
-      }
-    `;
-    this.render(t), this.addStyles(e);
-  }
-  /**
-   * Update the counter display
-   */
-  _updateDisplay() {
-    const t = this.shadowRoot.querySelector("#count");
-    t && (t.textContent = this._count), this.dispatch("count-changed", { count: this._count });
-  }
-  /**
-   * Increment the counter
-   */
-  increment() {
-    this._count++, this._updateDisplay();
-  }
-  /**
-   * Decrement the counter
-   */
-  decrement() {
-    this._count--, this._updateDisplay();
-  }
-  /**
-   * Reset the counter
-   */
-  reset() {
-    this._count = 0, this._updateDisplay();
-  }
-  /**
-   * Get the current count
-   */
-  get count() {
-    return this._count;
-  }
-  /**
-   * Set the current count
-   */
-  set count(t) {
-    this._count = Number(t) || 0, this._updateDisplay();
+  mount() {
+    this.triggerListener(() => this.linkWallet());
   }
 }
-i("my-counter", c);
+h("web3-login", d);
 export {
-  r as BaseComponent,
-  c as CounterComponent
+  g as BaseComponent,
+  d as Web3LoginComponent
 };
