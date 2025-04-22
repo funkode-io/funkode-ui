@@ -1,6 +1,6 @@
 {
-  "name": "funkode-ui",
-  "private": true,
+  "name": "@funkode-io/funkode-ui",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,7 +9,17 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "~5.7.2",
+    "@types/node": "^22.14.1",
+    "typescript": "5.8.3",
     "vite": "^6.3.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
   }
 }
