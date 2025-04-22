@@ -5,4 +5,4 @@
  */
 
 export * from './base-component.js';
-export * from './counter-component.js';
+export * from './web3-login-button.js';

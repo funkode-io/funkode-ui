@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Funkode UI</title>
+    <link rel="icon" href="/funkode_no_text.svg" type="image/svg+xml">
+    <!--
     <script type="module" src="https://funkode-io.github.io/funkode-ui/funkode-ui.js"></script>
+    -->
+    <script type="module">
+      import { Web3LoginComponent } from '/src/lib/components/index.js';
+    </script>
     <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.1.1/css/pico.amber.min.css" />
   </head>
@@ -30,15 +36,16 @@
         </ul>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="portfolio">Portfolio</li>
+            <li><a href="portfolio">Portfolio</a></li>
+            <li><web3-login><button data-trigger type="button">Login</button></web3-login></li>
         </ul>
       </nav>
     </header>
-    <div id="app">
-      <h1>Web Components Demo</h1>
-      <div class="card">
-        <my-counter></my-counter>    
-      </div>
+    <body class = "container">
+      
+      <h1>Funkode UI</h1>
+      <h2>Web Components Demo</h2>
+    
     </div>
   </body>
 </html>
