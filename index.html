@@ -1,48 +1,107 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/funkode.svg" type="image/svg+xml">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>funkode-ui + PicoCSS</title>
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.amber.min.css"
->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/themes/amber.min.css">
-    <script type="module" src="/src/lib/main.ts"></script>
-  </head>
-  <body>
-    <header class="container">
-      <nav>
-        <ul>
-          <li>
-            <hgroup>
-              <svg height="50" viewBox="0 0 380 96" style="background-color: transparent;">
-                <style>
-                  text {
-                    font-family: 'Roboto', sans-serif;
-                    fill: var(--pico-contrast-hover, white);
-                  }
-                  path {
-                    stroke: var(--pico-contrast-hover, white);
-                  }
-                </style>
-                <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
-                  fill="transparent" />
-                <text x="120" y="72" font-size="64">Funkode</text>
-              </svg>
-              <p style="text-align: center;">Funkode UI + PicoCSS demo</p>
-            </hgroup>
-        </ul>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/">About</a></li>
-          <li><fk-web3-login>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/funkode.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>funkode-ui + PicoCSS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.amber.min.css" />
+  <script type="module">
+    //import "drab/dialog/define";
+  </script>
+  <script type="module" src="/src/lib/main.ts"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dialog = document.querySelector('drab-dialog');
+      const content = dialog.querySelector('[data-content]');
+      console.log('Content:', content);
+
+      function isFullScreen(content) {
+        return content.clientHeight === window.innerHeight && content.offsetTop === 0 && content.offsetLeft === 0;
+      }
+
+      const element = isFullScreen(content) ? content : content.firstElementChild;
+      console.log('Element:', element);
+
+
+      document.addEventListener('click', (event) => {
+        console.log('Event:', event);
+        if (!element.contains(event.target) && content.open) {
+          console.log('Closing dialog');
+          content.close();
+        }
+      });
+
+
+    });
+  </script>
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li>
+          <hgroup>
+            <svg height="50" viewBox="0 0 380 96" style="background-color: transparent;">
+              <style>
+                text {
+                  font-family: 'Roboto', sans-serif;
+                  fill: var(--pico-contrast-hover, white);
+                }
+
+                path {
+                  stroke: var(--pico-contrast-hover, white);
+                }
+              </style>
+              <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+                fill="transparent" />
+              <text x="120" y="72" font-size="64">Funkode</text>
+            </svg>
+            <p style="text-align: center;">Funkode UI + PicoCSS demo</p>
+          </hgroup>
+      </ul>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">About</a></li>
+        <li>
+          <fk-web3-login>
             <button data-trigger>Login</button>
-          </fk-web3-login></li>
-        </ul>
-      </nav>
-    </header>
-  </body>
+          </fk-web3-login>
+        </li>
+        <li>
+          <fk-dialog click-outside-close>
+            <button data-trigger type="button">Right</button>
+            <dialog data-content class="side-dialog">
+              <article>
+                <header>
+                  <button aria-label="Close" rel="prev" data-trigger></button>
+                  <p>
+                    <strong>🗓️ Thank You for Registering!</strong>
+                  </p>
+                </header>
+                <p>
+                  We're excited to have you join us for our
+                  upcoming event. Please arrive at the museum
+                  on time to check in and get started.
+                </p>
+                <ul>
+                  <li>Date: Saturday, April 15</li>
+                  <li>Time: 10:00am - 12:00pm</li>
+                </ul>
+              </article>
+            </dialog>
+            </drab-dialog>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Hello World</h1>
+
+  </main>
+</body>
+
 </html>

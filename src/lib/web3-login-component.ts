@@ -1,17 +1,14 @@
-import { Trigger, Lifecycle } from "drab/base";
+import { Trigger, Lifecycle, Content } from "drab/base";
 
-export class Web3LoginComponent extends Trigger(Lifecycle(HTMLElement)) {
+export class Web3LoginComponent extends Content(
+	Trigger(Lifecycle(HTMLElement)),
+) {
 	async linkWallet() {
 		alert("Linking wallet...");
 	}
 
 	mount() {
 		this.triggerListener(() => this.linkWallet());
-	}
-
-	/** Called when custom element is added to the page. */
-	connectedCallback() {
-		queueMicrotask(() => this.mount());
 	}
 }
 
