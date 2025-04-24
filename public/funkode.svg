@@ -1,0 +1,10 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 0 120 96"
+  style="background-color: transparent;">
+  <style>
+    text {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+  <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+    fill="transparent" />
+</svg>
