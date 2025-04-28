@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.amber.min.css" />
   <script type="module">
     import "drab/dialog/define";
+    import 'htmx.org';
+
+    import Alpine from 'alpinejs';
+ 
+    window.Alpine = Alpine;
+ 
+    Alpine.start();
   </script>
   <script type="module" src="/src/lib/main.ts"></script>
 </head>
@@ -40,6 +47,7 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/">About</a></li>
+        <li><a hx-get="/challenge.html" hx-target="main">Challenge</a></li>
         <li>
           <fk-web3-login>
             <button data-trigger>Login</button>
