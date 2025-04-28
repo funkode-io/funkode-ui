@@ -12,23 +12,19 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "drab": "^6.4.0"
+    "drab": "^6.5.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/node": "^22.14.1",
-    "drab": "^6.4.0",
+    "@types/node": "22.15.3",
+    "drab": "^6.5.1",
     "glob": "^11.0.2",
     "typescript": "5.8.3",
     "vite": "6.3.3",
     "vite-plugin-dts": "^4.5.3"
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "files": ["dist"],
+  "sideEffects": ["**/*.css"],
   "publishConfig": {
     "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
   }

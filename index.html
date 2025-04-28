@@ -8,35 +8,9 @@
   <title>funkode-ui + PicoCSS</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.amber.min.css" />
   <script type="module">
-    //import "drab/dialog/define";
+    import "drab/dialog/define";
   </script>
   <script type="module" src="/src/lib/main.ts"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const dialog = document.querySelector('drab-dialog');
-      const content = dialog.querySelector('[data-content]');
-      console.log('Content:', content);
-
-      function isFullScreen(content) {
-        return content.clientHeight === window.innerHeight && content.offsetTop === 0 && content.offsetLeft === 0;
-      }
-
-      const element = isFullScreen(content) ? content : content.firstElementChild;
-      console.log('Element:', element);
-
-
-      document.addEventListener('click', (event) => {
-        console.log('Event:', event);
-        if (!element.contains(event.target) && content.open) {
-          console.log('Closing dialog');
-          content.close();
-        }
-      });
-
-
-    });
-  </script>
 </head>
 
 <body>
@@ -72,7 +46,7 @@
           </fk-web3-login>
         </li>
         <li>
-          <fk-dialog click-outside-close>
+          <drab-dialog click-outside-close>
             <button data-trigger type="button">Right</button>
             <dialog data-content class="side-dialog">
               <article>
