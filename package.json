@@ -7,30 +7,28 @@
   "types": "dist/main.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --p ./tsconfig-build.json && vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "drab": "^6.5.1"
+    "drab": "^6.5.1",
+    "ethers": "^6.13.7"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/node": "22.15.3",
     "alpinejs": "^3.14.9",
     "drab": "^6.5.1",
+    "ethers": "^6.13.7",
     "glob": "^11.0.2",
     "htmx.org": "2.0.4",
     "typescript": "5.8.3",
     "vite": "6.3.3",
     "vite-plugin-dts": "^4.5.3"
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "files": ["dist"],
+  "sideEffects": ["**/*.css"],
   "publishConfig": {
     "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
   }
