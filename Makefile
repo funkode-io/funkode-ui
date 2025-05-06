@@ -2,7 +2,7 @@
 
 # Variables
 NODE_MODULES = ./node_modules
-NPM = npm
+NPM = pnpm
 TSC = $(NODE_MODULES)/.bin/tsc
 LIB_DIR = lib
 DIST_DIR = dist

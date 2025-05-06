@@ -2,7 +2,7 @@ import { html } from "lit";
 import type { StoryObj } from "@storybook/web-components";
 
 
-import "../../lib/components/link-wallet/link-wallet";
+import "../../lib/components/headless/link-wallet/link-wallet";
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -16,8 +16,8 @@ const meta = {
       control: { type: "select" },
       options: ["button", "link"],
       mapping: {
-        button: html`<button data-trigger>Link Wallet</button>`,
-        link: html`<a href="#" data-trigger>Link Wallet</a>`,
+        button: html`<button data-trigger  class="bg-amber-500 hover:bg-amber-700 dark:bg-amber-500 text-white font-bold py-2 px-4 rounded">Link Wallet</button>`,
+        link: html`<a href="#" onclick="return false" data-trigger class="font-medium text-amber-500 dark:text-amber-500 hover:underline hover:text-amber-700">Link Wallet</a>`,
       },
     }
   },

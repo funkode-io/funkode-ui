@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+[data-theme="dark"] body {
+  background-color: #3c3c3c !important;
+}
+
+[data-theme="light"] body {
+  background-color: #fff !important;
+}

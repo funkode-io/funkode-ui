@@ -3,11 +3,12 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import tailwindcss from '@tailwindcss/vite';
 
 import { glob } from "glob";
 
 export default defineConfig({
-  plugins: [dts({ include: ["lib"] })],
+  plugins: [dts({ include: ["lib"] }), tailwindcss()],
   build: {
     copyPublicDir: false,
     lib: {
