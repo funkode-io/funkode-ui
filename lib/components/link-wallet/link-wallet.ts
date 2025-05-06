@@ -1,10 +1,17 @@
-import { Trigger, Lifecycle, Content } from "drab/base";
+import { Trigger, Lifecycle, Content, type TriggerAttributes } from "drab/base";
 import { ethers } from "ethers";
+
+
+export interface LinkWalletProps extends TriggerAttributes {
+
+  linkWallet?: () => Promise<void>;
+}
 
 export class LinkWalletComponent extends Content(
   Trigger(Lifecycle(HTMLElement)),
 ) {
   async linkWallet() {
+    console.log("Linking wallet...");
     if (window.ethereum == null) {
       console.log("No wallet installed");
       this.dispatchEvent(new CustomEvent("WALLET_NOT_INSTALLED"));
@@ -32,8 +39,10 @@ export class LinkWalletComponent extends Content(
   }
 
   mount() {
-    this.triggerListener(() => this.linkWallet());
+    console.log("LinkWalletComponent mounted");
+    this.listener(() => this.linkWallet());
   }
 }
 
+console.log("Registering fk-link-wallet");
 customElements.define("fk-link-wallet", LinkWalletComponent);

@@ -27,7 +27,7 @@
     "@storybook/test": "^8.6.12",
     "@storybook/web-components": "^8.6.12",
     "@storybook/web-components-vite": "^8.6.12",
-    "drab": "^6.5.1",
+    "drab": "7.0.0",
     "ethers": "^6.13.7",
     "glob": "^11.0.2",
     "lit": "^3.3.0",
