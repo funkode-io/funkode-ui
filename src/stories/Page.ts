@@ -1,7 +1,7 @@
-import { html } from 'lit';
+import { html } from "lit";
 
-import { Header } from './Header';
-import './page.css';
+import { Header } from "./Header";
+import "./page.css";
 
 type User = {
   name: string;
@@ -14,7 +14,12 @@ export interface PageProps {
   onCreateAccount?: () => void;
 }
 
-export const Page = ({ user, onLogin, onLogout, onCreateAccount }: PageProps) => html`
+export const Page = ({
+  user,
+  onLogin,
+  onLogout,
+  onCreateAccount,
+}: PageProps) => html`
   <article>
     ${Header({
       user,

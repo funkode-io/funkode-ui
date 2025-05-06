@@ -3,7 +3,7 @@
  */
 
 // Export all components
-export * from './components';
+export * from "./components";
 
 // Export types
-export * from './types';
+export * from "./types";
