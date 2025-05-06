@@ -1,7 +1,7 @@
 import { Trigger, Lifecycle, Content } from "drab/base";
 import { ethers } from "ethers";
 
-export class Web3LoginComponent extends Content(
+export class LinkWalletComponent extends Content(
   Trigger(Lifecycle(HTMLElement)),
 ) {
   async linkWallet() {
@@ -36,4 +36,4 @@ export class Web3LoginComponent extends Content(
   }
 }
 
-customElements.define("fk-web3-login", Web3LoginComponent);
+customElements.define("fk-link-wallet", LinkWalletComponent);
