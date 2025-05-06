@@ -35,6 +35,7 @@
     "@tailwindcss/vite": "^4.1.5",
     "drab": "7.0.0",
     "ethers": "^6.13.7",
+    "flyonui": "^2.1.0",
     "glob": "^11.0.2",
     "lit": "^3.3.0",
     "storybook": "^8.6.12",

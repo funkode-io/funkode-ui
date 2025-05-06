@@ -6,10 +6,12 @@ const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-        color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      disable: true,
+    }
   },
 };
 
@@ -18,10 +20,15 @@ export default preview;
 export const decorators = [
   withThemeByDataAttribute({
     themes: {
-      light: 'light',
+      corporate: 'corporate',
+      gourmet: 'gourmet',
+      shadcn: 'shadcn',
       dark: 'dark',
+      black: 'black',
+      light: 'light',
+      slack: 'slack',
     },
-    defaultTheme: 'dark',
+    defaultTheme: 'corporate',
     attributeName: 'data-theme',
   }),
 ];

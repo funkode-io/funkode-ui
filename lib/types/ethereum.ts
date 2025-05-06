@@ -11,9 +11,3 @@ export interface EthereumProvider {
   ) => void;
   isMetaMask?: boolean;
 }
-
-declare global {
-  interface Window {
-    ethereum?: EthereumProvider;
-  }
-}

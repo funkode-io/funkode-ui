@@ -1,11 +1,20 @@
 @import "tailwindcss";
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-[data-theme="dark"] body {
-  background-color: #3c3c3c !important;
+@plugin "flyonui" {
+  themes: all;
 }
 
-[data-theme="light"] body {
-  background-color: #fff !important;
+@import "../node_modules/flyonui/variants.css";
+@source "../node_modules/flyonui/dist/index.js";
+
+
+[data-theme="dark"] body {}
+
+[data-theme="black"] {
+  --color-primary: var(--color-amber-500);
+
+
 }
+
+[data-theme="light"] body {}
