@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 import { glob } from "glob";
 

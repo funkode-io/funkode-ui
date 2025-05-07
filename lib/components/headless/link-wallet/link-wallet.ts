@@ -1,9 +1,7 @@
 import { Trigger, Lifecycle, Content, type TriggerAttributes } from "drab/base";
 import { ethers } from "ethers";
 
-
 export interface LinkWalletProps extends TriggerAttributes {
-
   linkWallet?: () => Promise<void>;
 }
 
