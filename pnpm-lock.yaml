@@ -31,21 +31,21 @@ devDependencies:
     version: 8.6.12(lit@3.3.0)(storybook@8.6.12)
   '@storybook/web-components-vite':
     specifier: ^8.6.12
-    version: 8.6.12(lit@3.3.0)(storybook@8.6.12)(vite@6.3.1)
+    version: 8.6.12(lit@3.3.0)(storybook@8.6.12)(vite@6.3.5)
   '@tailwindcss/vite':
     specifier: ^4.1.5
-    version: 4.1.5(vite@6.3.1)
+    version: 4.1.5(vite@6.3.5)
   drab:
     specifier: 7.0.0
     version: 7.0.0
   ethers:
-    specifier: ^6.13.7
-    version: 6.13.7
+    specifier: 6.14.0
+    version: 6.14.0
   flyonui:
     specifier: ^2.1.0
     version: 2.1.0
   glob:
-    specifier: ^11.0.2
+    specifier: 11.0.2
     version: 11.0.2
   lit:
     specifier: ^3.3.0
@@ -57,14 +57,14 @@ devDependencies:
     specifier: ^4.1.5
     version: 4.1.5
   typescript:
-    specifier: ~5.7.2
-    version: 5.7.2
+    specifier: 5.8.3
+    version: 5.8.3
   vite:
-    specifier: ^6.3.1
-    version: 6.3.1
+    specifier: 6.3.5
+    version: 6.3.5
   vite-plugin-dts:
     specifier: ^4.5.3
-    version: 4.5.3(typescript@5.7.2)(vite@6.3.1)
+    version: 4.5.3(typescript@5.8.3)(vite@6.3.5)
 
 packages:
 
@@ -924,7 +924,7 @@ packages:
       ts-dedent: 2.2.0
     dev: true
 
-  /@storybook/builder-vite@8.6.12(storybook@8.6.12)(vite@6.3.1):
+  /@storybook/builder-vite@8.6.12(storybook@8.6.12)(vite@6.3.5):
     resolution: {integrity: sha512-Gju21ud/3Qw4v2vLNaa5SuJECsI9ICNRr2G0UyCCzRvCHg8jpA9lDReu2NqhLDyFIuDG+ZYT38gcaHEUoNQ8KQ==}
     peerDependencies:
       storybook: ^8.6.12
@@ -934,7 +934,7 @@ packages:
       browser-assert: 1.2.1
       storybook: 8.6.12
       ts-dedent: 2.2.0
-      vite: 6.3.1
+      vite: 6.3.5
     dev: true
 
   /@storybook/components@8.6.12(storybook@8.6.12):
@@ -1084,13 +1084,13 @@ packages:
       storybook: 8.6.12
     dev: true
 
-  /@storybook/web-components-vite@8.6.12(lit@3.3.0)(storybook@8.6.12)(vite@6.3.1):
+  /@storybook/web-components-vite@8.6.12(lit@3.3.0)(storybook@8.6.12)(vite@6.3.5):
     resolution: {integrity: sha512-1YVnkk7O9zPF5xTeWD5AxpmfCx9M7C9Du8pIwcypjHQLnb34PwiyjMRztYm/JKh5kCl4BZg187r2j3Q258ytHQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       storybook: ^8.6.12
     dependencies:
-      '@storybook/builder-vite': 8.6.12(storybook@8.6.12)(vite@6.3.1)
+      '@storybook/builder-vite': 8.6.12(storybook@8.6.12)(vite@6.3.5)
       '@storybook/web-components': 8.6.12(lit@3.3.0)(storybook@8.6.12)
       magic-string: 0.30.17
       storybook: 8.6.12
@@ -1258,7 +1258,7 @@ packages:
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.5
     dev: true
 
-  /@tailwindcss/vite@4.1.5(vite@6.3.1):
+  /@tailwindcss/vite@4.1.5(vite@6.3.5):
     resolution: {integrity: sha512-FE1stRoqdHSb7RxesMfCXE8icwI1W6zGE/512ae3ZDrpkQYTTYeSyUJPRCjZd8CwVAhpDUbi1YR8pcZioFJQ/w==}
     peerDependencies:
       vite: ^5.2.0 || ^6
@@ -1266,7 +1266,7 @@ packages:
       '@tailwindcss/node': 4.1.5
       '@tailwindcss/oxide': 4.1.5
       tailwindcss: 4.1.5
-      vite: 6.3.1
+      vite: 6.3.5
     dev: true
 
   /@testing-library/dom@10.4.0:
@@ -1427,7 +1427,7 @@ packages:
       he: 1.2.0
     dev: true
 
-  /@vue/language-core@2.2.0(typescript@5.7.2):
+  /@vue/language-core@2.2.0(typescript@5.8.3):
     resolution: {integrity: sha512-O1ZZFaaBGkKbsRfnVH1ifOK1/1BUkyK+3SQsfnh6PmMmD4qJcTU8godCeA96jjDRTL6zgnK7YzCHfaUlH2r0Mw==}
     peerDependencies:
       typescript: '*'
@@ -1443,7 +1443,7 @@ packages:
       minimatch: 9.0.5
       muggle-string: 0.4.1
       path-browserify: 1.0.1
-      typescript: 5.7.2
+      typescript: 5.8.3
     dev: true
 
   /@vue/shared@3.5.13:
@@ -1878,8 +1878,8 @@ packages:
       '@types/estree': 1.0.7
     dev: true
 
-  /ethers@6.13.7:
-    resolution: {integrity: sha512-qbaJ0uIrjh+huP1Lad2f2QtzW5dcqSVjIzVH6yWB4dKoMuj2WqYz5aMeeQTCNpAKgTJBM5J9vcc2cYJ23UAimQ==}
+  /ethers@6.14.0:
+    resolution: {integrity: sha512-KgHwltNSMdbrGWEyKkM0Rt2s+u1nDH/5BVDQakLinzGEJi4bWindBzZSCC4gKsbZjwDTI6ex/8suR9Ihbmz4IQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@adraffy/ens-normalize': 1.10.1
@@ -2826,14 +2826,14 @@ packages:
     resolution: {integrity: sha512-PZBtLYcCLtEcjL14Fzb1gSxPBeL7nWvGhO5ZFPGqziCcr8uvHp0NDmdjBchp6KHL+tExcg0m3NISmKxhU394dA==}
     dev: true
 
-  /typescript@5.7.2:
-    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+  /typescript@5.8.2:
+    resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
-  /typescript@5.8.2:
-    resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
+  /typescript@5.8.3:
+    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
@@ -2880,7 +2880,7 @@ packages:
     hasBin: true
     dev: true
 
-  /vite-plugin-dts@4.5.3(typescript@5.7.2)(vite@6.3.1):
+  /vite-plugin-dts@4.5.3(typescript@5.8.3)(vite@6.3.5):
     resolution: {integrity: sha512-P64VnD00dR+e8S26ESoFELqc17+w7pKkwlBpgXteOljFyT0zDwD8hH4zXp49M/kciy//7ZbVXIwQCekBJjfWzA==}
     peerDependencies:
       typescript: '*'
@@ -2892,22 +2892,22 @@ packages:
       '@microsoft/api-extractor': 7.52.7
       '@rollup/pluginutils': 5.1.4
       '@volar/typescript': 2.4.13
-      '@vue/language-core': 2.2.0(typescript@5.7.2)
+      '@vue/language-core': 2.2.0(typescript@5.8.3)
       compare-versions: 6.1.1
       debug: 4.4.0
       kolorist: 1.8.0
       local-pkg: 1.1.1
       magic-string: 0.30.17
-      typescript: 5.7.2
-      vite: 6.3.1
+      typescript: 5.8.3
+      vite: 6.3.5
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
     dev: true
 
-  /vite@6.3.1:
-    resolution: {integrity: sha512-kkzzkqtMESYklo96HKKPE5KKLkC1amlsqt+RjFMlX2AvbRB/0wghap19NdBxxwGZ+h/C6DLCrcEphPIItlGrRQ==}
+  /vite@6.3.5:
+    resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
