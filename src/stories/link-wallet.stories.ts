@@ -15,8 +15,8 @@ const meta = {
     </fk-link-wallet>
     <div class="accordion-item active" id="payment-basic">
     <button class="accordion-toggle inline-flex items-center gap-x-4 text-start" aria-controls="payment-basic-collapse" aria-expanded="true" >
-      <span class="icon-[tabler--plus] accordion-item-active:hidden text-base-content size-4.5 block shrink-0"></span>
-      <span class="icon-[tabler--minus] accordion-item-active:block text-base-content size-4.5 hidden shrink-0"></span>
+      <span class="icon-[lucide--plus] accordion-item-active:hidden text-base-content size-4.5 block shrink-0"></span>
+      <span class="icon-[lucide--minus] accordion-item-active:block text-base-content size-4.5 hidden shrink-0"></span>
       When is payment taken for my order?
     </button>
     <div id="payment-basic-collapse" class="accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="payment-basic" role="region" >
@@ -30,8 +30,8 @@ const meta = {
   </div>
   <div class="accordion-item" id="delivery-basic">
     <button class="accordion-toggle inline-flex items-center gap-x-4 text-start" aria-controls="delivery-basic-collapse" aria-expanded="false" >
-      <span class="icon-[tabler--plus] accordion-item-active:hidden text-base-content size-4.5 block shrink-0"></span>
-      <span class="icon-[tabler--minus] accordion-item-active:block text-base-content size-4.5 hidden shrink-0"></span>
+      <span class="icon-[lucide--plus] accordion-item-active:hidden text-base-content size-4.5 block shrink-0"></span>
+      <span class="icon-[lucide--minus] accordion-item-active:block text-base-content size-4.5 hidden shrink-0"></span>
       How would you ship my order?
     </button>
     <div id="delivery-basic-collapse" class="accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="delivery-basic" role="region" >
@@ -45,8 +45,8 @@ const meta = {
   </div>
   <div class="accordion-item" id="cancel-basic">
     <button class="accordion-toggle inline-flex items-center gap-x-4 text-start" aria-controls="cancel-basic-collapse" aria-expanded="false" >
-      <span class="icon-[tabler--plus] accordion-item-active:hidden text-base-content size-4.5 block shrink-0"></span>
-      <span class="icon-[tabler--minus] accordion-item-active:block text-base-content size-4.5 hidden shrink-0"></span>
+      <span class="icon-[lucide--plus] accordion-item-active:hidden text-base-content size-4.5 block shrink-0"></span>
+      <span class="icon-[lucide--minus] accordion-item-active:block text-base-content size-4.5 hidden shrink-0"></span>
       Can I cancel my order?
     </button>
     <div id="cancel-basic-collapse" class="accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="cancel-basic" role="region" >
@@ -64,7 +64,7 @@ const meta = {
       control: { type: "select" },
       options: ["button", "link"],
       mapping: {
-        button: html`<button data-trigger  class="btn btn-primary">Link Wallet</button>`,
+        button: html`<button data-trigger  class="btn btn-accent">Link Wallet</button>`,
         link: html`<a href="#" onclick="return false" data-trigger class="link link-primary link-hover">Link Wallet</a>`,
       },
     },

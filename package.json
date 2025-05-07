@@ -5,8 +5,12 @@
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
-  "files": ["dist"],
-  "sideEffects": ["**/*.css"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
@@ -16,12 +20,13 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "ethers": "6.14.0",
-    "flyonui": "^2.1.0"
+    "ethers": "6.14.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "^3.2.6",
+    "@iconify-json/lucide": "^1.2.41",
+    "@iconify/tailwind4": "^1.0.6",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-themes": "^8.6.12",
     "@storybook/blocks": "^8.6.12",

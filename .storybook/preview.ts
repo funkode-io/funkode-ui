@@ -28,6 +28,7 @@ export const decorators = [
       black: "black",
       light: "light",
       slack: "slack",
+      business: "business",
     },
     defaultTheme: "corporate",
     attributeName: "data-theme",
