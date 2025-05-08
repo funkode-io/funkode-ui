@@ -12,7 +12,7 @@ export class LinkWalletComponent extends Content(
     console.log("Linking wallet...");
     if (window.ethereum == null) {
       console.log("No wallet installed");
-      this.dispatchEvent(new CustomEvent("WALLET_NOT_INSTALLED"));
+      this.dispatchEvent(new CustomEvent("wallet-not-installed"));
     } else {
       new ethers.BrowserProvider(window.ethereum)
         .send("eth_requestAccounts", [])
@@ -28,7 +28,7 @@ export class LinkWalletComponent extends Content(
         .catch((error) => {
           console.error("Error linking wallet:", error);
           this.dispatchEvent(
-            new CustomEvent("WALLET_ERROR", {
+            new CustomEvent("wallet-link-error", {
               detail: error,
             }),
           );

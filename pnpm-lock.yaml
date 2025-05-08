@@ -14,6 +14,9 @@ devDependencies:
   '@iconify-json/lucide':
     specifier: ^1.2.41
     version: 1.2.41
+  '@iconify-json/tabler':
+    specifier: ^1.2.17
+    version: 1.2.17
   '@iconify/tailwind4':
     specifier: ^1.0.6
     version: 1.0.6(tailwindcss@4.1.5)
@@ -62,6 +65,9 @@ devDependencies:
   storybook:
     specifier: ^8.6.12
     version: 8.6.12
+  strip-indent:
+    specifier: ^4.0.0
+    version: 4.0.0
   tailwindcss:
     specifier: ^4.1.5
     version: 4.1.5
@@ -486,6 +492,12 @@ packages:
 
   /@iconify-json/lucide@1.2.41:
     resolution: {integrity: sha512-rOOahfHMgWPqLyRLvLSqEwCmS4jEDxB1Pk63QTe0GObLBKgYKlPmuc1zKYzSuPPkLX/ND7rScVOIDb//ggMNzg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/tabler@1.2.17:
+    resolution: {integrity: sha512-Jfk20IC/n7UOQQSXM600BUhAwEfg8KU1dNUF+kg4eRhbET5w1Ktyax7CDx8Z8y0H6+J/8//AXpJOEgG8YoP8rw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -2820,6 +2832,13 @@ packages:
   /strip-indent@3.0.0:
     resolution: {integrity: sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==}
     engines: {node: '>=8'}
+    dependencies:
+      min-indent: 1.0.1
+    dev: true
+
+  /strip-indent@4.0.0:
+    resolution: {integrity: sha512-mnVSV2l+Zv6BLpSD/8V87CW/y9EmmbYzGCIavsnsI6/nwn26DwffM/yztm30Z/I2DY9wdS3vXVCMnHDgZaVNoA==}
+    engines: {node: '>=12'}
     dependencies:
       min-indent: 1.0.1
     dev: true
