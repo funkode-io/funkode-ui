@@ -1,7 +1,6 @@
 import type { Preview } from "@storybook/web-components";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import "./main.css"; // replace with the name of your tailwind css file
-import "flyonui/flyonui";
 
 const preview: Preview = {
   parameters: {
@@ -29,6 +28,7 @@ export const decorators = [
       light: "light",
       slack: "slack",
       business: "business",
+      forest: "forest",
     },
     defaultTheme: "corporate",
     attributeName: "data-theme",

@@ -1,0 +1,18 @@
+<fk-link-wallet x-data="{ status: ''}"
+  x-on:wallet-linked="console.log('wallet linked alpinejs'); status = `Wallet linked: ${event.detail}`"
+  x-on:wallet-link-error="status = `Wallet link error: ${event.detail}`"
+  x-on:wallet-not-installed="status = `Wallet not installed`">
+  <!-- alert -->
+  <div
+    class="alert alert-soft alert-info overlay modal-middle-start removing:translate-x-5 removing:opacity-0 flex items-center gap-4 transition duration-300 ease-in-out m-4"
+    role="alert" x-show="status !== ''">
+    <span x-text="status"></span>
+    <button class="ms-auto cursor-pointer leading-none" x-on:click="status = ''" aria-label="Close"><span
+        class="icon-[lucide--x] size-5"></span></button>
+  </div>
+  <!-- button -->
+  <fk-button variant="primary" size="sm" style-type="outline" state="active" pill="">
+    <button data-trigger="" class="btn btn-primary btn-outline btn-sm btn-active rounded-full">Link
+      Wallet</button>
+  </fk-button>
+</fk-link-wallet>

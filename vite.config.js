@@ -9,6 +9,15 @@ import { glob } from "glob";
 
 export default defineConfig({
   plugins: [dts({ include: ["lib"] }), tailwindcss()],
+  resolve: {
+    alias: {
+      "@lib/": fileURLToPath(new URL("./lib", import.meta.url)),
+      "@ui/": fileURLToPath(new URL("./lib/components/ui", import.meta.url)),
+      "@components/": fileURLToPath(
+        new URL("./lib/components", import.meta.url),
+      ),
+    }
+  },
   build: {
     copyPublicDir: false,
     lib: {

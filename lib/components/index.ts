@@ -8,3 +8,6 @@
 import { LinkWalletComponent } from "./headless/link-wallet/link-wallet";
 
 export { LinkWalletComponent };
+
+import { FunkButton } from "./ui/button/button";
+export { FunkButton };
