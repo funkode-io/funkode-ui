@@ -1,1 +1,35 @@
 <script src="/node_modules/flyonui/flyonui.js"></script>
+<script src="/node_modules/notyf/notyf.min.js"></script>
+<script>
+  console.log('loading notyf', Notyf);
+  
+  const notyf = new Notyf({
+    duration: 2000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+    dismissible: true,
+    types: [
+        {
+          // Added Info and Warning type 
+          type: 'success',
+          background: 'var(--color-success-content)',
+          icon: { className: 'icon-[lucide--info] !text-success', tagName: 'i' },
+          text: '',
+          className: 'bg-success text-success',
+          
+        },
+        {
+          type: 'error',
+          background: 'var(--color-error-content)',
+          icon: { className: 'icon-[lucide--alert-triangle] !text-error', tagName: 'i' },
+          text: '',
+          className: 'bg-error text-error',
+        }
+      ]
+  });
+  window.notyf = notyf;
+
+  console.log('notyf', window.notyf);
+</script>

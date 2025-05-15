@@ -115,6 +115,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<FunkButtonProps>;
 
+/**
+ * Shortens a wallet address for display purposes.
+ * @param address The wallet address to shorten
+ * @param startChars Number of characters to show at the start (default: 4)
+ * @param endChars Number of characters to show at the end (default: 4)
+ * @returns The shortened wallet address
+ */
+function shortenAddress(address: string, startChars = 4, endChars = 4): string {
+  if (!address) return '';
+  return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
+}
+
+
 /** 
  * ## AlpineJS example
  * Example how to use this component with AlpineJS */
@@ -129,21 +142,10 @@ export const WithAlpineJS: Story = {
   render: (args) => html`
     <fk-link-wallet 
       x-data="{ status: ''}" 
-      x-on:wallet-linked="status = \`Wallet linked: \${event.detail}\`" 
-      x-on:wallet-link-error="status = \`Wallet link error: \${event.detail}\`" 
-      x-on:wallet-not-installed="status = \`Wallet not installed\`"
+      x-on:wallet-linked="notyf.success(\`Wallet linked: \${shortenAddress(event.detail)}\`);" 
+      x-on:wallet-link-error="notyf.error('Wallet link error');" 
+      x-on:wallet-not-installed="notyf.error('Wallet not installed');"
     >
-      <!-- Alert message -->
-      <div 
-        class="alert alert-soft alert-info overlay modal-middle-start removing:translate-x-5 removing:opacity-0 flex items-center gap-4 transition duration-300 ease-in-out m-4" 
-        role="alert" 
-        x-show="status !== ''"
-      >
-        <span x-text="status"></span>
-        <button class="ms-auto cursor-pointer leading-none" x-on:click="status = ''" aria-label="Close">
-          <span class="icon-[lucide--x] size-5"></span>
-        </button>
-      </div>
       <!-- funk button -->
       <fk-button 
         variant=${args.variant} 
@@ -155,5 +157,11 @@ export const WithAlpineJS: Story = {
         <button data-trigger="">Link Wallet</button>
       </fk-button>
     </fk-link-wallet>
+    <script>
+      function shortenAddress(address, startChars = 4, endChars = 4) {
+        if (!address) return '';
+        return \`\${address.slice(0, startChars)}...\${address.slice(-endChars)}\`;
+      }
+    </script>
     `
 };
