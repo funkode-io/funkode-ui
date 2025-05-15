@@ -24,13 +24,13 @@ const validStates = ["active", "disabled"];
 export interface FunkButtonProps {
   /** Button variant (primary, secondary, accent, info, success, warning, error) */
   variant?:
-    | "primary"
-    | "secondary"
-    | "accent"
-    | "info"
-    | "success"
-    | "warning"
-    | "error";
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "info"
+  | "success"
+  | "warning"
+  | "error";
   /** Button size (xs, sm, lg, xl) */
   size?: "xs" | "sm" | "lg" | "xl";
   /** Button style type (soft, outline, text) */
@@ -61,7 +61,6 @@ export class FunkButton extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    console.log("Attribute changed:", name, oldValue, newValue);
     if (oldValue === newValue) return;
 
     switch (name) {
@@ -86,7 +85,7 @@ export class FunkButton extends HTMLElement {
         }
         break;
       case "pill":
-        this._pill = newValue !== "false";
+        this._pill = newValue !== null;
         break;
     }
 
@@ -135,8 +134,6 @@ export class FunkButton extends HTMLElement {
       if (this._pill) {
         button.classList.add("rounded-full");
       }
-
-      console.log("Button classes:", button.classList);
     }
   }
 

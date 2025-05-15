@@ -76,3 +76,8 @@
   --depth: 0;
   --noise: 0;
 }
+
+[data-theme="forest"] #storybook-root,
+.docs-story {
+  background-color: var(--color-base-200);
+}
