@@ -1,17 +1,31 @@
 import type { Preview } from "@storybook/web-components";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
+import { themes } from '@storybook/theming';
 import "./main.css"; // replace with the name of your tailwind css file
 
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      theme: themes.dark,
+    },
     controls: {
       matchers: {
         date: /Date$/i,
       },
     },
     backgrounds: {
-      disable: true,
+      default: "dark",
+      values: [
+        {
+          name: "dark",
+          value: "#282a2b", // oklch(20.84% 0.008 17.911) converted to hex
+        },
+        {
+          name: "light",
+          value: "#ccc",
+        }
+      ],
     },
   },
 };
@@ -30,6 +44,7 @@ export const decorators = [
       slack: "slack",
       business: "business",
       forest: "forest",
+      amber: "amber",
     },
     defaultTheme: "corporate",
     attributeName: "data-theme",

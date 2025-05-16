@@ -106,10 +106,6 @@ const meta = {
       control: { type: "boolean" },
     },
   },
-  play: async () => {
-    console.log("play");
-    window.HSStaticMethods.autoInit();
-  },
 } satisfies Meta<FunkButtonProps>;
 
 export default meta;
