@@ -50,7 +50,7 @@ export class FunkButton extends HTMLElement {
     "pill",
   ];
 
-  private _variant: FunkButtonProps["variant"] = "primary";
+  private _variant: FunkButtonProps["variant"] | null = "primary";
   private _size: FunkButtonProps["size"] | null = null;
   private _styleType: FunkButtonProps["styleType"] | null = null;
   private _state: FunkButtonProps["state"] | null = null;
@@ -65,9 +65,14 @@ export class FunkButton extends HTMLElement {
 
     switch (name) {
       case "variant":
-        if (validVariants.includes(newValue)) {
+        if (newValue === null || newValue === "default") {
+          this._variant = null;
+        } else if (validVariants.includes(newValue)) {
           this._variant = newValue as FunkButtonProps["variant"];
+        } else {
+          console.log('variant case not covered', name, newValue);
         }
+
         break;
       case "size":
         if (validSizes.includes(newValue)) {
@@ -75,9 +80,14 @@ export class FunkButton extends HTMLElement {
         }
         break;
       case "style-type":
-        if (validStyleTypes.includes(newValue)) {
-          this._styleType = newValue as FunkButtonProps["styleType"];
-        }
+        if (newValue === null || newValue === "default") {
+          this._styleType = null;
+        } else
+          if (validStyleTypes.includes(newValue)) {
+            this._styleType = newValue as FunkButtonProps["styleType"];
+          } else {
+            console.log('style-type case not covered', name, newValue);
+          }
         break;
       case "state":
         if (validStates.includes(newValue)) {

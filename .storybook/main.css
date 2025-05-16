@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@import "../node_modules/flyonui/flyonui.css";
-@import "../node_modules/flyonui/variants.css";
-@source "../node_modules/flyonui/dist/index.js";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -9,6 +6,11 @@
   themes: all;
   logs: true;
 }
+
+@import "../node_modules/flyonui/flyonui.css";
+@import "../node_modules/flyonui/variants.css";
+@source "../node_modules/flyonui/dist/index.js";
+
 
 @plugin "@iconify/tailwind4";
 
@@ -94,7 +96,7 @@
   --color-secondary-content: oklch(94% 0.028 342.258);
   --color-accent: oklch(77% 0.152 181.912);
   --color-accent-content: oklch(38% 0.063 188.416);
-  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral: oklch(55% 0.016 285.938);
   --color-neutral-content: oklch(92% 0.004 286.32);
   --color-info: oklch(74% 0.16 232.661);
   --color-info-content: oklch(29% 0.066 243.157);

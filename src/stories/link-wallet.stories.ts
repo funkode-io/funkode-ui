@@ -1,9 +1,9 @@
 import { html } from "lit";
 import type { Meta, StoryObj } from "@storybook/web-components";
 
-import "../../lib/components/headless/link-wallet/link-wallet";
 import type { FunkButtonProps } from "@ui/button/button";
-import "../../lib/components/ui/button/button";
+
+console.log("LinkWallet stories...");
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 /** Showcase how to use link wallet component.
@@ -100,7 +100,7 @@ export const Simple: Story = {
   },
   render: () => html`
     <fk-link-wallet>
-      <button style="cursor: pointer;" data-trigger="">Link Wallet</button>
+      <button style="cursor: pointer;" class="btn btn-primary" data-trigger="">Link Wallet</button>
     </fk-link-wallet>
     `
 };
