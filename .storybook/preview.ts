@@ -1,17 +1,18 @@
 import type { Preview } from "@storybook/web-components";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
-import { themes } from '@storybook/theming';
+import { themes } from "@storybook/theming";
 import "./main.css";
 // import components
 import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link-wallet";
 import { FunkButton } from "../lib/components/ui/button/button";
+import { FunkNavigation } from "../lib/components/ui/nav/nav";
 
 import "../node_modules/flyonui/flyonui.js";
 
-console.log('Loading preview.ts...');
-console.log('Make sure LinkWallet component is loaded', LinkWalletComponent);
-console.log('Make sure FunkButton component is loaded', FunkButton);
-
+console.log("Loading preview.ts...");
+console.log("Make sure LinkWallet component is loaded", LinkWalletComponent);
+console.log("Make sure FunkButton component is loaded", FunkButton);
+console.log("Make sure FunkNavigation component is loaded", FunkNavigation);
 
 const preview: Preview = {
   parameters: {
@@ -33,7 +34,7 @@ const preview: Preview = {
         {
           name: "light",
           value: "#ccc",
-        }
+        },
       ],
     },
   },

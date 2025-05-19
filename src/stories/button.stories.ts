@@ -5,13 +5,10 @@ import type { FunkButtonProps } from "@ui/button/button";
 
 console.log("LinkWallet stories...");
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
-/** Showcase how to use link wallet component.
- * ## How to use
- * - Wrap your login button inside the `fk-link-wallet` component.
- * - Add the `data-trigger` attribute to the button.
- * - Handle the `wallet-linked`, `wallet-link-error`, and `wallet-not-installed` events in your JavaScript code.
- *
+/** Wrap your buttons with fk-button to get the styles.
+ * ## Why it doesn't render a button?
+ * Web components take time to load and render,
+ * making this component just a wrapper allow for progressive enhancement.
  */
 const meta = {
   title: "UI/Button",
