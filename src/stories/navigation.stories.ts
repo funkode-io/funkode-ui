@@ -43,7 +43,7 @@ export const BrandLinksAndButtons: Story = {
     <ul>
       <li><a href="#">About</a></li>
       <li><a href="#">Services</a></li>
-      <li><fk-button variant="default"><button>Products</button></fk-button></li>
+      <li><fk-button variant="default" style-type="outline"><button>Products</button></fk-button></li>
     </ul>
   </nav>
 </fk-nav>
