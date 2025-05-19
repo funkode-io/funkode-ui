@@ -2,19 +2,11 @@
  * Custom button component that enhances buttons with flyonui framework classes.
  */
 
-const validVariants = [
-  "primary",
-  "secondary",
-  "accent",
-  "info",
-  "success",
-  "warning",
-  "error",
-];
+const validVariants = ["default", "primary", "secondary", "accent", "info", "success", "warning", "error"];
 
 const validStyleTypes = ["soft", "outline", "text"];
 
-const validSizes = ["xs", "sm", "lg", "xl"];
+const validSizes = ["xs", "sm", "md", "lg", "xl"];
 
 const validStates = ["active", "disabled"];
 
@@ -23,16 +15,9 @@ const validStates = ["active", "disabled"];
  */
 export interface FunkButtonProps {
   /** Button variant (primary, secondary, accent, info, success, warning, error) */
-  variant?:
-  | "primary"
-  | "secondary"
-  | "accent"
-  | "info"
-  | "success"
-  | "warning"
-  | "error";
+  variant?: "default" | "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
   /** Button size (xs, sm, lg, xl) */
-  size?: "xs" | "sm" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   /** Button style type (soft, outline, text) */
   styleType?: "soft" | "outline" | "text";
   /** Button state (active, disabled) */
@@ -42,13 +27,7 @@ export interface FunkButtonProps {
 }
 
 export class FunkButton extends HTMLElement {
-  static observedAttributes = [
-    "variant",
-    "size",
-    "style-type",
-    "state",
-    "pill",
-  ];
+  static observedAttributes = ["variant", "size", "style-type", "state", "pill"];
 
   private _variant: FunkButtonProps["variant"] | null = "primary";
   private _size: FunkButtonProps["size"] | null = null;
@@ -70,7 +49,7 @@ export class FunkButton extends HTMLElement {
         } else if (validVariants.includes(newValue)) {
           this._variant = newValue as FunkButtonProps["variant"];
         } else {
-          console.log('variant case not covered', name, newValue);
+          console.log("variant case not covered", name, newValue);
         }
 
         break;
@@ -82,12 +61,11 @@ export class FunkButton extends HTMLElement {
       case "style-type":
         if (newValue === null || newValue === "default") {
           this._styleType = null;
-        } else
-          if (validStyleTypes.includes(newValue)) {
-            this._styleType = newValue as FunkButtonProps["styleType"];
-          } else {
-            console.log('style-type case not covered', name, newValue);
-          }
+        } else if (validStyleTypes.includes(newValue)) {
+          this._styleType = newValue as FunkButtonProps["styleType"];
+        } else {
+          console.log("style-type case not covered", name, newValue);
+        }
         break;
       case "state":
         if (validStates.includes(newValue)) {

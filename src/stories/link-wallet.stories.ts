@@ -1,5 +1,5 @@
 import { html } from "lit";
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 
 import type { FunkButtonProps } from "@ui/button/button";
 
@@ -11,7 +11,7 @@ console.log("LinkWallet stories...");
  * - Wrap your login button inside the `fk-link-wallet` component.
  * - Add the `data-trigger` attribute to the button.
  * - Handle the `wallet-linked`, `wallet-link-error`, and `wallet-not-installed` events in your JavaScript code.
- * 
+ *
  */
 const meta = {
   title: "Headless/LinkWallet",
@@ -19,13 +19,13 @@ const meta = {
   parameters: {
     docs: {
       source: {
-        format: 'dedent'
-      }
-    }
+        format: "dedent",
+      },
+    },
   },
   argTypes: {
     variant: {
-      options: ["default", "primary", "secondary", "accent", "info", "success", "warning", "error",],
+      options: ["default", "primary", "secondary", "accent", "info", "success", "warning", "error"],
       control: { type: "radio" },
     },
     size: {
@@ -49,7 +49,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<FunkButtonProps>;
 
-/** 
+/**
  * ## AlpineJS example
  * Example how to use this component with AlpineJS */
 export const WithAlpineJS: Story = {
@@ -84,10 +84,10 @@ export const WithAlpineJS: Story = {
         return \`\${address.slice(0, startChars)}...\${address.slice(-endChars)}\`;
       }
     </script>
-    `
+    `,
 };
 
-/** 
+/**
  * ## Just a button
  * Example how to use this component with a button, as it only sends events you need to use dev tools */
 export const Simple: Story = {
@@ -102,5 +102,5 @@ export const Simple: Story = {
     <fk-link-wallet>
       <button style="cursor: pointer;" class="btn btn-primary" data-trigger="">Link Wallet</button>
     </fk-link-wallet>
-    `
+    `,
 };
