@@ -1,7 +1,8 @@
-import { html } from "lit";
+import { html, nothing } from "lit";
 import type { StoryObj } from "@storybook/web-components-vite";
 
 import funkodeIoSvg from "./assets/funkode-ui.svg?raw";
+import { FunkNavigationProps } from "@/ui/nav/nav";
 
 const meta = {
   title: "UI/Navigation",
@@ -13,15 +14,20 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    sticky: {
+      control: { type: "boolean" },
+    },
+  },
 };
 
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<FunkNavigationProps>;
 
 export const BrandWithLinks: Story = {
-  render: () => html`
-  <nav is="fk-nav">
+  render: (args: FunkNavigationProps) => html`
+  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50">
     <ul>
       <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
     </ul>
@@ -31,25 +37,25 @@ export const BrandWithLinks: Story = {
       <li><a href="#">Products</a></li>
     </ul>
   </nav>
-  <div class="overflow-y-auto top-20 absolute h-full w-full pe-2 pt-4">
-    <div class="flex w-full flex-col gap-4">
-      <div class="mb-4 flex items-center gap-4">
-        <div class="skeleton h-16 w-16 rounded-full"></div>
+  <div class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-2.5">Welcome to Our Service</h5>
+        <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
         <div class="flex flex-col gap-4">
-          <div class="skeleton h-4 w-52"></div>
-          <div class="skeleton h-4 w-52"></div>
+          <div class="skeleton animate-pulse h-4 w-20"></div>
+          <div class="skeleton animate-pulse h-4 w-28"></div>
         </div>
+        <div class="skeleton animate-pulse h-32 w-full"></div>
       </div>
-      <div class="skeleton mb-4 h-16 w-full"></div>
-      <div class="skeleton mb-4 h-32 w-full"></div>
     </div>
   </div>
 `,
 };
 
 export const BrandLinksAndButtons: Story = {
-  render: () => html`
-  <nav is="fk-nav">
+  render: (args: FunkNavigationProps) => html`
+  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50">
     <ul>
       <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
     </ul>
@@ -63,12 +69,25 @@ export const BrandLinksAndButtons: Story = {
       </li>
     </ul>
   </nav>
+  <div class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-2.5">Welcome to Our Service</h5>
+        <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
+        <div class="flex flex-col gap-4">
+          <div class="skeleton animate-pulse h-4 w-20"></div>
+          <div class="skeleton animate-pulse h-4 w-28"></div>
+        </div>
+        <div class="skeleton animate-pulse h-32 w-full"></div>
+      </div>
+    </div>
+  </div>
 `,
 };
 
 export const Sticky: Story = {
-  render: () => html`
-  <nav is="fk-nav" sticky>
+  render: (args: FunkNavigationProps) => html`
+  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50">
       <ul>
         <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
       </ul>
@@ -82,16 +101,21 @@ export const Sticky: Story = {
         </li>
       </ul>
   </nav>
-  
-  <div class="flex flex-col gap-4 h-150 bg-base-100 w-full">
-  <div class="flex items-center gap-4">
-    <div class="skeleton h-16 w-16 shrink-0 rounded-full"></div>
-    <div class="flex flex-col gap-4">
-      <div class="skeleton h-4 w-20"></div>
-      <div class="skeleton h-4 w-28"></div>
+  <div class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-2.5">Welcome to Our Service</h5>
+        <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
+        <div class="flex flex-col gap-4">
+          <div class="skeleton animate-pulse h-4 w-20"></div>
+          <div class="skeleton animate-pulse h-4 w-28"></div>
+        </div>
+        <div class="skeleton animate-pulse h-32 w-full"></div>
+      </div>
     </div>
   </div>
-  <div class="skeleton h-32 w-full"></div>
-</div>
 `,
+  args: {
+    sticky: true,
+  },
 };

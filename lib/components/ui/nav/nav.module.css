@@ -11,7 +11,8 @@
  */
 
 nav[is="fk-nav"] {
-  background-color: var(--color-base-100);
+  background-color: var(--color-base-200);
+  padding: 2px 16px;
 }
 
 :where(a:not([role="button"])),

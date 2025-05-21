@@ -20,12 +20,23 @@ export class FunkNavigation extends HTMLElement {
 
     FunkNavigation.injected = true;
   }
+
   connectedCallback() {
     this._injectStyles();
+  }
 
-    // if is sticky, add class to the element
-    if (this.hasAttribute("sticky")) {
-      this.classList.add(...stickyClasses);
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (oldValue === newValue) return;
+
+    switch (name) {
+      case "sticky":
+        console.log("sticky attribute changed", newValue);
+        if (newValue !== null) {
+          this.classList.add(...stickyClasses);
+        } else {
+          this.classList.remove(...stickyClasses);
+        }
+        break;
     }
   }
 }
