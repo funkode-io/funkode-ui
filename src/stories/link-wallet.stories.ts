@@ -69,8 +69,8 @@ export const WithAlpineJS: Story = {
     >
       <!-- funk button -->
       <button 
-        data-trigger
         is="fk-button"
+        data-trigger
         variant=${args.variant} 
         size=${args.size} 
         style-type=${args.styleType} 

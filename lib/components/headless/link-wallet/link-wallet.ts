@@ -5,16 +5,29 @@ export interface LinkWalletProps extends TriggerAttributes {
   linkWallet?: () => Promise<void>;
 }
 
-export class LinkWalletComponent extends Content(
-  Trigger(Lifecycle(HTMLElement)),
-) {
+export class LinkWalletComponent extends Content(Trigger(Lifecycle(HTMLElement))) {
+  static _provider: ethers.BrowserProvider | null = null;
+
+  _loadProvider() {
+    if (LinkWalletComponent._provider) return;
+
+    if (window.ethereum) {
+      console.log("Wallet provider setup");
+      LinkWalletComponent._provider = new ethers.BrowserProvider(window.ethereum);
+    }
+    if (LinkWalletComponent._provider == null) {
+      console.log("No wallet provider found");
+      LinkWalletComponent._provider = null;
+    }
+  }
+
   async linkWallet() {
     console.log("Linking wallet...");
-    if (window.ethereum == null) {
+    if (LinkWalletComponent._provider == null) {
       console.log("No wallet installed");
       this.dispatchEvent(new CustomEvent("wallet-not-installed"));
     } else {
-      new ethers.BrowserProvider(window.ethereum)
+      LinkWalletComponent._provider
         .send("eth_requestAccounts", [])
         .then((accounts) => ethers.getAddress(accounts[0]))
         .then((address) => {
@@ -37,8 +50,13 @@ export class LinkWalletComponent extends Content(
   }
 
   mount() {
-    console.log("LinkWalletComponent mounted");
+    console.log("LinkWalletComponent on mount");
+
+    this._loadProvider();
+
     this.listener(() => this.linkWallet());
+
+    console.log("LinkWalletComponent mounted");
   }
 }
 
