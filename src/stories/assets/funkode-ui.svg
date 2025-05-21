@@ -1,0 +1,16 @@
+<svg height="50" viewBox="0 0 486 96" style="background-color: transparent;" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    path {
+      fill: transparent;
+      stroke: var(--color-base-content, white);
+    }
+
+    text {
+      font-family: 'Roboto', sans-serif;
+      fill: var(--color-base-content, white);
+    }
+  </style>
+  <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+    fill="transparent" />
+  <text x="120" y="72" font-size="64" fill="white">Funkode UI</text>
+</svg>

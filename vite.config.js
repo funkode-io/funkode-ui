@@ -11,8 +11,8 @@ export default defineConfig({
   plugins: [dts({ include: ["lib"] }), tailwindcss()],
   resolve: {
     alias: {
-      "@/lib/": fileURLToPath(new URL("./lib", import.meta.url)),
-      "@/ui/": fileURLToPath(new URL("./lib/components/ui", import.meta.url)),
+      "@/ui": resolve(__dirname, "./lib/ui"),
+      "@/public": resolve(__dirname, "./public"),
     },
   },
   build: {
