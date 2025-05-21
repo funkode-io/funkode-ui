@@ -57,9 +57,9 @@ export const BrandLinksAndButtons: Story = {
       <li><a href="#">About</a></li>
       <li><a href="#">Services</a></li>
       <li>
-        <fk-button variant="default" style-type="default">
-          <button>Products</button>
-        </fk-button>
+        <button is="fk-button" variant="default" style-type="default">
+          Login
+        </button>
       </li>
     </ul>
   </nav>
@@ -76,9 +76,9 @@ export const Sticky: Story = {
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         <li>
-          <fk-button variant="default" style-type="default">
-            <button>Products</button>
-          </fk-button>
+          <button is="fk-button" variant="default" style-type="default">
+            Login
+          </button>
         </li>
       </ul>
   </nav>

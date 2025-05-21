@@ -1,9 +1,7 @@
 import { html } from "lit";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 
-import type { FunkButtonProps } from "@ui/button/button";
-
-console.log("LinkWallet stories...");
+import type { FunkButtonProps } from "@/ui/button/button";
 
 /** Wrap your buttons with fk-button to get the styles.
  * ## Why it doesn't render a button?
@@ -51,15 +49,16 @@ export const AllVariants: Story = {
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["default", "primary", "secondary", "accent", "info", "success", "warning", "error"].map(
         (variant) => html`
-          <fk-button
+          <button 
+            is="fk-button" 
             variant=${variant}
             size=${args.size}
             style-type=${args.styleType}
             state=${args.state}
             pill=${args.pill}
           >
-            <button>${variant}</button>
-          </fk-button>
+            ${variant}
+          </button>
         `,
       )}
     </div>
@@ -77,15 +76,16 @@ export const AllStyleTypes: Story = {
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["default", "soft", "outline", "text"].map(
         (styleType) => html`
-          <fk-button
+          <button
+            is="fk-button"
             variant=${args.variant}
             size=${args.size}
             style-type=${styleType}
             state=${args.state}
             pill=${args.pill}
           >
-            <button>${styleType}</button>
-          </fk-button>
+            ${styleType}
+          </button>
         `,
       )}
     </div>
@@ -103,15 +103,15 @@ export const AllSizes: Story = {
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["xs", "sm", "md", "lg", "xl"].map(
         (size) => html`
-          <fk-button
+          <button is="fk-button"
             variant=${args.variant}
             size=${size}
             style-type=${args.styleType}
             state=${args.state}
             pill=${args.pill}
           >
-            <button>${size}</button>
-          </fk-button>
+            ${size}
+          </button>
         `,
       )}
     </div>

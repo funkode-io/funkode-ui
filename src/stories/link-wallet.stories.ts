@@ -68,15 +68,17 @@ export const WithAlpineJS: Story = {
       x-on:wallet-not-installed="notyf.error('Wallet not installed');"
     >
       <!-- funk button -->
-      <fk-button 
+      <button 
+        data-trigger
+        is="fk-button"
         variant=${args.variant} 
         size=${args.size} 
         style-type=${args.styleType} 
         state=${args.state}
         ?pill=${args.pill}
       >
-        <button data-trigger="">Link Wallet</button>
-      </fk-button>
+        Link Wallet
+      </button>
     </fk-link-wallet>
     <script>
       function shortenAddress(address, startChars = 4, endChars = 4) {
@@ -100,7 +102,7 @@ export const Simple: Story = {
   },
   render: () => html`
     <fk-link-wallet>
-      <button style="cursor: pointer;" class="btn btn-primary" data-trigger="">Link Wallet</button>
+      <button is="fk-button" data-trigger>Link Wallet</button>
     </fk-link-wallet>
     `,
 };

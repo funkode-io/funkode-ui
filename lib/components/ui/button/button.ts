@@ -26,7 +26,7 @@ export interface FunkButtonProps {
   pill?: boolean;
 }
 
-export class FunkButton extends HTMLElement {
+export class FunkButton extends HTMLButtonElement {
   static observedAttributes = ["variant", "size", "style-type", "state", "pill"];
 
   private _variant: FunkButtonProps["variant"] | null = "primary";
@@ -36,7 +36,7 @@ export class FunkButton extends HTMLElement {
   private _pill: FunkButtonProps["pill"] | null = null;
 
   connectedCallback() {
-    this.upgradeButtons();
+    this.applyClasses();
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -51,7 +51,6 @@ export class FunkButton extends HTMLElement {
         } else {
           console.log("variant case not covered", name, newValue);
         }
-
         break;
       case "size":
         if (validSizes.includes(newValue)) {
@@ -77,59 +76,55 @@ export class FunkButton extends HTMLElement {
         break;
     }
 
-    this.upgradeButtons();
+    this.applyClasses();
   }
 
-  private upgradeButtons() {
-    const buttons = this.querySelectorAll("button");
+  private applyClasses() {
+    // Reset classes to avoid duplicates
+    this.resetButtonClasses();
 
-    for (const button of buttons) {
-      // Reset classes to avoid duplicates
-      this.resetButtonClasses(button);
+    // Add base class
+    this.classList.add("btn");
 
-      // Add base class
-      button.classList.add("btn");
-
-      // Add variant class
-      if (this._variant) {
-        if (validVariants.includes(this._variant)) {
-          button.classList.add(`btn-${this._variant}`);
-        }
+    // Add variant class
+    if (this._variant) {
+      if (validVariants.includes(this._variant)) {
+        this.classList.add(`btn-${this._variant}`);
       }
+    }
 
-      // Add style type class (soft, outline, text)
-      if (this._styleType) {
-        if (validStyleTypes.includes(this._styleType)) {
-          button.classList.add(`btn-${this._styleType}`);
-        }
+    // Add style type class (soft, outline, text)
+    if (this._styleType) {
+      if (validStyleTypes.includes(this._styleType)) {
+        this.classList.add(`btn-${this._styleType}`);
       }
+    }
 
-      // Add size class
-      if (this._size) {
-        if (validSizes.includes(this._size)) {
-          button.classList.add(`btn-${this._size}`);
-        }
+    // Add size class
+    if (this._size) {
+      if (validSizes.includes(this._size)) {
+        this.classList.add(`btn-${this._size}`);
       }
+    }
 
-      // Add state class
-      if (this._state) {
-        if (validStates.includes(this._state)) {
-          button.classList.add(`btn-${this._state}`);
-        }
+    // Add state class
+    if (this._state) {
+      if (validStates.includes(this._state)) {
+        this.classList.add(`btn-${this._state}`);
       }
+    }
 
-      // Add pill class
-      if (this._pill) {
-        button.classList.add("rounded-full");
-      }
+    // Add pill class
+    if (this._pill) {
+      this.classList.add("rounded-full");
     }
   }
 
-  private resetButtonClasses(button: HTMLButtonElement) {
+  private resetButtonClasses() {
     // Remove existing class patterns
     const classesToRemove: string[] = [];
 
-    for (const className of button.classList) {
+    for (const className of this.classList) {
       if (className.startsWith("btn")) {
         classesToRemove.push(className);
       } else if (className.startsWith("rounded")) {
@@ -138,11 +133,11 @@ export class FunkButton extends HTMLElement {
     }
 
     for (const className of classesToRemove) {
-      button.classList.remove(className);
+      this.classList.remove(className);
     }
   }
 }
 
 // Define the custom element
 console.log("Registering fk-button");
-customElements.define("fk-button", FunkButton);
+customElements.define("fk-button", FunkButton, { extends: "button" });
