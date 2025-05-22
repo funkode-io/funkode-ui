@@ -48,7 +48,7 @@ export const AllVariants: Story = {
   render: (args) => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["default", "primary", "secondary", "accent", "info", "success", "warning", "error"].map(
-        (variant) => html`
+    (variant) => html`
           <button 
             is="fk-button" 
             variant=${variant}
@@ -60,7 +60,7 @@ export const AllVariants: Story = {
             ${variant}
           </button>
         `,
-      )}
+  )}
     </div>
   `,
   args: {
@@ -75,7 +75,7 @@ export const AllStyleTypes: Story = {
   render: (args) => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["default", "soft", "outline", "text"].map(
-        (styleType) => html`
+    (styleType) => html`
           <button
             is="fk-button"
             variant=${args.variant}
@@ -87,7 +87,7 @@ export const AllStyleTypes: Story = {
             ${styleType}
           </button>
         `,
-      )}
+  )}
     </div>
   `,
   args: {
@@ -102,7 +102,7 @@ export const AllSizes: Story = {
   render: (args) => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["xs", "sm", "md", "lg", "xl"].map(
-        (size) => html`
+    (size) => html`
           <button is="fk-button"
             variant=${args.variant}
             size=${size}
@@ -113,7 +113,7 @@ export const AllSizes: Story = {
             ${size}
           </button>
         `,
-      )}
+  )}
     </div>
   `,
   args: {

@@ -2,12 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Slack : 'Lato' -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    />
+    <!-- Soft : 'Montserrat' -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Valorant : 'Work Sans' -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" 
+      rel="stylesheet"
+    />
+    <title>Funkode UI App Test</title>
+    <link rel="stylesheet" href="/src/main.css" />
   </head>
-  <body>
-    <div id="app"></div>
+  <body data-theme="amber">
+      <nav is="fk-nav" sticky class="z-99">
+        <ul>
+          <li>
+            <hgroup>
+              <svg height="50" viewBox="0 0 380 96" style="background-color: transparent;">
+                <style>
+                  text {
+                    font-family: 'Roboto', sans-serif;
+                  }
+                </style>
+                <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+                  fill="transparent" />
+                <text x="120" y="72" font-size="64" fill="white">Funkode</text>
+              </svg>
+              <p style="text-align: center;">Funkode UI library</p>
+            </hgroup>
+          </li>
+        </ul>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="portfolio">Portfolio</a></li>
+            <li><fk-link-wallet><button is="fk-button" variant="default" styleType="outline" data-trigger type="button">Login</button></fk-link-wallet></li>
+        </ul>
+      </nav>
+    <div class="flex flex-col gap-4 h-450 bg-base-200 w-full p-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title mb-2.5">
+            <fk-icon name="lucide:info" class="text-primary"></fk-icon>
+            <h2>Web Components Demo</h2>
+          </div>
+          <h2>Web Components Demo</h2>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

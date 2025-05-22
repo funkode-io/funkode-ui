@@ -6,7 +6,10 @@
   themes: all;
   logs: true;
 }
+
 @import "../node_modules/flyonui/flyonui.css";
+
+@import "@/ui/nav/nav.css";
 
 @plugin "@iconify/tailwind4";
 
