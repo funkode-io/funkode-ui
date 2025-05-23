@@ -1,11 +1,12 @@
 @import "tailwindcss";
+@import "flyonui/flyonui.css";
+@import "../dist/assets/main.css";
 
 @plugin "flyonui" {
-  themes: all;
+  include: button;
   logs: true;
 }
 
-@import "../node_modules/flyonui/flyonui.css";
 
 
 

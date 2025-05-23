@@ -1,2 +1,2 @@
 import "../";
-import "../node_modules/flyonui/flyonui.js";
+import "flyonui/flyonui";

@@ -29,7 +29,7 @@ export interface FunkButtonProps {
 export class FunkButton extends HTMLButtonElement {
   static observedAttributes = ["variant", "size", "style-type", "state", "pill"];
 
-  private _variant: FunkButtonProps["variant"] | null = "primary";
+  private _variant: FunkButtonProps["variant"] | null = null;
   private _size: FunkButtonProps["size"] | null = null;
   private _styleType: FunkButtonProps["styleType"] | null = null;
   private _state: FunkButtonProps["state"] | null = null;
