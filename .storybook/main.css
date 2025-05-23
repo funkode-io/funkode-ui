@@ -9,7 +9,7 @@
 
 @import "../node_modules/flyonui/flyonui.css";
 
-@import "@/ui/nav/nav.css";
+@import "@/lib/main.css";
 
 @plugin "@iconify/tailwind4";
 
