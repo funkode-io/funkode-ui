@@ -7,9 +7,18 @@ import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link
 import { FunkButton } from "../lib/components/ui/button/button";
 import { FunkNavigation } from "../lib/components/ui/nav/nav";
 
-import "../node_modules/flyonui/flyonui.js";
+
+
+import type { IStaticMethods } from "flyonui/flyonui";
+
+declare global {
+  interface Window {
+    HSStaticMethods: IStaticMethods
+  }
+}
 
 console.log("Loading preview.ts...");
+
 console.log("Make sure LinkWallet component is loaded", LinkWalletComponent);
 console.log("Make sure FunkButton component is loaded", FunkButton);
 console.log("Make sure FunkNavigation component is loaded", FunkNavigation);
@@ -25,7 +34,6 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: "dark",
       values: [
         {
           name: "dark",

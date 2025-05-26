@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
+      "@/lib/*": ["./lib/*"],
       "@/ui/*": ["./lib/components/ui/*"],
       "@/public/*": ["./public/*"]
     },

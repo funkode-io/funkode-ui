@@ -3,10 +3,10 @@ import type { Meta, StoryObj } from "@storybook/web-components-vite";
 
 import type { FunkButtonProps } from "@/ui/button/button";
 
-/** Wrap your buttons with fk-button to get the styles.
- * ## Why it doesn't render a button?
- * Web components take time to load and render,
- * making this component just a wrapper allow for progressive enhancement.
+/** Add is="fk-button" to the button element and use the attributes to set the button's properties:
+ * - variant: default, primary, secondary, accent, info, success, warning, error
+ * - size: xs, sm, md, lg, xl
+ * 
  */
 const meta = {
   title: "UI/Button",

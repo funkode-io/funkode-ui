@@ -12,6 +12,7 @@ export default defineConfig({
   plugins: [libInjectCss(), dts({ include: ["lib"] }), tailwindcss()],
   resolve: {
     alias: {
+      "@/lib": resolve(__dirname, "./lib"),
       "@/ui": resolve(__dirname, "./lib/components/ui"),
       "@/public": resolve(__dirname, "./public"),
     },

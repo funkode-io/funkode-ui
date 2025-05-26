@@ -87,7 +87,8 @@ export const BrandLinksAndButtons: Story = {
 
 export const Sticky: Story = {
   render: (args: FunkNavigationProps) => html`
-  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50">
+  
+<nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50 m-0">
       <ul>
         <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
       </ul>
@@ -99,8 +100,19 @@ export const Sticky: Story = {
             Login
           </button>
         </li>
+        <li>
+          <details is="fk-dropdown">
+            <summary>User 1</summary>
+            <ul>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </details>
+        </li>
       </ul>
   </nav>
+  <div class="sticky top-20 h-10 bg-gradient-to-t from-base-200/10 to-base-200 z-49 m-0"></div>
+  
   <div class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4">
     <div class="card">
       <div class="card-body">

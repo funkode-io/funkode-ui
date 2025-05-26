@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "flyonui/flyonui.css";
 @import "../dist/assets/main.css";
 
 @plugin "flyonui" {
@@ -7,7 +6,8 @@
   logs: true;
 }
 
-
+@import "../node_modules/flyonui/flyonui.css";
+@import "../node_modules/flyonui/variants.css";
 
 
 [data-theme="amber"] {
