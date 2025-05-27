@@ -13,7 +13,8 @@
     "prepublishOnly": "npm run build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "ethers": "6.14.0",
@@ -26,6 +27,10 @@
     "@iconify-json/lucide": "^1.2.41",
     "@iconify-json/tabler": "^1.2.17",
     "@iconify/tailwind4": "^1.0.6",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/github": "^9.2.6",
+    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/release-notes-generator": "^12.1.0",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-themes": "^8.6.12",
     "@storybook/blocks": "^8.6.12",
