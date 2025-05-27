@@ -1,5 +1,6 @@
 :root * {
-  --fk-nav-background-color: var(--color-base-200);
+  --fk-nav-background-color: var(--color-base-100);
+  --fk-nav-color: var(--color-base-content);
   --fk-nav-element-spacing-vertical: 1rem;
   --fk-nav-element-spacing-horizontal: 0.5rem;
   --fk-nav-link-spacing-vertical: 0.5rem;
@@ -12,7 +13,10 @@
  */
 
 nav[is="fk-nav"] {
-  background-color: var(--fk-nav-background-color);
+  --background-color: var(--fk-nav-background-color);
+  --color: var(--fk-nav-color);
+
+  background-color: var(--background-color);
   padding: 2px 16px;
 }
 
@@ -20,13 +24,12 @@ nav[is="fk-nav"] {
 [role="link"] {
   outline: 0;
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color);
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color);
   text-underline-offset: .125em;
-  transition: background-color ease-in-out, color ease-in-out, box-shadow ease-in-out, -webkit-text-decoration
-    ease-in-out;
+  transition: background-color ease-in-out, color ease-in-out, box-shadow ease-in-out, -webkit-text-decoration ease-in-out;
   transition: background-color ease-in-out, color ease-in-out, text-decoration ease-in-out, box-shadow ease-in-out;
   transition: background-color ease-in-out, color ease-in-out, text-decoration ease-in-out, box-shadow ease-in-out,
     -webkit-text-decoration ease-in-out;

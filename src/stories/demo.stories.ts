@@ -29,6 +29,11 @@ export const Demo: Story = {
     sticky: true
   },
   render: (args) => html`
+    <div class="flex justify-center">
+      <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-100 color-base-content">100</div>
+      <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-200 color-base-content">200</div>
+      <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-300 color-base-content">300</div>
+    </div>
     <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50 m-0">
       <ul>
         <li><strong .innerHTML=${funkodeIoSvg}></strong></li>

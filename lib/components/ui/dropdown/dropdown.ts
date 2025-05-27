@@ -4,6 +4,7 @@ import "./dropdown.css";
 export interface FunkDropdownProps {
   /** Button variant (primary, secondary, accent, info, success, warning, error) */
   variant?: Variant;
+  open?: boolean;
 }
 
 class FKDropdown extends HTMLDetailsElement {

@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html, nothing } from "lit";
 import type { StoryObj } from "@storybook/web-components-vite";
 import { type FunkDropdownProps, validVariants } from "@/lib/components";
 
@@ -17,6 +17,13 @@ const meta = {
       options: ["default", "primary", "secondary", "accent", "info", "success", "warning", "error"],
       control: { type: "radio" },
     },
+    open: {
+      control: { type: "boolean" },
+      description: "Controls whether the dropdown is open by default.",
+      table: {
+        category: "Behavior",
+      },
+    },
   },
 };
 
@@ -25,8 +32,8 @@ export default meta;
 type Story = StoryObj<FunkDropdownProps>;
 
 export const Dropdown: Story = {
-  render: () => html`
-  <details is="fk-dropdown" class="mb-8 w-64" variant="primary" open>
+  render: (args) => html`
+  <details is="fk-dropdown" class="mb-8 w-64" variant="${args.variant}" open="${args.open ? "" : nothing}">
     <summary>Dropdown</summary>
     <ul>
       <li><a href="#">Solid</a></li>
@@ -36,15 +43,19 @@ export const Dropdown: Story = {
     </ul>
   </details>
   `,
+  args: {
+    variant: "default",
+    open: false,
+  },
 };
 
 export const AllVariants: Story = {
-  render: () => html`
+  render: (args) => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${validVariants.map(
-        (variant) => html`
-          <details is="fk-dropdown" class="mb-8 w-40" variant=${variant}>
-            <summary>Dropdown</summary>
+    (variant) => html`
+          <details is="fk-dropdown" class="mb-8 w-40" variant=${variant} open="${args.open ? "" : nothing}">
+            <summary>${variant}</summary>
             <ul>
               <li><a href="#">Solid</a></li>
               <li><a href="#">Liquid</a></li>
@@ -52,7 +63,7 @@ export const AllVariants: Story = {
               <li><a href="#">Plasma</a></li>
             </ul>
           </details>`,
-      )}
+  )}
     </div>
   `,
 };
