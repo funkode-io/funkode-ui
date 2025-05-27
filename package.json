@@ -7,6 +7,9 @@
   "types": "dist/main.d.ts",
   "files": ["dist"],
   "sideEffects": ["**/*.css"],
+  "release": {
+    "branches": ["main"]
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
