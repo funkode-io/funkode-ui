@@ -36,21 +36,57 @@ Import the components you need and use them in your HTML:
 
 ```html
 <!-- Button example -->
-<button is="funk-button" variant="primary" size="md">Click Me</button>
+<button is="fk-button" variant="primary" size="md" style-type="default">Click Me</button>
 
 <!-- Dropdown example -->
-<details is="fk-dropdown" variant="secondary">
-  <summary>Open Dropdown</summary>
-  <div>Dropdown content here</div>
+<details is="fk-dropdown" variant="primary">
+  <summary>Dropdown</summary>
+  <ul>
+    <li><a href="#">Item 1</a></li>
+    <li><a href="#">Item 2</a></li>
+    <li><a href="#">Item 3</a></li>
+  </ul>
 </details>
 
 <!-- Navigation example -->
-<funk-navigation sticky>
-  <!-- Navigation content -->
-</funk-navigation>
+<nav is="fk-nav" sticky>
+  <ul>
+    <li><strong>Brand</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li>
+      <button is="fk-button" variant="default" style-type="default">
+        Login
+      </button>
+    </li>
+  </ul>
+</nav>
 
 <!-- Link Wallet example -->
-<link-wallet>Connect Wallet</link-wallet>
+<fk-link-wallet>
+  <button is="fk-button" data-trigger variant="primary">Link Wallet</button>
+</fk-link-wallet>
+```
+
+### Wallet Integration with Events
+
+```html
+<fk-link-wallet 
+  x-data="{ status: ''}" 
+  x-on:wallet-linked="notyf.success(`Wallet linked: ${shortenAddress(event.detail)}`);" 
+  x-on:wallet-link-error="notyf.error('Wallet link error');" 
+  x-on:wallet-not-installed="notyf.error('Wallet not installed');"
+>
+  <button is="fk-button" data-trigger variant="primary">Link Wallet</button>
+</fk-link-wallet>
+<script>
+  function shortenAddress(address, startChars = 4, endChars = 4) {
+    if (!address) return '';
+    return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
+  }
+</script>
 ```
 
 ## Ethereum Integration
