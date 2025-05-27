@@ -1,36 +1,40 @@
 name: Release funkode-ui to npm
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
 jobs:
-  build:
+  release:
+    name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
         with:
-          version: 8
-          run_install: false
+          fetch-depth: 0
       
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
           cache: pnpm
           node-version: "23"
           registry-url: "https://registry.npmjs.org"
-      
+
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      
-      - name: Build the project
-        run: pnpm run build
-      
-      - name: Publish to NPM
-        shell: bash
-        run: pnpm publish --access public --no-git-checks
+        run: pnpm clean-install
+
+      - name: Provenance
+        run: pnpm audit signatures
+
+      - name: release
+        run: npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
