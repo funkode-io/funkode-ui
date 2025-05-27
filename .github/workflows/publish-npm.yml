@@ -34,7 +34,7 @@ jobs:
           run_install: false
 
       - name: Install dependencies
-        run: pnpm clean-install
+        run: pnpm install --frozen-lockfile
 
       - name: Provenance
         run: pnpm audit signatures
