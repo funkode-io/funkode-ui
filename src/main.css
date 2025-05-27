@@ -9,7 +9,6 @@
 @import "../node_modules/flyonui/flyonui.css";
 @import "../node_modules/flyonui/variants.css";
 
-
 [data-theme="amber"] {
   --color-base-100: oklch(25.33% 0.016 252.42);
   --color-base-200: oklch(23.26% 0.014 253.1);

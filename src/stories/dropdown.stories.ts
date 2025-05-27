@@ -1,6 +1,6 @@
 import { html } from "lit";
 import type { StoryObj } from "@storybook/web-components-vite";
-import { FunkDropdownProps, validVariants } from "@/lib/components";
+import { type FunkDropdownProps, validVariants } from "@/lib/components";
 
 const meta = {
   title: "UI/Dropdown",
@@ -17,7 +17,7 @@ const meta = {
       options: ["default", "primary", "secondary", "accent", "info", "success", "warning", "error"],
       control: { type: "radio" },
     },
-  }
+  },
 };
 
 export default meta;
@@ -42,7 +42,7 @@ export const AllVariants: Story = {
   render: () => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${validVariants.map(
-    (variant) => html`
+        (variant) => html`
           <details is="fk-dropdown" class="mb-8 w-40" variant=${variant}>
             <summary>Dropdown</summary>
             <ul>
@@ -52,11 +52,10 @@ export const AllVariants: Story = {
               <li><a href="#">Plasma</a></li>
             </ul>
           </details>`,
-  )}
+      )}
     </div>
   `,
 };
-
 
 export const DropdownInsideNav: Story = {
   render: (args: FunkDropdownProps) => html`

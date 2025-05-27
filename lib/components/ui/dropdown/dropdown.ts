@@ -4,15 +4,12 @@ import "./dropdown.css";
 export interface FunkDropdownProps {
   /** Button variant (primary, secondary, accent, info, success, warning, error) */
   variant?: Variant;
-
 }
-
 
 class FKDropdown extends HTMLDetailsElement {
   static observedAttributes = ["variant"];
 
   private _variant: FunkDropdownProps["variant"] | null = null;
-
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (oldValue === newValue) return;
@@ -27,16 +24,13 @@ class FKDropdown extends HTMLDetailsElement {
           console.log("variant case not covered", name, newValue);
         }
         break;
-
     }
 
     this.applyClasses();
-
   }
 
   connectedCallback() {
     this.applyClasses();
-
   }
 
   private updateVariantClass(oldValue: string | null, newValue: string | null) {

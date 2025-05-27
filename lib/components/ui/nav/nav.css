@@ -25,7 +25,8 @@ nav[is="fk-nav"] {
   text-decoration: underline;
   text-decoration-color: var(--color-primary);
   text-underline-offset: .125em;
-  transition: background-color ease-in-out, color ease-in-out, box-shadow ease-in-out, -webkit-text-decoration ease-in-out;
+  transition: background-color ease-in-out, color ease-in-out, box-shadow ease-in-out, -webkit-text-decoration
+    ease-in-out;
   transition: background-color ease-in-out, color ease-in-out, text-decoration ease-in-out, box-shadow ease-in-out;
   transition: background-color ease-in-out, color ease-in-out, text-decoration ease-in-out, box-shadow ease-in-out,
     -webkit-text-decoration ease-in-out;

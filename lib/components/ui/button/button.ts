@@ -4,7 +4,6 @@ import { isVariant, type Variant } from "../variants/variants";
  * Custom button component that enhances buttons with flyonui framework classes.
  */
 
-
 const validStyleTypes = ["soft", "outline", "text"];
 
 const validSizes = ["xs", "sm", "md", "lg", "xl"];

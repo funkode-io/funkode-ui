@@ -2,7 +2,7 @@ import { html, nothing } from "lit";
 import type { StoryObj } from "@storybook/web-components-vite";
 
 import funkodeIoSvg from "./assets/funkode-ui.svg?raw";
-import { FunkNavigationProps } from "@/ui/nav/nav";
+import type { FunkNavigationProps } from "@/ui/nav/nav";
 
 const meta = {
   title: "UI/Navigation",

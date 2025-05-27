@@ -7,13 +7,11 @@ import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link
 import { FunkButton } from "../lib/components/ui/button/button";
 import { FunkNavigation } from "../lib/components/ui/nav/nav";
 
-
-
 import type { IStaticMethods } from "flyonui/flyonui";
 
 declare global {
   interface Window {
-    HSStaticMethods: IStaticMethods
+    HSStaticMethods: IStaticMethods;
   }
 }
 
