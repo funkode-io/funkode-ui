@@ -45,7 +45,7 @@ export default meta;
 type Story = StoryObj<FunkButtonProps>;
 
 export const AllVariants: Story = {
-  render: (args) => html`
+  render: (args: FunkButtonProps) => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${["default", "primary", "secondary", "accent", "info", "success", "warning", "error"].map(
     (variant) => html`

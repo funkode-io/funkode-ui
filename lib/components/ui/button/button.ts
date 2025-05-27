@@ -1,8 +1,9 @@
+import { isVariant, type Variant } from "../variants/variants";
+
 /**
  * Custom button component that enhances buttons with flyonui framework classes.
  */
 
-const validVariants = ["default", "primary", "secondary", "accent", "info", "success", "warning", "error"];
 
 const validStyleTypes = ["soft", "outline", "text"];
 
@@ -15,7 +16,7 @@ const validStates = ["active", "disabled"];
  */
 export interface FunkButtonProps {
   /** Button variant (primary, secondary, accent, info, success, warning, error) */
-  variant?: "default" | "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
+  variant?: Variant;
   /** Button size (xs, sm, lg, xl) */
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   /** Button style type (soft, outline, text) */
@@ -46,7 +47,7 @@ export class FunkButton extends HTMLButtonElement {
       case "variant":
         if (newValue === null || newValue === "default") {
           this._variant = null;
-        } else if (validVariants.includes(newValue)) {
+        } else if (isVariant(newValue)) {
           this._variant = newValue as FunkButtonProps["variant"];
         } else {
           console.log("variant case not covered", name, newValue);
@@ -88,7 +89,7 @@ export class FunkButton extends HTMLButtonElement {
 
     // Add variant class
     if (this._variant) {
-      if (validVariants.includes(this._variant)) {
+      if (isVariant(this._variant)) {
         this.classList.add(`btn-${this._variant}`);
       }
     }
