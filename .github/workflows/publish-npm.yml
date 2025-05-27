@@ -23,15 +23,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          cache: pnpm
+          cache: npm
           node-version: "23"
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: pnpm clean-install
+        run: npm clean-install
 
       - name: Provenance
-        run: pnpm audit signatures
+        run: npm audit signatures
 
       - name: release
         run: npx semantic-release
