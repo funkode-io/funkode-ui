@@ -32,6 +32,8 @@ A component for connecting to Ethereum wallets:
 
 ## Usage
 
+You can see all components life in our [storybook](https://funkode-io.github.io/funkode-ui)
+
 Import the components you need and use them in your HTML:
 
 ```html
