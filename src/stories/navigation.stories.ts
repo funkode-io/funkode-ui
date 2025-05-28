@@ -27,7 +27,7 @@ type Story = StoryObj<FunkNavigationProps>;
 
 export const BrandWithLinks: Story = {
   render: (args: FunkNavigationProps) => html`
-  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50">
+  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50 m-0 px-4">
     <ul>
       <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
     </ul>
@@ -55,7 +55,7 @@ export const BrandWithLinks: Story = {
 
 export const BrandLinksAndButtons: Story = {
   render: (args: FunkNavigationProps) => html`
-  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50">
+  <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50 m-0 px-4">
     <ul>
       <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
     </ul>
@@ -87,7 +87,7 @@ export const BrandLinksAndButtons: Story = {
 
 export const Sticky: Story = {
   render: (args: FunkNavigationProps) => html`
-    <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50 m-0">
+    <nav is="fk-nav" sticky=${args.sticky === true || nothing} class="opacity-100 z-50 m-0 px-4">
       <ul>
         <li><strong .innerHTML=${funkodeIoSvg}></strong></li>
       </ul>
