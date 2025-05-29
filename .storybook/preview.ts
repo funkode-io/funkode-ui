@@ -6,6 +6,7 @@ import "./main.css";
 import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link-wallet";
 import { FunkButton } from "../lib/components/ui/button/button";
 import { FunkNavigation } from "../lib/components/ui/nav/nav";
+import { FunkCard } from "../lib/components/ui/card/card";
 
 import type { IStaticMethods } from "flyonui/flyonui";
 
@@ -17,9 +18,8 @@ declare global {
 
 console.log("Loading preview.ts...");
 
-console.log("Make sure LinkWallet component is loaded", LinkWalletComponent);
-console.log("Make sure FunkButton component is loaded", FunkButton);
-console.log("Make sure FunkNavigation component is loaded", FunkNavigation);
+console.log("Make sure components are loaded", LinkWalletComponent, FunkButton, FunkNavigation, FunkCard);
+
 
 const preview: Preview = {
   parameters: {

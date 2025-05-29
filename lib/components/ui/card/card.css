@@ -1,0 +1,26 @@
+article[is="fk-card"] {
+  --fk-card-p: var(--card-p, 1.5rem);
+  --fk-card-border: var(--card-border, --border);
+  --fk-card-shadow: var(--card-shadow, var(--shadow));
+
+  border-radius: var(--radius-box);
+  background-color: var(--color-base-100);
+  box-shadow: var(--shadow);
+  color: var(--color-base-content);
+  padding: var(--fk-card-p);
+}
+
+article[is="fk-card"]>header {
+  font-size: var(--text-2xl);
+  line-height: var(--tw-leading, var(--text-2xl--line-height));
+
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+
+  margin-bottom: 1rem;
+}
+
+article[is="fk-card"]>footer {
+
+  margin-top: 1rem;
+}
