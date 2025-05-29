@@ -76,7 +76,7 @@ export const DropdownInsideNav: Story = {
     <ul>
       <li><a href="#">Home</a></li>
       <li>
-        <button is="fk-button" variant="default" style-type="default"> Login </button>
+        <button is="fk-button" variant=${args.variant} style-type="default"> Login </button>
       </li>
       <li>
         <details is="fk-dropdown" variant=${args.variant}>

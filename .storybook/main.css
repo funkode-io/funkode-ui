@@ -110,7 +110,7 @@ body {
   --noise: 0;
 }
 
-[data-theme="sport"] {
+[data-theme="winter"] {
   --color-base-100: oklch(86% 0.022 252.894);
   --color-base-200: oklch(70% 0.04 256.788);
   --color-base-300: oklch(55% 0.046 257.417);

@@ -1,4 +1,8 @@
-:root * {
+/**
+ * Nav based on pico.css
+ */
+
+nav[is="fk-nav"] {
   --fk-nav-background-color: var(--color-base-100);
   --fk-nav-color: var(--color-base-content);
   --fk-nav-element-spacing-vertical: 1rem;
@@ -6,13 +10,7 @@
   --fk-nav-link-spacing-vertical: 0.5rem;
   --fk-nav-link-spacing-horizontal: 0.5rem;
   --fk-nav-breadcrumb-divider: ">";
-}
 
-/**
- * Nav based on pico.css
- */
-
-nav[is="fk-nav"] {
   --background-color: var(--fk-nav-background-color);
   --color: var(--fk-nav-color);
 
@@ -70,6 +68,7 @@ nav[is="fk-nav"] ul:last-of-type {
 nav[is="fk-nav"] li {
   display: inline-block;
   margin: 0;
+  /* border: 1px dashed firebrick; */
   padding: var(--fk-nav-element-spacing-vertical) var(--fk-nav-element-spacing-horizontal);
 }
 

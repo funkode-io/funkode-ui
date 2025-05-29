@@ -61,9 +61,9 @@ export const decorators = [
       business: "business",
       forest: "forest",
       amber: "amber",
-      sport: "sport",
+      winter: "winter",
     },
-    defaultTheme: "corporate",
+    defaultTheme: "amber",
     attributeName: "data-theme",
   }),
 ];

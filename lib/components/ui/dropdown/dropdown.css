@@ -174,8 +174,8 @@ details[is="fk-dropdown"]>summary:not([role]) {
   user-select: none;
   list-style-type: none;
 
-  padding: calc(var(--fk-nav-link-spacing-vertical) - var(--border) * 2) var(--fk-nav-link-spacing-horizontal);
-  padding-inline: 0.75rem;
+  padding: calc(0.5rem - var(--border) * 2) 0;
+  padding-inline: 1rem;
 
   overflow: hidden;
 }
@@ -197,7 +197,7 @@ details[is="fk-dropdown"]>summary:not([role]):focus-visible {
 
 nav details[is="fk-dropdown"] {
   display: inline;
-  margin: calc(var(--fk-nav-element-spacing-verticall) * -1) 0;
+  margin: 0;
 }
 
 nav details[is="fk-dropdown"]>summary::after {
@@ -245,17 +245,17 @@ details[is="fk-dropdown"]>summary+ul li {
 }
 
 details[is="fk-dropdown"]>summary+ul li:first-of-type {
-  margin-top: calc(var(--fk-nav-element-spacing-vertical) * 0.5);
+  margin-top: 0.2rem;
 }
 
 details[is="fk-dropdown"]>summary+ul li:last-of-type {
-  margin-bottom: calc(var(--fk-nav-element-spacing-vertical) * 0.5);
+  margin-bottom: 0.2rem;
 }
 
 details[is="fk-dropdown"]>summary+ul li a {
   display: block;
-  margin: calc(var(--fk-nav-element-spacing-vertical) * -0.5) calc(var(--fk-nav-element-spacing-horizontal) * -1);
-  padding: calc(var(--fk-nav-element-spacing-vertical) * 0.5) var(--fk-nav-element-spacing-horizontal);
+  margin: -0.5rem -0.5rem;
+  padding: 0.5rem 0.5rem;
   overflow: hidden;
 
   color: var(--options-color);
