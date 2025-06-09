@@ -26,6 +26,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      # Install Yarn
+      - name: Install Yarn
+        run: npm install -g yarn
       # Initialize MSW service worker
       - name: Initialize MSW
         run: |
