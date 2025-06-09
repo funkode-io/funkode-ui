@@ -1,5 +1,5 @@
 import { html, nothing } from "lit";
-import type { StoryObj } from "@storybook/web-components-vite";
+import type { StoryObj } from "storybook/web-components";
 
 import funkodeIoSvg from "./assets/funkode-ui.svg?raw";
 import type { FunkNavigationProps } from "@/ui/nav/nav";

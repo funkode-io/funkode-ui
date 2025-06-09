@@ -11,6 +11,7 @@ import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link
 import { FunkButton } from "../lib/components/ui/button/button";
 import { FunkNavigation } from "../lib/components/ui/nav/nav";
 import { FunkCard } from "../lib/components/ui/card/card";
+import { FunkDialog } from "../lib/components/headless/dialog/dialog";
 
 import type { IStaticMethods } from "flyonui/flyonui";
 
@@ -22,7 +23,7 @@ declare global {
 
 console.log("Loading preview.ts...");
 
-console.log("Make sure components are loaded", LinkWalletComponent, FunkButton, FunkNavigation, FunkCard);
+console.log("Make sure components are loaded", LinkWalletComponent, FunkButton, FunkNavigation, FunkCard, FunkDialog);
 
 /*
  * Initializes MSW
