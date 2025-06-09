@@ -1,6 +1,6 @@
-import type { Preview } from "@storybook/web-components";
+import type { Preview } from "@storybook/web-components-vite";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
-import { themes } from "@storybook/theming";
+import { themes } from "storybook/theming";
 import "./main.css";
 // import components
 import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link-wallet";
