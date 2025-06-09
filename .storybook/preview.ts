@@ -2,6 +2,10 @@ import type { Preview } from "@storybook/web-components-vite";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { themes } from "storybook/theming";
 import "./main.css";
+
+// import MSW
+import { initialize, mswLoader } from "msw-storybook-addon";
+
 // import components
 import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link-wallet";
 import { FunkButton } from "../lib/components/ui/button/button";
@@ -20,8 +24,15 @@ console.log("Loading preview.ts...");
 
 console.log("Make sure components are loaded", LinkWalletComponent, FunkButton, FunkNavigation, FunkCard);
 
+/*
+ * Initializes MSW
+ * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
+ * to learn how to customize it
+ */
+initialize();
 
 const preview: Preview = {
+  loaders: [mswLoader], // 👈 Add the MSW loader to all stories
   parameters: {
     docs: {
       theme: themes.dark,
