@@ -1,2 +1,4 @@
 @import "./components/ui/nav/nav.css";
 @import "./components/ui/dropdown/dropdown.css";
+@import "./components/ui/card/card.css";
+@import "./components/headless/dialog/dialog.css";

@@ -1,5 +1,5 @@
 import { html } from "lit";
-import type { StoryObj } from "@storybook/web-components-vite";
+import type { StoryObj } from "storybook/web-components";
 
 import funkodeIoSvg from "./assets/funkode-ui.svg?raw";
 
@@ -53,15 +53,26 @@ export const Demo: Story = {
               x-on:wallet-link-error="notyf.error('Wallet link error');" 
               x-on:wallet-not-installed="notyf.error('Wallet not installed');"
             >
-            <button x-show="!wallet" is="fk-button" class="btn" data-trigger>
-              Login
+            <button x-show="!wallet" is="fk-button" data-trigger>
+              <span class="text-nowrap text-ellipsis overflow-hidden">
+                Link wallet
+              </span>
             </button>
             </fk-link-wallet>
             <!-- show if wallet is linked -->
+            <button 
+              is="fk-button" 
+              x-show="wallet"
+              variant="primary"
+              @click="$dispatch('wallet-linked', { wallet: null })"
+              x-text="shortenAddress(wallet)"
+            >
+              <span  class="max-w-20 text-ellipsis whitespace-nowrap overflow-hidden"></span>
+            </button>
             <details is="fk-dropdown" x-show="wallet" variant="primary">
               <summary x-text="shortenAddress(wallet)">Error loading wallet</summary>
               <ul>
-                <li><a href="#" @click="wallet = null;notyf.success('Logged out');">Logout</a></li>
+                <li><a @click="wallet=null;notyf.success('Logged out');">Logout</a></li>
               </ul>
             </details>
           </li>
@@ -69,11 +80,11 @@ export const Demo: Story = {
             <details is="fk-dropdown">
               <summary x-text="\`Theme: \${theme}\`">Choose Theme</summary>
               <ul>
-                <li><a href="#" @click="$dispatch('newtheme', { theme: 'amber' })" data-theme="amber">Amber</a></li>
-                <li><a href="#" @click="$dispatch('newtheme', { theme: 'forest' })" data-theme="forest">Forest</a></li>
-                <li><a href="#" @click="$dispatch('newtheme', { theme: 'dark' })" data-theme="dark">Dark</a></li>
-                <li><a href="#" @click="$dispatch('newtheme', { theme: 'light' })" data-theme="light">Light</a></li>
-                <li><a href="#" @click="$dispatch('newtheme', { theme: 'winter' })" data-theme="winter">Winter</a></li>
+                <li><a @click="$dispatch('newtheme', { theme: 'amber' })" data-theme="amber">Amber</a></li>
+                <li><a @click="$dispatch('newtheme', { theme: 'forest' })" data-theme="forest">Forest</a></li>
+                <li><a @click="$dispatch('newtheme', { theme: 'dark' })" data-theme="dark">Dark</a></li>
+                <li><a @click="$dispatch('newtheme', { theme: 'light' })" data-theme="light">Light</a></li>
+                <li><a @click="$dispatch('newtheme', { theme: 'winter' })" data-theme="winter">Winter</a></li>
               </ul>
             </details>
           </li>
@@ -119,6 +130,11 @@ export const Demo: Story = {
       <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-300 color-base-content">300</div>
     </div>
   </div>
+  <style>
+    a {
+      cursor: pointer;
+    }
+  </style>
   <script>
       function shortenAddress(address, startChars = 4, endChars = 4) {
         if (!address) return '';

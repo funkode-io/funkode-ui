@@ -1,5 +1,5 @@
 import { html, nothing } from "lit";
-import type { StoryObj } from "@storybook/web-components-vite";
+import type { StoryObj } from "storybook/web-components";
 import { type FunkDropdownProps, validVariants } from "@/lib/components";
 
 const meta = {
@@ -53,7 +53,7 @@ export const AllVariants: Story = {
   render: (args) => html`
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       ${validVariants.map(
-    (variant) => html`
+        (variant) => html`
           <details is="fk-dropdown" class="mb-8 w-40" variant=${variant} open="${args.open ? "" : nothing}">
             <summary>${variant}</summary>
             <ul>
@@ -63,7 +63,7 @@ export const AllVariants: Story = {
               <li><a href="#">Plasma</a></li>
             </ul>
           </details>`,
-  )}
+      )}
     </div>
   `,
 };

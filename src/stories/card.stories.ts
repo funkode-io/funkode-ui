@@ -1,6 +1,5 @@
-import { html, nothing } from "lit";
-import type { StoryObj } from "@storybook/web-components-vite";
-
+import { html } from "lit";
+import type { StoryObj } from "storybook/web-components";
 
 const meta = {
   title: "UI/Card",
@@ -12,9 +11,7 @@ const meta = {
       },
     },
   },
-  argTypes: {
-
-  },
+  argTypes: {},
 };
 
 export default meta;
