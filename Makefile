@@ -41,3 +41,7 @@ lint:
 .PHONY: format
 format:
 	npx @biomejs/biome format --write . 
+
+.PHONY: serve
+serve:
+	$(NPM) build-storybook && serve storybook-static
