@@ -6,6 +6,12 @@ import "./main.css";
 // import MSW
 import { initialize, mswLoader } from "msw-storybook-addon";
 
+// Configure MSW with correct service worker path
+const getServiceWorkerUrl = () => {
+  const baseUrl = process.env.NODE_ENV === 'production' ? '/funkode-io' : '';
+  return `${baseUrl}/mockServiceWorker.js`;
+};
+
 // import components
 import { LinkWalletComponent } from "../lib/components/headless/link-wallet/link-wallet";
 import { FunkButton } from "../lib/components/ui/button/button";
@@ -30,7 +36,11 @@ console.log("Make sure components are loaded", LinkWalletComponent, FunkButton, 
  * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
  * to learn how to customize it
  */
-initialize();
+initialize({
+  serviceWorker: {
+    url: getServiceWorkerUrl(),
+  },
+});
 
 const preview: Preview = {
   loaders: [mswLoader], // 👈 Add the MSW loader to all stories
