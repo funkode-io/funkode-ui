@@ -8,7 +8,7 @@ import { initialize, mswLoader } from "msw-storybook-addon";
 
 // Configure MSW with correct service worker path
 const getServiceWorkerUrl = () => {
-  const baseUrl = process.env.NODE_ENV === 'production' ? '/funkode-io' : '';
+  const baseUrl = process.env.NODE_ENV === 'production' ? '/funkode-ui' : '';
   return `${baseUrl}/mockServiceWorker.js`;
 };
 
