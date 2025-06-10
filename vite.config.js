@@ -9,6 +9,7 @@ import { libInjectCss } from "vite-plugin-lib-inject-css";
 import { glob } from "glob";
 
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/funkode-io/' : '/',
   plugins: [libInjectCss(), dts({ include: ["lib"] }), tailwindcss()],
   resolve: {
     alias: {
