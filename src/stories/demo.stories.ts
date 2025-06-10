@@ -1,5 +1,6 @@
 import { html } from "lit";
 import type { StoryObj } from "storybook/web-components";
+import { http, HttpResponse } from "msw";
 
 import funkodeIoSvg from "./assets/funkode-ui.svg?raw";
 
@@ -20,12 +21,19 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+const CHALLENGE = "To login into this demo please sign this message with your wallet.";
+
 /**
  * ## AlpineJS example
  * Example how to use this component with AlpineJS */
 export const Demo: Story = {
   args: {
     sticky: true,
+  },
+  parameters: {
+    msw: {
+      handlers: [http.get("https://funkode.io/funkode-ui/auth/challenge", () => HttpResponse.text(CHALLENGE))],
+    },
   },
   render: () => html`
   <div x-data="{ theme: 'amber', wallet: null }"
@@ -35,9 +43,8 @@ export const Demo: Story = {
       class="bg-base-200">
     <header 
       class="sticky -top-6 flex flex-col items-center z-50 h-18 bg-base-100"
-      x-data="{ theme: 'amber', wallet: null }"
+      x-data="{ theme: 'amber', wallet: null, loggedIn: false }"
       x-bind:data-theme="theme"
-      x-on:wallet-linked.window="wallet = $event.detail.wallet;"
       @newtheme.window="theme = $event.detail.theme;"
     >
       <nav is="fk-nav" class="z-50 m-0 px-8 pt-2 w-full h-15" sticky="true">
@@ -49,9 +56,11 @@ export const Demo: Story = {
           <li>
             <!-- show if wallet is not linked -->
             <fk-link-wallet
-              x-on:wallet-linked="wallet = event.detail; notyf.success(\`Wallet linked: $\{shortenAddress(event.detail)\}\`);" 
+              x-on:wallet-linked="wallet = event.detail; notyf.success(\`Wallet linked: $\{shortenAddress(event.detail)\}\`);login(wallet);" 
               x-on:wallet-link-error="notyf.error('Wallet link error');" 
               x-on:wallet-not-installed="notyf.error('Wallet not installed');"
+              x-on:login-error.window="loggedIn = false; notyf.error('Login error');"
+              x-on:user-logged-in.window="loggedIn = true; notyf.success(\`Logged in as $\{shortenAddress(event.detail.account)}\`);"
             >
             <button x-show="!wallet" is="fk-button" data-trigger>
               <span class="text-nowrap text-ellipsis overflow-hidden">
@@ -59,20 +68,19 @@ export const Demo: Story = {
               </span>
             </button>
             </fk-link-wallet>
-            <!-- show if wallet is linked -->
+            <!-- show if wallet is linked but not logged in -->
             <button 
               is="fk-button" 
-              x-show="wallet"
+              x-show="wallet && !loggedIn"
               variant="primary"
-              @click="$dispatch('wallet-linked', { wallet: null })"
-              x-text="shortenAddress(wallet)"
+              @click="login(wallet)"
             >
-              <span  class="max-w-20 text-ellipsis whitespace-nowrap overflow-hidden"></span>
+              <span  class="max-w-20 text-ellipsis whitespace-nowrap overflow-hidden">Login</span>
             </button>
-            <details is="fk-dropdown" x-show="wallet" variant="primary">
+            <details is="fk-dropdown" x-show="wallet && loggedIn" variant="primary">
               <summary x-text="shortenAddress(wallet)">Error loading wallet</summary>
               <ul>
-                <li><a @click="wallet=null;notyf.success('Logged out');">Logout</a></li>
+                <li><a @click="wallet=null; loggedIn = false; notyf.success('Logged out');">Logout</a></li>
               </ul>
             </details>
           </li>
@@ -139,6 +147,37 @@ export const Demo: Story = {
       function shortenAddress(address, startChars = 4, endChars = 4) {
         if (!address) return '';
         return \`\${address.slice(0, startChars)}...\${address.slice(-endChars)}\`;
+      }
+
+      async function signMessage(message, account) {
+        try {
+          const signature = await window.ethereum.request({
+            method: 'personal_sign',
+            params: [message, account],
+          });
+          console.log("Signature:", signature);
+          return Promise.resolve(signature);
+        } catch (error) {
+          console.error("Error signing message:", error);
+          return Promise.reject(error);
+        }
+      }
+
+      async function fetchChallenge() {
+        return fetch('https://funkode.io/funkode-ui/auth/challenge')
+          .then(response => response.text());
+      }
+
+      async function login(account) {
+        fetchChallenge()
+          .then(challenge => signMessage(challenge, account))
+          .then(signature => { 
+            this.dispatchEvent(new CustomEvent("user-logged-in", { detail: { account } }) );
+          })
+          .catch(error => {
+            console.error("Login error:", error);
+            this.dispatchEvent(new CustomEvent("login-error", { detail: error }));
+          });
       }
     </script>
     `,
