@@ -29,7 +29,9 @@
         }
       ]
   });
-  window.notyf = notyf;
+  if (!window.notyf) {
+      window.notyf = notyf;
+  }
 
   console.log('notyf', window.notyf);
 </script>

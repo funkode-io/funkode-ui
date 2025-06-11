@@ -60,7 +60,10 @@ export const DemoPage: Story = {
   },
   parameters: {
     msw: {
-      handlers: [http.get("https://funkode.io/funkode-ui/auth/challenge", () => HttpResponse.text(CHALLENGE))],
+      handlers: [
+        http.get("https://funkode.io/funkode-ui/auth/challenge", () => HttpResponse.text(CHALLENGE)),
+        http.get("/home", () => HttpResponse.html("<p>hello Peter</p>")),
+      ],
     },
   },
   render: () => html`
@@ -146,7 +149,7 @@ export const DemoPage: Story = {
     <div class="card">
       <div class="card-body">
         <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
-        <div hx-get="/?path=/story/demo-web3demo--demo-chart" hx-trigger="load">
+        <div hx-get="/home" hx-trigger="load">
         <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
         <div class="flex flex-col gap-4">
           <div class="skeleton animate-pulse h-4 w-20"></div>
@@ -203,8 +206,7 @@ export const DemoPage: Story = {
     `,
 };
 
-export const DemoChart: Story = {
-  render: () => html`
+const demoChartHtml = html`
   <div id="chartContainer">
     <div id="mainChart" class="h-96 w-full">
     </div>
@@ -311,6 +313,11 @@ const data0 = splitData([
     };
 }
 </script>
+`;
 
-`,
+const template = document.createElement("template");
+const demoChartRendered = render(demoChartHtml, template);
+
+export const DemoChart: Story = {
+  render: () => demoChartHtml,
 };
