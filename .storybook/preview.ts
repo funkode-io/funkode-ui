@@ -6,9 +6,12 @@ import "./main.css";
 // import MSW
 import { initialize, mswLoader } from "msw-storybook-addon";
 
+// import echarts
+import * as echarts from "echarts";
+
 // Configure MSW with correct service worker path
 const getServiceWorkerUrl = () => {
-  const baseUrl = process.env.NODE_ENV === 'production' ? '/funkode-ui' : '';
+  const baseUrl = process.env.NODE_ENV === "production" ? "/funkode-ui" : "";
   return `${baseUrl}/mockServiceWorker.js`;
 };
 
@@ -24,8 +27,11 @@ import type { IStaticMethods } from "flyonui/flyonui";
 declare global {
   interface Window {
     HSStaticMethods: IStaticMethods;
+    echarts: typeof echarts;
   }
 }
+
+window.echarts = echarts;
 
 console.log("Loading preview.ts...");
 

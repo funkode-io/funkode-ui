@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html, render } from "lit";
 import type { StoryObj } from "storybook/web-components";
 import { http, HttpResponse } from "msw";
 
@@ -54,7 +54,7 @@ const themeOption = (theme: string) => {
 /**
  * ## AlpineJS example
  * Example how to use this component with AlpineJS */
-export const Demo: Story = {
+export const DemoPage: Story = {
   args: {
     sticky: true,
   },
@@ -146,8 +146,7 @@ export const Demo: Story = {
     <div class="card">
       <div class="card-body">
         <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
-        <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
-        <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
+        <div hx-get="/?path=/story/demo-web3demo--demo-chart" hx-trigger="load">
         <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
         <div class="flex flex-col gap-4">
           <div class="skeleton animate-pulse h-4 w-20"></div>
@@ -155,19 +154,10 @@ export const Demo: Story = {
         </div>
         <div class="skeleton animate-pulse h-32 w-full"></div>
       </div>
+        </div>
+        
     </div>
   </main>
-  <div 
-    class="flex justify-center mt-8" 
-    x-data="{ theme: 'amber' }"
-    x-bind:data-theme="theme" 
-    @newtheme.window="theme = $event.detail.theme;"
-  >
-      <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-100 color-base-content">100</div>
-      <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-200 color-base-content">200</div>
-      <div class="h-15 w-40 flex items-center justify-center mr-1 rounded-box border border-primary bg-base-300 color-base-content">300</div>
-    </div>
-  </div>
   <style>
     a {
       cursor: pointer;
@@ -211,4 +201,116 @@ export const Demo: Story = {
       }
     </script>
     `,
+};
+
+export const DemoChart: Story = {
+  render: () => html`
+  <div id="chartContainer">
+    <div id="mainChart" class="h-96 w-full">
+    </div>
+  </div>
+  <script type="text/javascript">
+  
+  document.addEventListener('DOMContentLoaded', function() {
+  const myChartElement = document.getElementById('mainChart');
+  var myChart = echarts.init(myChartElement);
+
+  const styles = getComputedStyle(myChartElement);
+  const backgroundColor = styles.getPropertyValue('--color-base-300') || '#ffffff';
+  const baseContentColor = styles.getPropertyValue('--color-base-content') || '#000000';
+  const accentColor = styles.getPropertyValue('--color-accent') || '#ff5722';
+  const accentColorContent = styles.getPropertyValue('--color-accent-content') || '#ffffff';
+  const infoColor = styles.getPropertyValue('--color-info') || '#2196f3';
+  const infoColorContent = styles.getPropertyValue('--color-info-content') || '#ffffff';
+  const successColor = styles.getPropertyValue('--color-success') || '#4caf50';
+  const warningColor = styles.getPropertyValue('--color-warning') || '#ff9800';
+  const errorColor = styles.getPropertyValue('--color-error') || '#f44336';
+  const neutralColor = styles.getPropertyValue('--color-neutral') || '#9e9e9e';
+  const neutralContentColor = styles.getPropertyValue('--color-neutral-content') || '#212121';
+
+  // Each item: open，close，lowest，highest
+const data0 = splitData([
+  ['2013/1/24', 2320.26, 2320.26, 2287.3, 2362.94],
+  ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
+  ['2013/1/28', 2295.35, 2346.5, 2295.35, 2346.92],
+  ['2013/1/29', 2347.22, 2358.98, 2337.35, 2363.8],
+  ['2013/1/30', 2360.75, 2382.48, 2347.89, 2383.76],
+  ['2013/1/31', 2383.43, 2385.42, 2371.23, 2391.82],
+  ['2013/2/1', 2377.41, 2419.02, 2369.57, 2421.15],
+  ['2013/2/4', 2425.92, 2428.15, 2417.58, 2440.38],
+  ['2013/2/5', 2411, 2433.13, 2403.3, 2437.42]
+]);
+
+  var option;
+
+  option = {
+    color: [
+        "#893448",
+        "#d95850",
+        "#eb8146",
+        "#ffb248",
+        "#f2d643",
+        "#ebdba4"
+    ],
+    backgroundColor: backgroundColor,
+    textStyle: {},
+    title: {
+      text: "ECharts Demo Chart",
+      subtext: "A simple candlestick chart",
+      left: "center",
+      textStyle: {
+          color: baseContentColor
+      },
+      subtextStyle: {
+          color: infoColor
+      }
+    },
+    xAxis: {
+      type: 'category',
+      data: data0.categoryData,
+      boundaryGap: false,
+      axisLine: { onZero: false },
+      splitLine: { show: false },
+      min: 'dataMin',
+      max: 'dataMax'
+    },
+    yAxis: {
+      scale: true,
+      splitArea: {
+        show: true
+      }
+    },
+    series: [
+      {
+        type: 'candlestick',
+        itemStyle: {
+             color: accentColor,       // Color for bullish candles
+             color0: neutralColor,        // Color for bearish candles
+             borderColor: accentColorContent, // Border color for all candles
+             borderColor0: neutralContentColor,
+             borderWidth: '2' // Border color for all candles
+         },
+        data: data0.values,
+      },
+      
+    ]
+  };
+
+  option && myChart.setOption(option);
+  });
+  function splitData(rawData) {
+    const categoryData = [];
+    const values = [];
+    for (var i = 0; i < rawData.length; i++) {
+      categoryData.push(rawData[i].splice(0, 1)[0]);
+      values.push(rawData[i]);
+    }
+    return {
+      categoryData: categoryData,
+      values: values
+    };
+}
+</script>
+
+`,
 };
