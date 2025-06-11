@@ -23,6 +23,34 @@ type Story = StoryObj;
 
 const CHALLENGE = "To login into this demo please sign this message with your wallet.";
 
+function capitalize(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const themeOption = (theme: string) => {
+  return html`
+    <div 
+      data-theme="${theme}"
+      class="flex justify-center items-center min-w-32 bg-base-100 border border-base-300 rounded-box color-base-content py-2 px-4 m-1"
+    >
+      <button
+        is="fk-button"
+        x-on:click="$dispatch('newtheme', { theme: '${theme}' })"
+        class="min-w-24 text-center"
+      >
+        ${capitalize(theme)}
+      </button>
+      <div class="flex h-10 justify-center items-center ml-1">
+        <div class="w-2 h-6 rounded-selector bg-primary mr-1"></div>
+        <div class="w-2 h-6 rounded-selector bg-secondary mr-1"></div>
+        <div class="w-2 h-6 rounded-selector bg-accent mr-1"></div>
+        <div class="w-2 h-6 rounded-selector bg-info mr-1"></div>
+        <div class="w-2 h-6 rounded-selector bg-success"></div>
+      </div>
+    </div>
+    `;
+};
+
 /**
  * ## AlpineJS example
  * Example how to use this component with AlpineJS */
@@ -85,16 +113,18 @@ export const Demo: Story = {
             </details>
           </li>
           <li>
-            <details is="fk-dropdown">
-              <summary x-text="\`Theme: \${theme}\`">Choose Theme</summary>
-              <ul>
-                <li><a @click="$dispatch('newtheme', { theme: 'amber' })" data-theme="amber">Amber</a></li>
-                <li><a @click="$dispatch('newtheme', { theme: 'forest' })" data-theme="forest">Forest</a></li>
-                <li><a @click="$dispatch('newtheme', { theme: 'dark' })" data-theme="dark">Dark</a></li>
-                <li><a @click="$dispatch('newtheme', { theme: 'light' })" data-theme="light">Light</a></li>
-                <li><a @click="$dispatch('newtheme', { theme: 'winter' })" data-theme="winter">Winter</a></li>
-              </ul>
-            </details>
+            <fk-dialog click-outside-close="" position="right">
+              <button is="fk-button" data-trigger  variant="default" style-type="text"> 
+                <i class="text-2xl icon-[lucide--settings] cursor-pointer"></i>
+              </button>
+              <dialog data-content>
+                <h3 class="text-lg font-bold">Change Theme</h3>    
+                <div class="flex flex-col flex-wrap items-start mb-2">
+                ${["amber", "forest", "dark", "light", "winter"].map((theme) => themeOption(theme))}
+                </div>
+              </dialog>
+            </fk-dialog>
+
           </li>
         </ul>
       </nav>
