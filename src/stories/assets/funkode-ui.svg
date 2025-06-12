@@ -1,5 +1,18 @@
-<svg height="50" viewBox="0 0 486 96" style="background-color: transparent;" xmlns="http://www.w3.org/2000/svg">
+<svg class="logo" height="50" viewBox="0 0 486 96" style="background-color: transparent;"
+  xmlns="http://www.w3.org/2000/svg">
   <style>
+    svg.logo {
+      height: 50px;
+      width: auto;
+      transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+      svg.logo {
+        height: 25px;
+      }
+    }
+
     path {
       fill: transparent;
       stroke: var(--color-base-content, white);
