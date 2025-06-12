@@ -1,4 +1,4 @@
-import { html, render } from "lit";
+import { html } from "lit";
 import type { StoryObj } from "storybook/web-components";
 import { http, HttpResponse } from "msw";
 
@@ -62,22 +62,19 @@ export const DemoPage: Story = {
     msw: {
       handlers: [
         http.get("https://funkode.io/funkode-ui/auth/challenge", () => HttpResponse.text(CHALLENGE)),
-        http.get("/home", () => HttpResponse.html(demoChartHtml)),
+        http.get("/home", () => HttpResponse.html(demoChartHtml("amber"))),
       ],
     },
   },
-  render: () => html`
-  <div x-data="{ theme: 'amber', wallet: null }"
-      x-bind:data-theme="theme"
-      x-on:wallet-linked="wallet = $event.detail;"
-      @newtheme.window="theme = $event.detail.theme;"
-      class="bg-base-200">
-    <header 
-      class="sticky -top-6 flex flex-col items-center z-50 h-18 bg-base-100"
-      x-data="{ theme: 'amber', wallet: null, loggedIn: false }"
-      x-bind:data-theme="theme"
-      @newtheme.window="theme = $event.detail.theme;"
-    >
+  render: (args, { globals: { theme } }) => html`
+  <div 
+    x-data="{ theme: '${theme}', wallet: null }"
+    x-bind:data-theme="theme"
+    x-on:wallet-linked="wallet = $event.detail;"
+    @newtheme.window="theme = $event.detail.theme;"
+    class="bg-base-200"
+  >
+    <header class="sticky -top-6 flex flex-col items-center z-50 h-18 bg-base-100">
       <nav is="fk-nav" class="z-50 m-0 px-8 pt-2 w-full h-15" sticky="true">
         <ul>
           <li .innerHTML=${funkodeIoSvg}></li>
@@ -93,11 +90,11 @@ export const DemoPage: Story = {
               x-on:login-error.window="loggedIn = false; notyf.error('Login error');"
               x-on:user-logged-in.window="loggedIn = true; notyf.success(\`Logged in as $\{shortenAddress(event.detail.account)}\`);"
             >
-            <button x-show="!wallet" is="fk-button" data-trigger>
-              <span class="text-nowrap text-ellipsis overflow-hidden">
-                Link wallet
-              </span>
-            </button>
+              <button x-show="!wallet" is="fk-button" data-trigger>
+                <span class="text-nowrap text-ellipsis overflow-hidden">
+                  Link wallet
+                </span>
+              </button>
             </fk-link-wallet>
             <!-- show if wallet is linked but not logged in -->
             <button 
@@ -127,40 +124,29 @@ export const DemoPage: Story = {
                 </div>
               </dialog>
             </fk-dialog>
-
           </li>
         </ul>
       </nav>
       <!-- <div class="sticky top-20 w-full h-10 bg-base-100/50"></div> -->
-  </header>
-  <!-- transparent layout -->
-  <div 
-    x-data="{ theme: 'amber' }"
-    x-bind:data-theme="theme" 
-    @newtheme.window="theme = $event.detail.theme;" 
-    class="sticky top-12 h-5 z-40 bg-base-200/10 bg-gradient-to-t from-base-200/10 to-base-200 m-0"
-  ></div>
-  <main 
-    class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4 z-90"
-    x-data="{ theme: 'amber' }"
-    x-bind:data-theme="theme"
-    @newtheme.window="console.log('new theme', event); theme = $event.detail.theme;"
-  >
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
-        <div hx-get="/home" hx-trigger="load">
-        <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
-        <div class="flex flex-col gap-4">
-          <div class="skeleton animate-pulse h-4 w-20"></div>
-          <div class="skeleton animate-pulse h-4 w-28"></div>
+    </header>
+    <!-- transparent layout -->
+    <div class="sticky top-12 h-5 z-40 bg-base-200/10 bg-gradient-to-t from-base-200/10 to-base-200 m-0"></div>
+    <main class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4 z-90">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
+          <div hx-get="/home" hx-trigger="load">
+          <div class="skeleton animate-pulse   h-16 w-16 shrink-0 rounded-full"></div>
+          <div class="flex flex-col gap-4">
+            <div class="skeleton animate-pulse h-4 w-20"></div>
+            <div class="skeleton animate-pulse h-4 w-28"></div>
+          </div>
+          <div class="skeleton animate-pulse h-32 w-full"></div>
         </div>
-        <div class="skeleton animate-pulse h-32 w-full"></div>
+          </div>
       </div>
-        </div>
-        
-    </div>
-  </main>
+    </main>
+  </div>
   <style>
     a {
       cursor: pointer;
@@ -206,16 +192,23 @@ export const DemoPage: Story = {
     `,
 };
 
-const demoChartHtml = `
-  <div id="chartContainer">
-    <div id="mainChart" class="h-96 w-full bg-base-300 border border-base-100">
+const demoChartHtml = (theme: string) => `
+  <div
+    x-data="{ theme: '${theme}' }"
+    @newtheme.window="theme = $event.detail.theme; $nextTick(() => loadChart());"
+    x-bind:data-theme="theme || 'amber'"
+  >
+    <div id="mainChart" class="h-96 w-full bg-base-300 border border-base-200 rounded-box p-4">
     </div>
   </div>
   <script type="text/javascript">
-  console.log("Loading ECharts demo chart...");
+  
   htmx.onLoad(function() {
     console.log("htmx loaded, initializing ECharts...");
-  
+    loadChart();
+  });
+
+  function loadChart() {
     const myChartElement = document.getElementById('mainChart');
     var myChart = echarts.init(myChartElement);
 
@@ -269,6 +262,13 @@ const demoChartHtml = `
             color: infoColor
         }
       },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      
       xAxis: {
         type: 'category',
         data: data0.categoryData,
@@ -282,6 +282,43 @@ const demoChartHtml = `
         scale: true,
         splitArea: {
           show: true
+        }
+      },
+      markPoint: {
+        label: {
+          formatter: function (param) {
+            return param != null ? Math.round(param.value) + '' : '';
+          }
+        },
+        data: [
+          {
+            name: 'Mark',
+            coord: ['2013/1/28', 2346.5],
+            value: 2346.5,
+            itemStyle: {
+              color: 'rgb(41,60,85)'
+            }
+          },
+          {
+            name: 'highest value',
+            type: 'max',
+            valueDim: 'highest'
+          },
+          {
+            name: 'lowest value',
+            type: 'min',
+            valueDim: 'lowest'
+          },
+          {
+            name: 'average value on close',
+            type: 'average',
+            valueDim: 'close'
+          }
+        ],
+        tooltip: {
+          formatter: function (param) {
+            return param.name + '<br>' + (param.data.coord || '');
+          }
         }
       },
       series: [
@@ -301,7 +338,7 @@ const demoChartHtml = `
     };
 
     option && myChart.setOption(option);
-  });
+  }
   
   function splitData(rawData) {  
     const categoryData = [];
@@ -316,9 +353,15 @@ const demoChartHtml = `
       values: values
     };
   }
+
+  function getCurrentTheme() {
+    const theme = document.querySelector('[data-theme]');
+    console.log('found theme?', theme);
+    return theme ? theme.getAttribute('data-theme') : 'amber';
+  }  
 </script>
 `;
 
 export const DemoChart: Story = {
-  render: () => demoChartHtml,
+  render: (args, { globals: { theme } }) => demoChartHtml(theme),
 };
