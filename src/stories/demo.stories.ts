@@ -203,27 +203,60 @@ const demoChartHtml = (theme: string) => `
   </div>
   <script type="text/javascript">
   
-  htmx.onLoad(function() {
-    console.log("htmx loaded, initializing ECharts...");
-    loadChart();
-  });
+  if (!window.chartLoaded) {
+    window.chartLoaded = true;
+    console.log("Loading ECharts on htxm.onLoad...");
+    
+    htmx.onLoad(function() {
+      console.log("htmx loaded, initializing ECharts...");
+      loadChart();
+    });
+  }
 
   function loadChart() {
     const myChartElement = document.getElementById('mainChart');
     var myChart = echarts.init(myChartElement);
 
+    // add resize listener if not already added
+    if (!window.resizeChartListener) {
+      console.log("Adding resize listener to chart...");
+      window.resizeChartListener = true;
+
+      window.addEventListener('resize', function() {
+        console.log("Resizing chart...");
+        myChart.resize();
+      });
+    }
+
+
+
     const styles = getComputedStyle(myChartElement);
-    const backgroundColor = styles.getPropertyValue('--color-base-300') || '#ffffff';
+
+    const base100Color = styles.getPropertyValue('--color-base-100') || '#f0f0f0';
+    const base200Color = styles.getPropertyValue('--color-base-200') || '#e0e0e0';
+    const base300Color = styles.getPropertyValue('--color-base-300') || '#ffffff';
     const baseContentColor = styles.getPropertyValue('--color-base-content') || '#000000';
     const accentColor = styles.getPropertyValue('--color-accent') || '#ff5722';
     const accentColorContent = styles.getPropertyValue('--color-accent-content') || '#ffffff';
     const infoColor = styles.getPropertyValue('--color-info') || '#2196f3';
     const infoColorContent = styles.getPropertyValue('--color-info-content') || '#ffffff';
     const successColor = styles.getPropertyValue('--color-success') || '#4caf50';
+    const successColorContent = styles.getPropertyValue('--color-success-content') || '#ffffff';
     const warningColor = styles.getPropertyValue('--color-warning') || '#ff9800';
     const errorColor = styles.getPropertyValue('--color-error') || '#f44336';
+    const errorColorContent = styles.getPropertyValue('--color-error-content') || '#ffffff';
     const neutralColor = styles.getPropertyValue('--color-neutral') || '#9e9e9e';
     const neutralContentColor = styles.getPropertyValue('--color-neutral-content') || '#212121';
+
+    const backgroundColor = base300Color;
+    const titleColor = baseContentColor;
+    const subtitleColor = infoColor;
+
+    const bullishCandleColor = accentColor; // Color for bullish candles
+    const bullishCandleBorderColor = accentColorContent; // Border color for bullish candles
+    const bearishCandleColor = neutralColor; // Color for bearish candles
+    const bearishCandleBorderColor = neutralContentColor; // Border color for bearish candles
+
 
     // Each item: open,close,lowest,highest
     const data0 = splitData([
@@ -237,6 +270,9 @@ const demoChartHtml = (theme: string) => `
       ['2013/2/4', 2425.92, 2428.15, 2417.58, 2440.38],
       ['2013/2/5', 2411, 2433.13, 2403.3, 2437.42]
     ]);
+
+    console.log("Data for chart:", data0);
+    console.log("[data0.categoryData[0], data0.values[0][0]]", data0.categoryData[0], data0.values[0][0]);
 
     var option;
 
@@ -256,10 +292,10 @@ const demoChartHtml = (theme: string) => `
         subtext: "A simple candlestick chart",
         left: "center",
         textStyle: {
-            color: baseContentColor
+            color: titleColor
         },
         subtextStyle: {
-            color: infoColor
+            color: subtitleColor
         }
       },
       tooltip: {
@@ -272,9 +308,7 @@ const demoChartHtml = (theme: string) => `
       xAxis: {
         type: 'category',
         data: data0.categoryData,
-        boundaryGap: false,
-        axisLine: { onZero: false },
-        splitLine: { show: false },
+        splitLine: { show: true },
         min: 'dataMin',
         max: 'dataMax'
       },
@@ -325,13 +359,48 @@ const demoChartHtml = (theme: string) => `
         {
           type: 'candlestick',
           itemStyle: {
-               color: accentColor,       // Color for bullish candles
-               color0: neutralColor,        // Color for bearish candles
-               borderColor: accentColorContent, // Border color for all candles
-               borderColor0: neutralContentColor,
+               color: bullishCandleColor,      // Color for bullish candles
+               color0: bearishCandleColor,        // Color for bearish candles
+               borderColor: bullishCandleBorderColor, // Border color for all candles
+               borderColor0: bearishCandleBorderColor,
                borderWidth: '2' // Border color for all candles
-           },
+          },
+          emphasis: {
+            itemStyle: {
+              color: bullishCandleColor,      // Color for bullish candles
+              color0: bearishCandleColor,        // Color for bearish candles
+              borderColor: bullishCandleBorderColor, // Border color for all candles
+              borderColor0: bearishCandleBorderColor,
+            }
+          }, 
           data: data0.values,
+        },
+                {
+          type: 'scatter',
+          symbolSize: 20,
+          itemStyle: {
+            color: successColor,            
+            borderColor: successColorContent,
+            borderWidth: 2,
+          },
+          data: [
+            [data0.categoryData[7], data0.values[7][3]]
+          ]
+        },
+
+        {
+          type: 'scatter',
+          symbolSize: 20,
+          itemStyle: {
+            color: errorColor,            
+            borderColor: errorColorContent,
+            borderWidth: 2,
+          },
+          data: [
+            [data0.categoryData[0], data0.values[0][2]],
+            [data0.categoryData[2], data0.values[2][2]],
+            [data0.categoryData[4], data0.values[4][2]]
+          ]
         },
 
       ]
