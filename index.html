@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="/src/main.css" />
     <!-- Notyf css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
-    <!-- AlpineJS -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
     
@@ -32,11 +31,11 @@
           <li>
             <!-- show if wallet is not linked -->
             <fk-link-wallet
-              x-on:wallet-linked="wallet = event.detail; notyf.success(\`Wallet linked: $\{shortenAddress(event.detail)\}\`);login(wallet);" 
+              x-on:wallet-linked="wallet = event.detail; notyf.success(`Wallet linked: $\{shortenAddress(event.detail)\}`);login(wallet);" 
               x-on:wallet-link-error="notyf.error('Wallet link error');" 
               x-on:wallet-not-installed="notyf.error('Wallet not installed');"
               x-on:login-error.window="loggedIn = false; notyf.error('Login error');"
-              x-on:user-logged-in.window="loggedIn = true; notyf.success(\`Logged in as $\{shortenAddress(event.detail.account)}\`);"
+              x-on:user-logged-in.window="loggedIn = true; notyf.success(`Logged in as $\{shortenAddress(event.detail.account)}`);"
             >
               <button x-show="!wallet" is="fk-button" data-trigger>
                 <span class="text-nowrap text-ellipsis overflow-hidden">
@@ -84,41 +83,23 @@
         <div class="card-body">
           <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
             <div
-                x-data="{ theme: '${theme}' }"
-                @newtheme.window="theme = $event.detail.theme; $nextTick(() => loadChart());"
+                x-data="{ theme: '${theme}', chart }"
+                
                 x-bind:data-theme="theme || 'amber'"
               >
-                <div id="mainChart" class="h-96 w-full bg-base-300 border border-base-200 rounded-box p-4">
+                <div
+                  id="mainChart"
+                  x-data="chart"
+                  x-bind="resize"
+                  @newtheme.window="theme = $event.detail.theme; $nextTick(() => myChart = echarts.init($el)); loadChart(myChart, $el);"
+                  class="h-96 w-full bg-base-300 border border-base-200 rounded-box p-4">
                 </div>
               </div>
               <script type="text/javascript">
 
-              if (!window.chartLoaded) {
-                window.chartLoaded = true;
-                console.log("Loading ECharts on htxm.onLoad...");
+              function loadChart(myChart, myChartElement) {
 
-                htmx.onLoad(function() {
-                  console.log("htmx loaded, initializing ECharts...");
-                  loadChart();
-                });
-              }
-
-              function loadChart() {
-                const myChartElement = document.getElementById('mainChart');
-                var myChart = echarts.init(myChartElement);
-
-                // add resize listener if not already added
-                if (!window.resizeChartListener) {
-                  console.log("Adding resize listener to chart...");
-                  window.resizeChartListener = true;
-
-                  window.addEventListener('resize', function() {
-                    console.log("Resizing chart...");
-                    myChart.resize();
-                  });
-                }
-
-
+                console.log("Loading candlestick chart...", myChart, myChartElement);
 
                 const styles = getComputedStyle(myChartElement);
 
