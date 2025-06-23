@@ -79,23 +79,35 @@
     <!-- transparent layout -->
     <div class="sticky top-12 h-5 z-40 bg-base-200/10 bg-gradient-to-t from-base-200/10 to-base-200 m-0"></div>
     <main class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4 z-90">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
+       <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
+      <article is="fk-card" x-data="{ symbol: 'BTCUSDT', interval: '5m', limit: 40 }">
+        <header>
+          <nav is="fk-nav">
+            <ul>
+              <li> <h1><span x-text="`${symbol} ${interval} chart`"></span></h1></li>
+            </ul>
+            <ul>
+              <li><button is="fk-button" style-type="outline" @click="interval = '4h'">4h</button></li>
+              <li><button is="fk-button" style-type="outline" @click="interval = '30m'">30m</button></li>
+            </ul>
+          </nav>
+         
+        </header>
+        <div >
             <div
                 x-data="{ theme: '${theme}', chart }"
                 x-bind:data-theme="theme || 'amber'"
               >
                 <div
                   id="mainChart"
-                  x-data="chart('BTCUSDT', '4h', 40)"
+                  x-data="chart(symbol, interval, limit)"
                   x-bind="resize"
                   @newtheme.window="theme = $event.detail.theme; $nextTick(() => myChart = echarts.init($el)); loadChart(myChart, $el);"
                   class="h-140 w-full bg-base-300 border border-base-200 rounded-box p-4">
                 </div>
               </div>
         </div>
-      </div>
+      </article>
     </main>
   </div>
   <style>

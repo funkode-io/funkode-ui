@@ -53,25 +53,23 @@ Alpine.data("chart", (symbol = 'BTCUSDT', interval = '4h', limit = 10) => {
 
       console.log('init chart', symbol, interval, limit);
   
-
       console.log('loading candles for chart');
 
       candles = await fetch(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`)
         .then(response => response.json())
-        .then(data => {
-          console.log('candles data', data);
-            return data.map(candle => ({
+        .then(data => data.map((candle, i) => ({
+            i,
             d: new Date(candle[0]).toISOString().slice(0, 16).replace('T', ' '), // date in YYYY-MM-DD HH:mm format
             o: parseFloat(candle[1]), // Open
             c: parseFloat(candle[4]), // Close
             l: parseFloat(candle[3]), // Low
             h: parseFloat(candle[2])  // High
-            }))
-        })
+          }))
+        )
         .catch(error => {
           console.error('Error fetching candles:', error);
         });
-      console.log('candles', candles[0]);
+      console.log(`${candles.length}# candles, first`, candles[0]);
       
       chart = echarts.init(this.$el);
 
@@ -95,17 +93,13 @@ function loadChart(myChart, myChartElement, candles) {
 
   const styles = getComputedStyle(myChartElement);
 
-  const base100Color = styles.getPropertyValue('--color-base-100') || '#f0f0f0';
-  const base200Color = styles.getPropertyValue('--color-base-200') || '#e0e0e0';
   const base300Color = styles.getPropertyValue('--color-base-300') || '#ffffff';
   const baseContentColor = styles.getPropertyValue('--color-base-content') || '#000000';
   const accentColor = styles.getPropertyValue('--color-accent') || '#ff5722';
   const accentColorContent = styles.getPropertyValue('--color-accent-content') || '#ffffff';
   const infoColor = styles.getPropertyValue('--color-info') || '#2196f3';
-  const infoColorContent = styles.getPropertyValue('--color-info-content') || '#ffffff';
   const successColor = styles.getPropertyValue('--color-success') || '#4caf50';
   const successColorContent = styles.getPropertyValue('--color-success-content') || '#ffffff';
-  const warningColor = styles.getPropertyValue('--color-warning') || '#ff9800';
   const errorColor = styles.getPropertyValue('--color-error') || '#f44336';
   const errorColorContent = styles.getPropertyValue('--color-error-content') || '#ffffff';
   const neutralColor = styles.getPropertyValue('--color-neutral') || '#9e9e9e';
@@ -121,11 +115,143 @@ function loadChart(myChart, myChartElement, candles) {
   const bearishCandleBorderColor = neutralContentColor; // Border color for bearish candles
 
 
-  // Each item: open,close,lowest,highest
+  // chart data for candlesticks
   const data0 = splitData(candles);
 
-  console.log("Data for chart:", data0);
-  console.log("[data0.categoryData[0], data0.values[0][0]]", data0.categoryData[0], data0.values[0][0]);
+  // market structure points
+  let msPoints = [];
+  let firstCandle = candles[0];
+
+  let lastHigh = null;
+  let lastLow = null;
+
+  let lastHH = firstCandle;
+  let lastLL = firstCandle;
+
+  let waitConfirmHH = false;
+  let oneCandleClosedBearish = false;
+  let itMadeLowerHigh = false;
+
+  let waitConfirmLL = false;
+  let oneCandleClosedBullish = false;
+  let itMadeHigherLow = false;
+
+
+  for (let i=1; i < candles.length; i++) {
+    const candle = candles[i];
+
+    if (candle.h > lastHH.h) {
+      console.log('broke HH', candle.h, lastHH.h);
+
+      lastHH = { ...candle };
+
+      waitConfirmHH = true;
+      oneCandleClosedBearish = false;
+      itMadeLowerHigh = false;
+    }
+
+    // only needed when we are waiting for a confirmation of a new HH
+    if (waitConfirmHH && candle.h < lastHH.h) {
+      itMadeLowerHigh = true
+    }
+
+    if (waitConfirmHH && candle.o < candle.c) {
+      oneCandleClosedBearish = true;
+    }
+
+    // if we confirmed a new HH
+    if (waitConfirmHH && itMadeLowerHigh && oneCandleClosedBearish) {
+      console.log('confirmed HH', lastHH.h);
+      waitConfirmHH = false;
+      lastHH.interest = 'HH';
+      lastHH.trend = 'bulltrend';
+      msPoints.push(lastHH);
+
+      // find previous candle that was a LL
+      let previousCandle = lastHH.i > 0 ? candles[lastHH.i - 1] : firstCandle;
+      let causedHH = previousCandle;
+      for (let j = previousCandle.i - 1; j >= 0; j--) {
+        if (candles[j].l < causedHH.l) {
+            causedHH = { ...candles[j] };
+        } else {
+          break;
+        }
+      }
+
+      console.log('caused HH', causedHH);
+      lastLL = causedHH; // update lastLL to the caused HH
+      causedHH.interest = 'LL';
+      causedHH.trend = 'bulltrend';
+      msPoints.push(causedHH);
+    }
+
+    if (candle.l < lastLL.l) {
+      console.log('broke LL', candle.l, lastLL.l);
+
+      lastLL = candle;
+      // Make a copy of the candle object to avoid mutating the original
+      lastLL = { ...candle };
+
+      waitConfirmLL = true;
+      oneCandleClosedBullish = false;
+      itMadeHigherLow = false;
+    }
+
+    // only needed when we are waiting for a confirmation of a new LL
+    if (waitConfirmLL && candle.l > lastLL.l) {
+      itMadeHigherLow = true
+    }
+
+    if (waitConfirmLL && candle.o > candle.c) {
+      oneCandleClosedBullish = true;
+    }
+
+    // if we confirmed a new LL
+    if (waitConfirmLL && itMadeHigherLow && oneCandleClosedBullish) {
+      console.log('confirmed LL', lastLL);
+      waitConfirmLL = false;
+      lastLL.interest = 'LL';
+      lastLL.trend = 'beartrend';
+      msPoints.push(lastLL); 
+
+      // find previous candle that was a HH
+      let previousCandle = lastLL.i > 0 ? candles[lastLL.i - 1] : firstCandle;
+      let causedLL = previousCandle;
+      for (let j = previousCandle.i - 1; j >= 0; j--) {
+        if (candles[j].h > causedLL.h) {
+            causedLL = { ...candles[j] };
+        } else {
+          break;
+        }
+      }
+
+      console.log('caused LL', causedLL);
+      lastHH = causedLL; // update lastHH to the caused LL
+      
+      causedLL.interest = 'HH';
+      causedLL.trend = 'beartrend';
+      msPoints.push(causedLL);
+    }
+      
+  }
+
+  console.log('msPoints', msPoints);
+
+  let msPointsData = msPoints.map((candle) => {
+    return ({ 
+      value: [
+        candle.d, // date in YYYY-MM-DD HH:mm format
+        candle.interest === 'HH' ? candle.h : candle.l // use high for HH
+      ],
+      itemStyle: {
+        color: candle.trend === 'bulltrend' ? successColor : errorColor, // Color for HH and LL points
+        borderColor: candle.trend === 'bulltrend'  ? successColorContent : errorColorContent, // Border color for HH and LL points
+        borderWidth: 2
+      }
+    });
+  });
+
+  console.log('msPointsData', msPointsData);
 
   var option;
 
@@ -171,43 +297,6 @@ function loadChart(myChart, myChartElement, candles) {
         show: true
       }
     },
-    markPoint: {
-      label: {
-        formatter: function (param) {
-          return param != null ? Math.round(param.value) + '' : '';
-        }
-      },
-      data: [
-        {
-          name: 'Mark',
-          coord: ['2013/1/28', 2346.5],
-          value: 2346.5,
-          itemStyle: {
-            color: 'rgb(41,60,85)'
-          }
-        },
-        {
-          name: 'highest value',
-          type: 'max',
-          valueDim: 'highest'
-        },
-        {
-          name: 'lowest value',
-          type: 'min',
-          valueDim: 'lowest'
-        },
-        {
-          name: 'average value on close',
-          type: 'average',
-          valueDim: 'close'
-        }
-      ],
-      tooltip: {
-        formatter: function (param) {
-          return param.name + '<br>' + (param.data.coord || '');
-        }
-      }
-    },
     series: [
       {
         type: 'candlestick',
@@ -228,34 +317,11 @@ function loadChart(myChart, myChartElement, candles) {
         }, 
         data: data0.values,
       },
-              {
-        type: 'scatter',
-        symbolSize: 20,
-        itemStyle: {
-          color: successColor,            
-          borderColor: successColorContent,
-          borderWidth: 2,
-        },
-        data: [
-          [data0.categoryData[7], data0.values[7][3]]
-        ]
-      },
-
       {
         type: 'scatter',
         symbolSize: 20,
-        itemStyle: {
-          color: errorColor,            
-          borderColor: errorColorContent,
-          borderWidth: 2,
-        },
-        data: [
-          [data0.categoryData[0], data0.values[0][2]],
-          [data0.categoryData[2], data0.values[2][2]],
-          [data0.categoryData[4], data0.values[4][2]]
-        ]
+        data: msPointsData
       },
-
     ]
   };
 
