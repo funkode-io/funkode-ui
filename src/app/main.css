@@ -1,13 +1,13 @@
 @import "tailwindcss";
-@import "../dist/assets/main.css";
+@import "../../dist/assets/main.css";
 
 @plugin "flyonui" {
   include: button;
   logs: true;
 }
 
-@import "../node_modules/flyonui/flyonui.css";
-@import "../node_modules/flyonui/variants.css";
+@import "../../node_modules/flyonui/flyonui.css";
+@import "../../node_modules/flyonui/variants.css";
 
 [data-theme="amber"] {
   --color-base-100: oklch(25.33% 0.016 252.42);

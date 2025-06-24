@@ -1,4 +1,4 @@
-import "../";
+import "../../";
 
 import "flyonui/flyonui";
 
