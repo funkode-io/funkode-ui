@@ -1,42 +1,52 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funkode UI App Test</title>
-    <link rel="stylesheet" href="/src/main.css" />
-    <!-- Notyf css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
 
-    <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
-    
-  </head>
-  <body data-theme="amber">
- <div 
-    x-data="{ theme: '${theme}', wallet: null }"
-    x-bind:data-theme="theme"
-    x-on:wallet-linked="wallet = $event.detail;"
-    @newtheme.window="theme = $event.detail.theme;"
-    class="bg-base-200"
-  >
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funkode UI App Test</title>
+  <link rel="stylesheet" href="/src/main.css" />
+  <!-- Notyf css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body data-theme="amber">
+  <div x-data="{ theme: '${theme}', wallet: null }" x-bind:data-theme="theme"
+    x-on:wallet-linked="wallet = $event.detail;" @newtheme.window="theme = $event.detail.theme;" class="bg-base-200">
     <header class="sticky -top-6 flex flex-col items-center z-50 h-18 bg-base-100">
       <nav is="fk-nav" class="z-50 m-0 px-8 pt-2 w-full h-15" sticky="true">
         <ul>
-          <li .innerHTML=${funkodeIoSvg}></li>
+          <li>
+            <svg height="50" viewBox="0 0 456 96" style="background-color: transparent;"
+              xmlns="http://www.w3.org/2000/svg">
+              <style>
+                text {
+                  font-family: 'Roboto', sans-serif;
+                }
+              </style>
+              <path d="M48,16 16,48 48,80 72,16 104,48 72,80" stroke-width="5" stroke-linejoin="round" stroke="white"
+                fill="transparent" />
+              <text x="120" y="72" font-size="64" fill="white">Funkode UI</text>
+            </svg>
+          </li>
         </ul>
         <ul>
           <li><a href="#">Home</a></li>
           <li>
             <!-- show if wallet is not linked -->
             <fk-link-wallet
-              x-on:wallet-linked="wallet = event.detail; notyf.success(`Wallet linked: $\{shortenAddress(event.detail)\}`);login(wallet);" 
-              x-on:wallet-link-error="notyf.error('Wallet link error');" 
+              x-on:wallet-linked="wallet = event.detail; notyf.success(`Wallet linked: $\{shortenAddress(event.detail)\}`);login(wallet);"
+              x-on:wallet-link-error="notyf.error('Wallet link error');"
               x-on:wallet-not-installed="notyf.error('Wallet not installed');"
               x-on:login-error.window="loggedIn = false; notyf.error('Login error');"
-              x-on:user-logged-in.window="loggedIn = true; notyf.success(`Logged in as $\{shortenAddress(event.detail.account)}`);"
-            >
+              x-on:user-logged-in.window="loggedIn = true; notyf.success(`Logged in as $\{shortenAddress(event.detail.account)}`);">
               <button x-show="!wallet" is="fk-button" data-trigger>
                 <span class="text-nowrap text-ellipsis overflow-hidden">
                   Link wallet
@@ -44,13 +54,8 @@
               </button>
             </fk-link-wallet>
             <!-- show if wallet is linked but not logged in -->
-            <button 
-              is="fk-button" 
-              x-show="wallet && !loggedIn"
-              variant="primary"
-              @click="login(wallet)"
-            >
-              <span  class="max-w-20 text-ellipsis whitespace-nowrap overflow-hidden">Login</span>
+            <button is="fk-button" x-show="wallet && !loggedIn" variant="primary" @click="login(wallet)">
+              <span class="max-w-20 text-ellipsis whitespace-nowrap overflow-hidden">Login</span>
             </button>
             <details is="fk-dropdown" x-show="wallet && loggedIn" variant="primary">
               <summary x-text="shortenAddress(wallet)">Error loading wallet</summary>
@@ -61,13 +66,13 @@
           </li>
           <li>
             <fk-dialog click-outside-close="" position="right">
-              <button is="fk-button" data-trigger  variant="default" style-type="text"> 
+              <button is="fk-button" data-trigger variant="default" style-type="text">
                 <i class="text-2xl icon-[lucide--settings] cursor-pointer"></i>
               </button>
               <dialog data-content>
-                <h3 class="text-lg font-bold">Change Theme</h3>    
+                <h3 class="text-lg font-bold">Change Theme</h3>
                 <div class="flex flex-col flex-wrap items-start mb-2">
-                ${["amber", "forest", "dark", "light", "winter"].map((theme) => themeOption(theme))}
+                  ${["amber", "forest", "dark", "light", "winter"].map((theme) => themeOption(theme))}
                 </div>
               </dialog>
             </fk-dialog>
@@ -79,33 +84,27 @@
     <!-- transparent layout -->
     <div class="sticky top-12 h-5 z-40 bg-base-200/10 bg-gradient-to-t from-base-200/10 to-base-200 m-0"></div>
     <main class="flex flex-col gap-4 h-150 bg-base-200 w-full p-4 z-90">
-       <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
-      <article is="fk-card" x-data="{ symbol: 'BTCUSDT', interval: '5m', limit: 40 }">
+      <h5 class="card-title mb-2.5">Welcome to DFolio</h5>
+      <article is="fk-card" x-data="chart( 'BTCUSDT', '5m', 40 )">
         <header>
           <nav is="fk-nav">
             <ul>
-              <li> <h1><span x-text="`${symbol} ${interval} chart`"></span></h1></li>
+              <li>
+                <h1><span x-text="`${symbol} ${interval} chart`"></span></h1>
+              </li>
             </ul>
             <ul>
               <li><button is="fk-button" style-type="outline" @click="interval = '4h'">4h</button></li>
               <li><button is="fk-button" style-type="outline" @click="interval = '30m'">30m</button></li>
             </ul>
           </nav>
-         
         </header>
-        <div >
-            <div
-                x-data="{ theme: '${theme}', chart }"
-                x-bind:data-theme="theme || 'amber'"
-              >
-                <div
-                  id="mainChart"
-                  x-data="chart(symbol, interval, limit)"
-                  x-bind="resize"
-                  @newtheme.window="theme = $event.detail.theme; $nextTick(() => myChart = echarts.init($el)); loadChart(myChart, $el);"
-                  class="h-140 w-full bg-base-300 border border-base-200 rounded-box p-4">
-                </div>
-              </div>
+        <div>
+          <!-- Chart container -->
+          <div id="mainChart" x-bind="resize" x-ref="chart"
+            @newtheme.window="theme = $event.detail.theme; $nextTick(() => myChart = echarts.init($el)); loadChart(myChart, $el);"
+            class="h-140 w-full bg-base-300 border border-base-200 rounded-box p-4">
+          </div>
         </div>
       </article>
     </main>
@@ -116,42 +115,43 @@
     }
   </style>
   <script>
-      function shortenAddress(address, startChars = 4, endChars = 4) {
-        if (!address) return '';
-        return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
-      }
+    function shortenAddress(address, startChars = 4, endChars = 4) {
+      if (!address) return '';
+      return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
+    }
 
-      async function signMessage(message, account) {
-        try {
-          const signature = await window.ethereum.request({
-            method: 'personal_sign',
-            params: [message, account],
-          });
-          console.log("Signature:", signature);
-          return Promise.resolve(signature);
-        } catch (error) {
-          console.error("Error signing message:", error);
-          return Promise.reject(error);
-        }
+    async function signMessage(message, account) {
+      try {
+        const signature = await window.ethereum.request({
+          method: 'personal_sign',
+          params: [message, account],
+        });
+        console.log("Signature:", signature);
+        return Promise.resolve(signature);
+      } catch (error) {
+        console.error("Error signing message:", error);
+        return Promise.reject(error);
       }
+    }
 
-      async function fetchChallenge() {
-        return fetch('https://funkode.io/funkode-ui/auth/challenge')
-          .then(response => response.text());
-      }
+    async function fetchChallenge() {
+      return fetch('https://funkode.io/funkode-ui/auth/challenge')
+        .then(response => response.text());
+    }
 
-      async function login(account) {
-        fetchChallenge()
-          .then(challenge => signMessage(challenge, account))
-          .then(signature => { 
-            this.dispatchEvent(new CustomEvent("user-logged-in", { detail: { account } }) );
-          })
-          .catch(error => {
-            console.error("Login error:", error);
-            this.dispatchEvent(new CustomEvent("login-error", { detail: error }));
-          });
-      }
-    </script>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    async function login(account) {
+      fetchChallenge()
+        .then(challenge => signMessage(challenge, account))
+        .then(signature => {
+          this.dispatchEvent(new CustomEvent("user-logged-in", { detail: { account } }));
+        })
+        .catch(error => {
+          console.error("Login error:", error);
+          this.dispatchEvent(new CustomEvent("login-error", { detail: error }));
+        });
+    }
+  </script>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
