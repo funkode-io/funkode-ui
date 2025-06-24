@@ -21,6 +21,7 @@ import { FunkButton } from "../lib/components/ui/button/button";
 import { FunkNavigation } from "../lib/components/ui/nav/nav";
 import { FunkCard } from "../lib/components/ui/card/card";
 import { FunkDialog } from "../lib/components/headless/dialog/dialog";
+import { FunkThemeButton } from "../lib/components/ui/theme/theme-button";
 
 import type { IStaticMethods } from "flyonui/flyonui";
 
@@ -35,7 +36,15 @@ window.echarts = echarts;
 
 console.log("Loading preview.ts...");
 
-console.log("Make sure components are loaded", LinkWalletComponent, FunkButton, FunkNavigation, FunkCard, FunkDialog);
+console.log(
+  "Make sure components are loaded",
+  LinkWalletComponent,
+  FunkButton,
+  FunkNavigation,
+  FunkCard,
+  FunkDialog,
+  FunkThemeButton,
+);
 
 /*
  * Initializes MSW

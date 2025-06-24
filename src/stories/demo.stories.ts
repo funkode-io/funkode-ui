@@ -29,25 +29,7 @@ function capitalize(string: string) {
 
 const themeOption = (theme: string) => {
   return html`
-    <div 
-      data-theme="${theme}"
-      class="flex justify-center items-center min-w-32 bg-base-100 border border-base-300 rounded-box color-base-content py-2 px-4 m-1"
-    >
-      <button
-        is="fk-button"
-        x-on:click="$dispatch('newtheme', { theme: '${theme}' })"
-        class="min-w-24 text-center"
-      >
-        ${capitalize(theme)}
-      </button>
-      <div class="flex h-10 justify-center items-center ml-1">
-        <div class="w-2 h-6 rounded-selector bg-primary mr-1"></div>
-        <div class="w-2 h-6 rounded-selector bg-secondary mr-1"></div>
-        <div class="w-2 h-6 rounded-selector bg-accent mr-1"></div>
-        <div class="w-2 h-6 rounded-selector bg-info mr-1"></div>
-        <div class="w-2 h-6 rounded-selector bg-success"></div>
-      </div>
-    </div>
+    <fk-theme-button theme="${theme}" ></fk-theme-button>
     `;
 };
 
@@ -71,7 +53,7 @@ export const DemoPage: Story = {
     x-data="{ theme: '${theme}', wallet: null }"
     x-bind:data-theme="theme"
     x-on:wallet-linked="wallet = $event.detail;"
-    @newtheme.window="theme = $event.detail.theme;"
+    x-on:newtheme="console.log('received in alpine new theme'); theme = $event.detail.theme;"
     class="bg-base-200"
   >
     <header class="sticky -top-6 flex flex-col items-center z-50 h-18 bg-base-100">
