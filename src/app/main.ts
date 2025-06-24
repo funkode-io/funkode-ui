@@ -193,16 +193,22 @@ function loadChart(myChart, myChartElement, candles) {
       for (let j = previousCandle.i - 1; j >= 0; j--) {
         if (candles[j].l < causedHH.l) {
           causedHH = { ...candles[j] };
-        } else {
+        } else if (candles[j].o > candles[j].c) {
           break;
         }
       }
 
       console.log("caused HH", causedHH);
-      lastLL = causedHH; // update lastLL to the caused HH
+
       causedHH.interest = "LL";
       causedHH.trend = "bulltrend";
-      msPoints.push(causedHH);
+
+      // add if the low is different from the last one
+      if (causedHH.i !== lastLL.i) {
+        msPoints.push(causedHH);
+      }
+
+      lastLL = causedHH; // update lastLL to the caused HH
     }
 
     if (candle.l < lastLL.l) {
@@ -236,21 +242,27 @@ function loadChart(myChart, myChartElement, candles) {
 
       // find previous candle that was a HH
       let previousCandle = lastLL.i > 0 ? candles[lastLL.i - 1] : firstCandle;
+
       let causedLL = previousCandle;
       for (let j = previousCandle.i - 1; j >= 0; j--) {
         if (candles[j].h > causedLL.h) {
           causedLL = { ...candles[j] };
-        } else {
+        } else if (candles[j].o < candles[j].c) {
           break;
         }
       }
 
       console.log("caused LL", causedLL);
-      lastHH = causedLL; // update lastHH to the caused LL
 
       causedLL.interest = "HH";
       causedLL.trend = "beartrend";
-      msPoints.push(causedLL);
+
+      // add if the high is different from the last one
+      if (causedLL.i !== lastHH.i) {
+        msPoints.push(causedLL);
+      }
+
+      lastHH = causedLL; // update lastHH to the caused LL
     }
   }
 
@@ -305,6 +317,7 @@ function loadChart(myChart, myChartElement, candles) {
     },
     yAxis: {
       scale: true,
+      position: "right",
       splitArea: {
         show: true,
       },
