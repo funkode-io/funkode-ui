@@ -31,9 +31,9 @@ const meta = {
       options: ["default", "soft", "outline", "text"],
       control: { type: "radio" },
     },
-    state: {
-      options: ["active", "disabled"],
-      control: { type: "radio" },
+    disabled: {
+      control: { type: "boolean" },
+      description: "Sets the button to a disabled state",
     },
     pill: {
       control: { type: "boolean" },
@@ -54,7 +54,7 @@ export const AllVariants: Story = {
             variant=${variant}
             size=${args.size}
             style-type=${args.styleType}
-            state=${args.state}
+            ?disabled=${args.disabled}
             pill=${args.pill}
           >
             ${variant}
@@ -66,7 +66,6 @@ export const AllVariants: Story = {
   args: {
     size: "md",
     styleType: "default",
-    state: "active",
     pill: false,
   },
 };
@@ -81,7 +80,7 @@ export const AllStyleTypes: Story = {
             variant=${args.variant}
             size=${args.size}
             style-type=${styleType}
-            state=${args.state}
+            ?disabled=${args.disabled}
             pill=${args.pill}
           >
             ${styleType}
@@ -107,7 +106,7 @@ export const AllSizes: Story = {
             variant=${args.variant}
             size=${size}
             style-type=${args.styleType}
-            state=${args.state}
+            ?disabled=${args.disabled}
             pill=${args.pill}
           >
             ${size}
