@@ -1,3 +1,9 @@
+@import "tailwindcss";
+
+@plugin "flyonui" {
+}
+
+
 :root * {
   --icon-chevron-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='1em' height='1em'%3E%3Cstyle%3Epath { stroke: var(--color, gold); }%3C/style%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
 }
@@ -63,12 +69,42 @@ details[is="fk-dropdown"] {
   display: block;
 }
 
-details[is="fk-dropdown"] summary {
+details[is="fk-dropdown"]:not([open]) summary {
+  @apply btn btn-block;
+  justify-content: space-between;
   line-height: 1rem;
   line-height: var(--tw-leading, var(--text-base--line-height));
   font-weight: var(--font-weight-medium, 500);
   list-style-type: none;
   cursor: pointer;
+}
+
+details[is="fk-dropdown"][open] summary {
+  
+  font-size: var(--text-base);
+  line-height: var(--tw-leading, var(--text-base--line-height));
+  --tw-font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-medium);
+
+  justify-content: space-between;
+  align-items: center;
+  display: inline-flex;
+
+  &:active:hover:not(.btn-active),
+  &:active:focus:not(.btn-active) {
+      --tw-scale-x: 95%;
+      --tw-scale-y: 95%;
+      --tw-scale-z: 95%;
+    
+      transition-property: transform, translate, scale, rotate;
+      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+      --tw-duration: .3s;
+      transition-duration: .3s;
+      transition-timing-function: ease-out
+  }
+
+  width: 100%;
 }
 
 details[is="fk-dropdown"] summary:not([role]) {
@@ -126,6 +162,10 @@ details[is="fk-dropdown"] {
   border-bottom: none;
 }
 
+details[is="fk-dropdown"][open] > a::after {
+  transform: rotate(180deg) translateX(0.2rem) translateY(-0.4rem);
+
+}
 details[is="fk-dropdown"] > summary::after,
 details[is="fk-dropdown"] > button::after,
 details[is="fk-dropdown"] > a::after {
@@ -134,7 +174,7 @@ details[is="fk-dropdown"] > a::after {
   height: var(--size);
   margin-inline-start: 0.25rem;
   float: right;
-  transform: rotate(0deg) translateX(0.2rem) translateY(-0.3rem);
+  transform: rotate(0deg) translateX(0.2rem) translateY(0rem);
 
   background-color: var(--color);
 
@@ -203,7 +243,7 @@ nav details[is="fk-dropdown"] {
 }
 
 nav details[is="fk-dropdown"] > summary::after {
-  transform: rotate(0deg) translateX(0.2rem) translateY(-0.3rem);
+  transform: rotate(0deg) translateX(0.2rem) translateY(-0rem);
 }
 
 nav details[is="fk-dropdown"] > summary:not([role]) {
