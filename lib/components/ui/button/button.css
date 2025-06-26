@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@plugin "flyonui" {
+}
+
+@reference "../../../../node_modules/flyonui/flyonui.css";
+
+[is="fk-button"] {
+  @apply btn;
+}
+
+[is="fk-button"][variant="primary"] {
+  @apply btn-primary;
+}
+
+[is="fk-button"][variant="secondary"] {
+  @apply btn-secondary;
+}
+
+[is="fk-button"][variant="accent"] {
+  @apply btn-accent;
+}
+
+[is="fk-button"][variant="info"] {
+  @apply btn-info;
+}
+
+[is="fk-button"][variant="success"] {
+  @apply btn-success;
+}
+
+[is="fk-button"][variant="warning"] {
+  @apply btn-warning;
+}
+
+[is="fk-button"][variant="error"] {
+  @apply btn-error;
+}
+
+[is="fk-button"][style-type="soft"] {
+  @apply btn-soft;
+}
+
+[is="fk-button"][style-type="outline"] {
+  @apply btn-outline;
+}
+
+[is="fk-button"][style-type="text"] {
+  @apply btn-text;
+}
+
+[is="fk-button"][size="xs"] {
+  @apply btn-xs;
+}
+
+[is="fk-button"][size="sm"] {
+  @apply btn-sm;
+}
+
+[is="fk-button"][size="md"] {
+  @apply btn-md;
+}
+
+[is="fk-button"][size="lg"] {
+  @apply btn-lg;
+}
+
+[is="fk-button"][size="xl"] {
+  @apply btn-xl;
+}
+
+[is="fk-button"]:active {
+  @apply btn-active;
+}
+
+[is="fk-button"]:disabled,
+[is="fk-button"][aria-disabled="true"] {
+  @variant disabled;
+}
+
+[is="fk-button"][pill="true"] {
+  @apply rounded-full;
+}
