@@ -165,16 +165,19 @@ Alpine.data("chart", (symbol = "BTCUSDT", interval = "4h", limit = 10) => {
           lastHH = { ...candle };
 
           waitConfirmHH = true;
+          waitConfirmLL = false;
           oneCandleClosedBearish = false;
           itMadeLowerHigh = false;
         }
 
         // only needed when we are waiting for a confirmation of a new HH
         if (waitConfirmHH && candle.h < lastHH.h) {
+          console.log("it made lower high", candle.h, lastHH.h);
           itMadeLowerHigh = true;
         }
 
-        if (waitConfirmHH && candle.o < candle.c) {
+        if (waitConfirmHH && candle.c < candle.o) {
+          console.log("one candle closed bearish", candle.o, candle.c);
           oneCandleClosedBearish = true;
         }
 
@@ -182,6 +185,9 @@ Alpine.data("chart", (symbol = "BTCUSDT", interval = "4h", limit = 10) => {
         if (waitConfirmHH && itMadeLowerHigh && oneCandleClosedBearish) {
           console.log("confirmed HH", lastHH.h);
           waitConfirmHH = false;
+          itMadeLowerHigh = false;
+          oneCandleClosedBearish = false;
+          
           lastHH.interest = "HH";
           lastHH.trend = "bulltrend";
           msPoints.push(lastHH);
@@ -218,6 +224,7 @@ Alpine.data("chart", (symbol = "BTCUSDT", interval = "4h", limit = 10) => {
           lastLL = { ...candle };
 
           waitConfirmLL = true;
+          waitConfirmHH = false;
           oneCandleClosedBullish = false;
           itMadeHigherLow = false;
         }
@@ -227,7 +234,7 @@ Alpine.data("chart", (symbol = "BTCUSDT", interval = "4h", limit = 10) => {
           itMadeHigherLow = true;
         }
 
-        if (waitConfirmLL && candle.o > candle.c) {
+        if (waitConfirmLL && candle.c > candle.o) {
           oneCandleClosedBullish = true;
         }
 
