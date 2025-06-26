@@ -1,5 +1,5 @@
 import "./button.css";
-
+import type { Variant } from "../variants/variants";
 
 
 /**
