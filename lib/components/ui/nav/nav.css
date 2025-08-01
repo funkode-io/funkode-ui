@@ -73,10 +73,10 @@ nav[is="fk-nav"] li {
 }
 
 nav[is="fk-nav"] li :where(a, [role="link"]) {
-  display: inline-block;
-  margin: calc(var(--fk-nav-link-spacing-vertical) * -1) calc(var(--fk-nav-link-spacing-horizontal) * -1);
-  padding: var(--fk-nav-link-spacing-vertical) var(--fk-nav-link-spacing-horizontal);
-  border-radius: var(--radius-field);
+    display: inline-block;
+    margin: calc(var(--fk-nav-link-spacing-vertical) * -1) calc(var(--fk-nav-link-spacing-horizontal) * -1);
+    padding: var(--fk-nav-link-spacing-vertical) var(--fk-nav-link-spacing-horizontal);
+    border-radius: var(--radius-field);
 }
 
 nav[is="fk-nav"] li :where(a, [role="link"]):not(:hover) {
